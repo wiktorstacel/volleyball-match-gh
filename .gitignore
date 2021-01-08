@@ -1,25 +1,41 @@
-# CakePHP 3
+manager.xml
+manager.clpprj
 
-/vendor/*
-/config/app.php
+nbproject/
+images/
+PHPMailer/
+config_db.php
+config_smtp.php
 
-/tmp/cache/models/*
-!/tmp/cache/models/empty
-/tmp/cache/persistent/*
-!/tmp/cache/persistent/empty
-/tmp/cache/views/*
-!/tmp/cache/views/empty
-/tmp/sessions/*
-!/tmp/sessions/empty
-/tmp/tests/*
-!/tmp/tests/empty
+add_done/
+js/tlo_action.js
+operacje/
+panel_show/
+play/
+wklad_pole/
 
-/logs/*
-!/logs/empty
+act_table.php
+add.php
+add_corect_team.php
+add_country.php
+add_liga.php
+add_player.php
+add_team.php
+ask_ask.php
+ask_team.php
+ask_team1.php
+check_nr.php
+css_man.css
 
-# CakePHP 2
+kalen.php
+kolejka.php
+make_po.php
+next_day.php
+next_day_calendar.php
+panel.php
+plansza_1mecz.php
+show_table_10.php
+skrypty_ksm.js
+skrypty_manager.js
+strona_man.inc
 
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
