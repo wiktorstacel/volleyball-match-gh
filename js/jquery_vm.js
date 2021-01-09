@@ -66,3 +66,74 @@ $(document).ready(function(){
    $("#" + i).append(document.createTextNode(" - " + val));
  });*/
 
+//SENDING JSON TO PHP. Walidacja i zapis paramentrów zawodników edytowanej drużyny (nie ładowanie danych)
+$(document).ready(function(){
+    
+    $(document).on("click", "#team_loader_submit",function(){
+        var dataSend = createJSON();
+        console.log(dataSend);
+        $.post("team_editSaveAction.php", {
+            dataSend: dataSend
+        }, function(data, status){
+            $("#team_loader_message").html(data);
+        });
+    });
+    
+});
+
+//CREATE JSON FILE for >>25<< parameters of each playaer
+function createJSON() {//jak wykorzystać indeksy?
+    jsonObj = [];
+    pole = "input[name=zaw]";
+    //var count = $("input[name=zaw]");alert(count.length);
+    var i = 0;
+    item = {}
+    $(pole).each(function() { //przyklad z inserance-agent $('input[name="language"]:checked').each(function()
+        i++;
+        var id = $(this).attr("class"); //var id = this.getAttribute('title');
+        var value = $(this).val();
+       
+        item [id] = value; 
+        if(i == 25){  //UWAGA: gdyby zmieniła się liczba parametrów zawodnika zmienić TUTAJ >>25<< !
+            jsonObj.push(item);
+            i = 0;
+            item = {} //RESETOWANIE Item() - bez resetowania i tak się zakończy, bo potem powtarzają się indeksy
+        }       
+    });
+    //jsonObj.push(item);
+    //console.log(jsonObj);
+    return jsonObj;
+}
+
+//PRZYKLAD1 tworzenia JSON
+/*var obj = [];
+var elems = $("input[class=email]");
+
+for (i = 0; i < elems.length; i += 1) {
+    var id = this.getAttribute('title');
+    var email = this.value;
+    tmp = {
+        'title': id,
+        'email': email
+    };
+
+    obj.push(tmp);
+}*/
+
+//PRZYKLAD2 tworzenia JSON
+/*function createJSON() {
+    jsonObj = [];
+    $("input[class=email]").each(function() { //przyklad z inserance-agent $('input[name="language"]:checked').each(function()
+
+        var id = $(this).attr("title"); //var id = this.getAttribute('title');
+        var email = $(this).val();
+
+        item = {}
+        item ["title"] = id;
+        item ["email"] = email;
+
+        jsonObj.push(item);
+    });
+
+    console.log(jsonObj);
+}*/

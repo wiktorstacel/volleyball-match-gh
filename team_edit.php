@@ -48,10 +48,10 @@ $result = mysqli_query($conn,
     mysqli_real_escape_string($conn, $id_druzyna)));
 if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);}
 $row = mysqli_fetch_assoc($result);    
-//echo '<input id="" disabled type="text" style="width: 40px;" name="" value="" />';
+
 foreach ($row as $col => $val) 
 {
-    echo '<input id="" disabled type="text" style="width: 40px;" name="" value="'.$col.'" />';
+    echo '<input id="" disabled type="text" class="'.$col.'" style="width: 40px;" name="" value="'.$col.'" />';
 }
 echo '<br>';
 //VALUES
@@ -63,7 +63,6 @@ if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_er
 $arr_letters = array("aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "ar", "as", "at", "au", "aw", "ax", "ay", "az", "ba", "bb", "bc", "bd", "be", "bf", "bg", "ah", "ai");
 while($row = mysqli_fetch_array($result, MYSQLI_NUM))
 {
-    //echo '<input id="a'.$j.'" disabled type="text" style="width: 40px;" name="" value="" />';
     $length = count($row);
     for ($i = 0; $i < $length; $i++) 
     {
@@ -79,14 +78,14 @@ while($row = mysqli_fetch_assoc($result))
 {
     foreach ($row as $col => $val) 
     {
-        echo '<input id="'.$col.'_'.$j.'" type="text" style="width: 40px;" name="" value="'.$val.'" />';
+        echo '<input id="'.$col.'_'.$j.'" type="text" class="'.$col.'" style="width: 40px;" name="zaw" value="'.$val.'" />';
     }
     echo '<br>';
     $j++;
 }
 
 
-echo'<br /><input id="team_loader_submit" type="submit" value="Zapisz" />';
+echo'<br /><input id="team_loader_submit" type="submit" onclick="" value="Zapisz" />';
 
 echo'<br /><p id="team_loader_message"></p>';
     
