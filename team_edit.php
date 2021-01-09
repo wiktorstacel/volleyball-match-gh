@@ -48,10 +48,10 @@ $result = mysqli_query($conn,
     mysqli_real_escape_string($conn, $id_druzyna)));
 if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);}
 $row = mysqli_fetch_assoc($result);    
-echo '<input id="" disabled type="text" style="width: 42px;" name="" value="" />';
+//echo '<input id="" disabled type="text" style="width: 40px;" name="" value="" />';
 foreach ($row as $col => $val) 
 {
-    echo '<input id="" disabled type="text" style="width: 42px;" name="" value="'.$col.'" />';
+    echo '<input id="" disabled type="text" style="width: 40px;" name="" value="'.$col.'" />';
 }
 echo '<br>';
 //VALUES
@@ -59,52 +59,38 @@ $result = mysqli_query($conn,
     sprintf("SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' ORDER BY nazwisko ASC",
     mysqli_real_escape_string($conn, $id_druzyna)));
 if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);}
+/*$j = 1;
+$arr_letters = array("aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "ar", "as", "at", "au", "aw", "ax", "ay", "az", "ba", "bb", "bc", "bd", "be", "bf", "bg", "ah", "ai");
 while($row = mysqli_fetch_array($result, MYSQLI_NUM))
 {
-    echo '<input id="a'.$row[0].'" disabled type="text" style="width: 42px;" name="" value="" />';
+    //echo '<input id="a'.$j.'" disabled type="text" style="width: 40px;" name="" value="" />';
     $length = count($row);
     for ($i = 0; $i < $length; $i++) 
     {
         //print $row[$i];
-        echo '<input id="" type="text" style="width: 42px;" name="" value="'.$row[$i].'" />';
+        echo '<input id="'.$arr_letters[$i].$j.'" type="text" style="width: 40px;" name="" value="'.$row[$i].'" />';
     }
+    $j++;
     echo'<br>';
+}*/
+
+$j = 0;
+while($row = mysqli_fetch_assoc($result))
+{
+    foreach ($row as $col => $val) 
+    {
+        echo '<input id="'.$col.'_'.$j.'" type="text" style="width: 40px;" name="" value="'.$val.'" />';
+    }
+    echo '<br>';
+    $j++;
 }
 
 
+echo'<br /><input id="team_loader_submit" type="submit" value="Zapisz" />';
 
-
+echo'<br /><p id="team_loader_message"></p>';
     
         
     
 
-?>
-
-    <form id="kont_form" method="POST" action="contact_formLoadAction.php">
-            <fieldset>
-            <img src="css\images\envelop2.png" width="32" height="32" alt="alt"/>
-            <input id="kont_user_id" type="hidden" name="kont_user_id" value="<?php echo $row['user_id']?>" />
-            <label for="kont_login"><u>Wiadomość do:</u> <b><?php echo $row['surname'].'</b>, '.$row['address']?></label>
-                
-            <br>
-            <br><textarea name="kont_inquiry" cols="56" rows="6" type="text" value="" id="kont_inquiry" placeholder="Treść zapytania... prośby o przedstawienie oferty... wniosku o umówienie spotkania..." class=""></textarea>
-            
-            <br><br><label for="kont_login">Imię: </label>
-            <input id="kont_name" type="text" name="kont_name" value="" />
-            <br /><br />
-            <label for="rejs_email">E-mail: </label>
-            <input id="kont_email" type="text" name="kont_email" value="" />
-            <br /><br />
-            <label for="rej_haslo">Telefon*: </label>
-            <input id="kont_telefon" type="text" name="kont_telefon" value="" />
-            <br /><br />
-
-            <label><input id="kont_regulamin" type="checkbox" name="kont_regulamin" />Akceptuję </label>
-            <a href="regulamin.php">regulamin</a>
-            <br /><br />                        
-            <input id="kont_submit" type="submit" value="Wyślij" />
-            <br />
-            <p id="kont_message"></p>
-            </fieldset>
-    </form>
 

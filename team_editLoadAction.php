@@ -39,8 +39,7 @@ if(isset($_POST['id_druzyna']))
             $table[] = $row;
         }
         print json_encode($table);
-    }
-    
+    }    
 }
 else
 {

@@ -16,7 +16,7 @@ $(document).ready(function(){
     
 });
 
-//wstawienie team_edit.php do div na stronie index z parametrem GET
+//przysłanie parametrów zawodników na podst id_druzyna (LOAD) i wstanie do inputów
 $(document).ready(function(){
     
     $(document).on("change", "#team_to_edit", function(){
@@ -30,25 +30,39 @@ $(document).ready(function(){
                 dataType: "JSON",
                 success: function(data){                                  
                     console.log(data);
-                    
+                    var j = 0;
+                    //var i = 0;
+                    //var arr_letters = ["aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "ar", "as", "at", "au", "aw", "ax", "ay", "az", "ba", "bb", "bc", "bd", "be", "bf", "bg", "ah", "ai"];
                     data.forEach(function(dt){
-                        pole = "#a"+dt.id_zawodnik;
-                        $(pole).val(dt.nazwisko);
+                        //pole = "#a"+j;
+                        //dt jest moim poziomym row z JSON
+                        jQuery.each(dt, function(col, val_1) {  
+                            pole = "#"+col+"_"+j;
+                            //pole = "#"+arr_letters[i]+j;
+                            $(pole).val(val_1); 
+                            ////$(pole).val(this);
+                            //i++;
+                        });
+                        //$(pole).val(dt.nazwisko);
+                        //i = 0;
+                        j++;
                     });
-                    /*$("#wp0").val(data.nazwa);
-                    $("#wp1").val(data.rodzaj_id);
-                    $("#wp2").val(data.wojewodztwo_id);
-                    //$('#wp3').val(data.miejscowosc_id); //wstawiane poniżej w insert_miasto
-                    //$('#wp4').text(data.nazwa);//nowa miejscowość - nigdy nie będzie używane
-                    $("#wp5").val(data.ulica);
-                    $("#wp6").val(data.powierzchnia);
-                    $("#wp7").val(data.cena);
-                    $("#wp8").val(data.opis);
-                    insert_miasto(2, data.wojewodztwo_id, data.miejscowosc_id);*/
                 }
             })
         }
-    });
-    
+    });    
 });
+
+//PRZYKLADY LOOP W JSON!
+/* var arr = [ "one", "two", "three", "four", "five" ];
+ var obj = { one:1, two:2, three:3, four:4, five:5 };
+
+ jQuery.each(arr, function() {
+   $("#" + this).text("My id is " + this + ".");
+   return (this != "four"); // will stop running to skip "five"
+ });
+
+ jQuery.each(obj, function(i, val) {
+   $("#" + i).append(document.createTextNode(" - " + val));
+ });*/
 
