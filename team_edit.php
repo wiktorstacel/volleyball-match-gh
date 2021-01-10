@@ -32,15 +32,16 @@ while($row = mysqli_fetch_array($result, MYSQLI_NUM))
         echo '<option selected="selected" value='.$row[0].'>'.$row[1].'</option>';
     }
 }
-if($id_druzyna != 0)
+if($id_druzyna == 0) exit();
+/*if($id_druzyna != 0)
 {
     echo'<option value="0" >-wybierz-</option></select>';
 }
 else
 {
     echo'<option value="0" selected="selected">-wybierz-</option></select>';
-}
-echo '<br><br>';
+}*/
+echo '</select><br><br>';
 //Loading the team to form inputs//"SELECT * FROM zawodnik z, pozycja p WHERE z.id_pozycja=p.id_pozycja AND z.id_druzyna='%d' ORDER BY nazwisko ASC"
 //COLUMN NAMES
 $result = mysqli_query($conn, 

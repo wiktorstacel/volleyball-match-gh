@@ -21,6 +21,7 @@ $(document).ready(function(){
     
     $(document).on("change", "#team_to_edit", function(){
         $("#screen_loader input").removeAttr('style');
+        $("#team_loader_message").html("");       
         var id_druzyna = $(this).val();
         if(id_druzyna > 0){       
             $.ajax({
