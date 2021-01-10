@@ -1,0 +1,45 @@
+
+
+
+#screen_loader input{
+    width: 40px;
+}
+
+input.col_name{
+    /*font-weight: bold;*/
+}
+
+#screen_loader .id_zawodnik{
+    width: 32px;
+    pointer-events: none;
+}
+
+#screen_loader .id_druzyna{
+    width: 32px;
+    pointer-events: none;
+}
+
+#screen_loader .nazwisko {
+    width: 68px;
+}
+
+#screen_loader .imie {
+    width: 68px;
+}
+
+/*Set a background color for all disabled input elements of type="text":
+input[type="text"]:disabled {
+  background: #dddddd;
+}
+*/
+
+/*Set a background color for all disabled <input> elements:
+input:disabled {
+  background: #dddddd;
+}
+*/
+
+.input-error {
+        /*box-shadow: 0 0 5px red;*/
+        background-color: #ff9999;
+}

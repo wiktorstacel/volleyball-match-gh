@@ -20,9 +20,9 @@ $(document).ready(function(){
 $(document).ready(function(){
     
     $(document).on("change", "#team_to_edit", function(){
+        $("#screen_loader input").removeAttr('style');
         var id_druzyna = $(this).val();
-        if(id_druzyna > 0)
-        {
+        if(id_druzyna > 0){       
             $.ajax({
                 url: "team_editLoadAction.php",
                 method: "POST",

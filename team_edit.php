@@ -18,7 +18,7 @@ else
 }
 
 //SELECT above to choose the team to edit
-echo'<select id="team_to_edit" class="input2" name="team_to_edit">';
+echo'<select id="team_to_edit" name="team_to_edit">';
 $result = mysqli_query($conn, "SELECT id_druzyna, nazwa FROM druzyna ORDER BY id_druzyna ASC");
 if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
 while($row = mysqli_fetch_array($result, MYSQLI_NUM))
@@ -51,7 +51,7 @@ $row = mysqli_fetch_assoc($result);
 
 foreach ($row as $col => $val) 
 {
-    echo '<input id="" disabled type="text" class="'.$col.'" style="width: 40px;" name="" value="'.$col.'" />';
+    echo '<input id="" disabled type="text" class="'.$col.' col_name" name="" value="'.$col.'" />';
 }
 echo '<br>';
 //VALUES
@@ -78,14 +78,14 @@ while($row = mysqli_fetch_assoc($result))
 {
     foreach ($row as $col => $val) 
     {
-        echo '<input id="'.$col.'_'.$j.'" type="text" class="'.$col.'" style="width: 40px;" name="zaw" value="'.$val.'" />';
+        echo '<input id="'.$col.'_'.$j.'" type="text" class="'.$col.'" name="zaw" value="'.$val.'" />';
     }
     echo '<br>';
     $j++;
 }
 
 
-echo'<br /><input id="team_loader_submit" type="submit" onclick="" value="Zapisz" />';
+echo'<br /><button id="team_loader_submit" type="submit" onclick="" value="" />Zapisz</button>';
 
 echo'<br /><p id="team_loader_message"></p>';
     
