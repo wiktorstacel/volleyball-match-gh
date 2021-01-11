@@ -12,7 +12,8 @@ if(isset($_POST['id_druzyna']))
     $id_druzyna = htmlentities($_POST["id_druzyna"], ENT_QUOTES, "UTF-8");
     
     $result = mysqli_query($conn,
-            sprintf("SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' ORDER BY nazwisko ASC",
+            sprintf("(SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' AND z.7>0 ORDER BY z.7 DESC, z.12 DESC) UNION ALL (SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' AND z.7=0 ORDER BY z.7 DESC, z.12 DESC)",
+            mysqli_real_escape_string($conn, $id_druzyna),
             mysqli_real_escape_string($conn, $id_druzyna)
             ));
     if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 

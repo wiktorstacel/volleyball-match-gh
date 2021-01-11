@@ -56,9 +56,11 @@ foreach ($row as $col => $val)
 }
 echo '<br>';
 //VALUES
-$result = mysqli_query($conn, 
-    sprintf("SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' ORDER BY nazwisko ASC",
-    mysqli_real_escape_string($conn, $id_druzyna)));
+$result = mysqli_query($conn,
+        sprintf("(SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' AND z.7>0 ORDER BY z.7 DESC, z.12 DESC) UNION ALL (SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' AND z.7=0 ORDER BY z.7 DESC, z.12 DESC)",
+        mysqli_real_escape_string($conn, $id_druzyna),
+        mysqli_real_escape_string($conn, $id_druzyna)
+        ));
 if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);}
 /*$j = 1;
 $arr_letters = array("aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "ar", "as", "at", "au", "aw", "ax", "ay", "az", "ba", "bb", "bc", "bd", "be", "bf", "bg", "ah", "ai");

@@ -17,7 +17,7 @@ if(isset($_POST['dataSend']))
     //WALIDACJA danych wejściowych z inputów
     $row_index = 0;
     $errors = array();
-    $error_texts = array(0,0,0,0,0,0); //5 rożnych tekstów, jak jakiś wystąpił to wpisujemy 1 i więcej nie wyświetlamy
+    $error_texts = array(0,0,0,0,0,0); //6 rożnych tekstów, jak jakiś wystąpił to wpisujemy 1 i więcej nie wyświetlamy
     foreach($_POST['dataSend'] as $row)
     {
 
@@ -35,7 +35,7 @@ if(isset($_POST['dataSend']))
                         $error_texts[0]=1;
                     }                 
                 }
-                if(preg_match('/[^ĄąĆćĘęŁłŃńÓóŚśŻżŹźa-zA-Z\d]/', $val))//jak zawiera coś z poza zakresu to zwraca 1
+                if(preg_match('/[^éýĄąĆćĘęŁłŃńÓóŚśŻżŹźa-zA-Z\d]/', $val))//jak zawiera coś z poza zakresu to zwraca 1
                 {
                     $errors[] =  $col."_".$row_index;
                     if($error_texts[1] == 0)
