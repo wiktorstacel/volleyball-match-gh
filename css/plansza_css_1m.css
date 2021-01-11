@@ -1,0 +1,551 @@
+#mother{
+	width:1200px;
+	margin:auto;
+}
+
+#kolumna_left{
+	width: 250px;
+	height: 600px;
+	float: left;
+	background-color: #d1d1d1;
+	font-size:12px;
+}
+
+#kolumna_right{
+	width: 250px;
+	height: 600px;
+	float: right;
+	background-color: #d1d1d1;
+	font-size:12px;
+}
+#taktyki1{
+	width:90px;
+	height:200px;
+	background-color: #dce1dc;
+	float: left;
+	font-size: 12px;
+}
+#taktyki2{
+	width:90px;
+	height:200px;
+	background-color: #dce1dc;
+	float: right;
+	font-size: 12px;
+	text-align: right;
+}
+#stat_team1{
+	width:110px;
+	height:70px; 
+	float:left;
+	background-color:#aaf30c;
+}
+#stat_team2{
+	width:110px;
+	height:70px; 
+	float:right;
+	background-color:#aaf30c;
+}
+#stat_atak1{
+	width:120px;
+	height:200px; 
+	float:left;
+	background-color:#6df3bc;
+}
+#stat_przy1{
+	width:130px;
+	height:200px; 
+	float:left;
+	background-color:#97aaf1;
+}
+#stat_blok1{ 
+	width:88px;
+	height:200px;
+	float:left;
+	background-color:#a7ddf9;
+}
+#stat_pkt1{
+	width:80px;
+	height:200px; 
+	float:right;
+	background-color:#f6e0f4;
+}
+
+#stat_atak2{
+	width:120px;
+	height:200px;
+	float:right;
+	background-color:#6df3bc;
+}
+#stat_przy2{
+	width:130px;
+	height:200px; 
+	float:right;
+	background-color:#97aaf1;
+}
+#stat_blok2{
+	height:200px; 
+	width:88px;
+	float:right;
+	background-color:#a7ddf9;
+}
+#stat_pkt2{
+	height:200px; 
+	width:80px;
+	float:left;
+	/*background-color:#f6e0f4;*/
+}
+#zmeczenie1{
+	width:160px;
+	height:130px;
+	background-color: #00ffff;
+	float: left;
+}
+#zmeczenie2{
+	width:160px;
+	height:130px;
+	background-color: #00ffff;
+	float: left;
+}
+#ekranik1{
+	width:50px;
+	height:70px; 
+	float:left;
+}
+#ekranik2{
+	width:50px;
+	height:70px; 
+	float:left;	
+}
+#opis_y
+{
+	width:20px; 
+	height:114px;
+	float:left;
+	text-align:right;
+}
+#opis_y_top{
+	float:left;
+	width:20px;
+	height:55px;
+}
+#opis_y_m{
+	float:left;
+	width:20px;
+	height:55px;
+}
+#opis_y_bot{
+	float:left;
+	width:20px;
+	height:0px;
+}
+#opis_x{
+	height:16px;
+	width:160px;
+	float:left;
+}
+#opis_x10{
+	float:left;
+	width:20px;
+	text-align:right;
+}
+#opis_x20{
+	float:left;
+	width:0px;
+	text-align:right;
+}
+#opis_x30{
+	float:left;
+	width:135px;
+	text-align:right;
+}
+
+.wykres{
+	width:139px; 
+	height:113px; 
+	position:relative; 
+	background-color: yellow; 
+	border-left: 1px solid black; 
+	border-bottom: 1px solid black;
+	float:left;
+}
+
+
+#plac_gry{
+	width: 696px;
+	height: 366px;
+	float: left;
+	background-color: #a1ed72;
+	position:relative;
+	border: 2px solid black;
+}
+#boisko_p{
+	width: 364px;
+	height: 180px;
+	
+	background-color: #f8a521;
+	position:absolute;
+	left: 166px;
+	top: 59px;
+	border: 1px solid black;
+}
+#half_left_p{
+	float:left;
+	width:181px;
+	height:180px;
+	color: #000;
+	border-right: 1px solid white;
+}
+#half_right_p{
+	float:right;
+	width:181px;
+	height:180px;
+	color: #000;
+	border-left: 1px solid white;
+}
+#banch_1{
+	width:160px;
+	height:20px;
+	color: #fbfa92;
+	border: 1px solid black;
+	position:absolute;
+	left: 120px;
+	bottom: 50px;
+	background-color: #fafd1a;
+}
+#banch_2{
+	width:160px;
+	height:20px;
+	color: #fbfa92;
+	border: 1px solid black;
+	position:absolute;
+	right: 120px;
+	bottom: 50px;
+	background-color: #fafd1a;
+}
+#kwadrat_1_1{
+	position:absolute;
+	left: 5px;
+	bottom: 68px;
+}
+#kwadrat_1_2{
+	position:absolute;
+	left: 5px;
+	bottom: 52px;
+}
+#kwadrat_1_3{
+	position:absolute;
+	left: 5px;
+	bottom: 36px;
+}
+#kwadrat_1_4{
+	position:absolute;
+	left: 5px;
+	bottom:20px;
+}
+#kwadrat_1_5{
+	position:absolute;
+	left: 5px;
+	bottom:4px;
+}
+#kwadrat_2_1{
+	position:absolute;
+	right: 5px;
+	bottom: 68px;
+}
+#kwadrat_2_2{
+	position:absolute;
+	right: 5px;
+	bottom: 52px;
+}
+#kwadrat_2_3{
+	position:absolute;
+	right: 5px;
+	bottom: 36px;
+}
+#kwadrat_2_4{
+	position:absolute;
+	right: 5px;
+	bottom:20px;
+}
+#kwadrat_2_5{
+	position:absolute;
+	right: 5px;
+	bottom:4px;
+}
+.kwadrat{
+	font-size:11px;
+}
+#kwadrat11{
+	position:absolute;
+	left: 320px;
+	bottom:100px;
+}
+#window_zm1{
+	width:18px;
+}
+#kwadnazw11{
+	position:absolute;
+	left: 300px;
+	bottom:100px;
+}
+
+#kwadrat22{
+	position:absolute;
+	right: 320px;
+	bottom:100px;
+}
+#window_zm2{
+	width:18px;
+}
+#kwadnazw22{
+	position:absolute;
+	right: 300px;
+	bottom:100px;
+}
+#liberofield1{
+	font-size:11px;
+	position:absolute;
+	left: 120px;
+	bottom: 72px;
+}
+#liberofield2{
+	font-size:11px;
+	position:absolute;
+	right: 120px;
+	bottom: 72px;
+}
+#treserfield1{
+	font-size:11px;
+	position:absolute;
+	right: 390px;
+	bottom: 72px;
+}
+#treserfield2{
+	font-size:11px;
+	position:absolute;
+	left: 390px;
+	bottom: 72px;
+}
+#treserbut1{
+	font-size:11px;
+	position:absolute;
+	left: 260px;
+	bottom: 52px;
+}
+#treserbut2{
+	font-size:11px;
+	position:absolute;
+	right: 260px;
+	bottom: 52px;
+}
+
+.pole_p{
+	width:60px;
+	height:60px;
+	font-size: 11px;
+
+}
+.polesr_p{
+	width:59px;
+	height:60px;
+	font-size: 11px;
+	float:left;
+	border-left: 1px solid black;
+}
+.polesl_p{
+	width:60px;
+	height:60px;
+	font-size: 11px;
+	float:left;
+	border-right: 1px solid black;
+}
+.zaw_p{
+	margin-top:20px;
+}
+#l1{
+	float:left;
+}
+#l6{
+	float:left;
+}
+#l5{
+	float:left;
+}
+#l4{
+	float:right;
+	text-align:right;
+}
+#l3{
+	float:right;
+	text-align:right;
+}
+#l2{
+	float:right;
+	text-align:right;
+}
+
+#r2{
+	float:left;
+}
+#r3{
+	float:left;
+}
+#r4{
+	float:left;
+}
+#r1{
+	float:right;
+	text-align:right;
+}
+#r6{
+	float:right;
+	text-align:right;
+}
+#r5{
+	float:right;
+	text-align:right;
+}
+#screen1{
+	width: 347px;
+	min-height: 230px;
+	float: left;
+	background-color: #fafd1a;
+	border-left: 2px solid black;
+	border-right: 1px solid black;
+	border-bottom: 2px solid black;
+	font-size: 12px;
+}
+#screen2{
+	width: 347px;
+	min-height: 230px;
+	float: right;
+	background-color: #fafd1a;
+	border-right: 2px solid black;
+	border-left: 1px solid black;
+	border-bottom: 2px solid black;
+	font-size: 12px;
+}
+#screen3{
+	width: 98px;
+	min-height: 120px;
+	float: left;
+	background-color: red;/*#fafd1a;*/
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	font-size: 12px;
+}
+#screen4{
+	width: 498px;
+	min-height: 120px;
+	float: left;
+	background-color: #fafd1a;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	font-size: 12px;
+}
+#screen5{
+	width: 98px;/*347px;*/
+	min-height: 120px;
+	float: left;
+	background-color: #fafd1a;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	font-size: 12px;
+}
+#screen6{
+	width: 498px;
+	min-height: 120px;
+	float: left;
+	background-color: #fafd1a;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	font-size: 12px;
+}
+#screen7{
+	width: 420px;
+	min-height: 220px;
+	float: left;
+	background-color: #fafd1a;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	font-size: 12px;
+}
+#screen8{
+	width: 420px;
+	min-height: 220px;
+	float: right;
+	background-color: #fafd1a;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	font-size: 12px;
+}
+#tablica_wyn{
+	width:170px;
+	height:20px;
+	margin:auto;
+}
+#set1{
+	height:20px; 
+	width:20px; 
+	background-color: yellow;
+	float: left;
+	font-weight: bold;
+	text-align:right;
+	margin:auto;
+}
+#set2{
+	height:20px; 
+	width:20px; 
+	background-color: yellow;
+	float:right;
+	font-weight: bold;
+	margin:auto;
+}
+#pun1{
+	height:20px; 
+	width:20px; 
+	background-color: yellow;
+	float: left;
+	font-weight: bold;
+	text-align:right;
+	margin:auto;
+}
+#pun2{
+	height:20px; 
+	width:20px; 
+	background-color: yellow;
+	float:right;
+	font-weight: bold;
+	margin:auto;
+}
+#show1{
+	height:20px; 
+	width:40px; 
+	background-color: yellow;
+	font-size: 12px;
+	float:left;
+	text-align:right;
+}
+#show2{
+	height:20px; 
+	width:40px; 
+	background-color: yellow;
+	font-size: 12px; 
+	text-align:left;
+	float:right;
+}
+#buttony{
+	height:22px; 
+	width:198px; 
+	border: 1px solid black;
+	background-color: #d1d1d1;
+	position:absolute;
+	left: 248px;
+	bottom: 5px;
+}

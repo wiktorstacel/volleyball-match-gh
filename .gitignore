@@ -8,11 +8,21 @@ config_db.php
 config_smtp.php
 
 add_done/
-js/tlo_action.js
 operacje/
 panel_show/
-play/
 wklad_pole/
+
+play/load_teams.php
+play/mecz.php
+play/plansza.php
+play/plansza_css.php
+play/play.php
+play/play2.php
+play/play2_skrypty.js
+play/play3.php
+play/play3_skrypty.js.bak
+play/play_css.css
+play/play_skrypty.js
 
 act_table.php
 add.php
@@ -33,9 +43,7 @@ make_po.php
 next_day.php
 next_day_calendar.php
 panel.php
-plansza_1mecz.php
+
 show_table_10.php
-skrypty_ksm.js
-skrypty_manager.js
 strona_man.inc
 

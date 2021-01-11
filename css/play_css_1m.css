@@ -1,0 +1,252 @@
+body{
+	background-color:#a1ed72;/*#a1ed72 - zielone t�o*/
+}
+#TRESC{
+	width:1200px;
+	margin: auto;
+}
+#1_linia{
+	
+	width:1200px;
+	margin: auto;
+	height:210px;
+}
+#2_linia{
+	width:1200px;
+	margin: auto;
+	height:50px;
+}
+#3_linia{
+	width:1200px;
+	margin: auto;
+	height:200px;
+	margin-top: 50px;
+}
+.enter{
+	width:1200px;
+	height:26px;
+	background-color: red;
+	margin-top: 214px;
+}
+
+.enter2{
+	width:1200px;
+	height:20px;
+	background-color: red;
+	margin-top: 50px;
+}
+
+.enter3{
+	width:1200px;
+	height:20px;
+	background-color: red;
+	margin-top: 200px;
+}
+
+
+#team1{
+	float:left;
+	font-size:13px;
+	/*height: 1px;
+	color: #fff;*/
+}
+#team2{
+	float:right;
+	font-size:13px;
+	/*height: 1px;
+	//color: #fff;*/
+}
+
+
+#ekrany{
+	width:300px;
+	margin:auto;
+}
+
+
+#tablica_wyn{
+	width:170px;
+	height:20px;
+	margin:auto;
+}
+#set1{
+	height:20px; 
+	width:20px; 
+	background-color: yellow;
+	float: left;
+	font-weight: bold;
+	text-align:right;
+	margin:auto;
+}
+#set2{
+	height:20px; 
+	width:20px; 
+	background-color: yellow;
+	float:right;
+	font-weight: bold;
+	margin:auto;
+}
+#pun1{
+	height:20px; 
+	width:20px; 
+	background-color: yellow;
+	float: left;
+	font-weight: bold;
+	text-align:right;
+	margin:auto;
+}
+#pun2{
+	height:20px; 
+	width:20px; 
+	background-color: yellow;
+	float:right;
+	font-weight: bold;
+	margin:auto;
+}
+#show1{
+	height:20px; 
+	width:40px; 
+	background-color: yellow;
+	font-size: 12px;
+	float:left;
+	text-align:right;
+}
+#show2{
+	height:20px; 
+	width:40px; 
+	background-color: yellow;
+	font-size: 12px; 
+	text-align:left;
+	float:right;
+}
+
+#boisko{
+	width:426px;
+	height:212px;
+	margin:auto;
+	float:left;
+}
+#siatka{
+	width:2px;
+	height:212px;
+	float: left;
+	background-color:white;
+}
+#half_left{
+	margin:auto;
+	float:left;
+	width:211px;
+	height:212px;
+	background-color:#f8a521;
+	color: #000;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+#half_right{
+	margin:auto;
+	float:right;
+	width:211px;
+	height:212px;
+	background-color:#f8a521;
+	color: #000;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+
+.pole{
+	width:70px;
+	height:70px;
+	font-size: 11px;
+}
+.polesr{
+	width:69px;
+	height:70px;
+	font-size: 11px;
+	float:left;
+	border-left: 1px solid black;
+}
+.polesl{
+	width:70px;
+	height:70px;
+	font-size: 11px;
+	float:left;
+	border-right: 1px solid black;
+}
+#l1{
+	float:left;
+}
+#l6{
+	float:left;
+}
+#l5{
+	float:left;
+}
+#l4{
+	float:right;
+	text-align:right;
+}
+#l3{
+	float:right;
+	text-align:right;
+}
+#l2{
+	float:right;
+	text-align:right;
+}
+
+#r2{
+	float:left;
+}
+#r3{
+	float:left;
+}
+#r4{
+	float:left;
+}
+#r1{
+	float:right;
+	text-align:right;
+}
+#r6{
+	float:right;
+	text-align:right;
+}
+#r5{
+	float:right;
+	text-align:right;
+}
+.zaw{
+	margin-top:20px;
+	text-align:center;
+}
+.kto{
+	width:15px;
+}
+.input1{
+	widht:50px;
+}
+
+#sklad1{
+	height:200px; 
+	width:389px; 
+	background-color: #d9e6ea;
+	font-size: 12px;
+	float:left;
+}
+
+#sklad2{
+	height:200px; 
+	width:389px; 
+	background-color: #d9e6ea;
+	font-size: 12px;
+	float:right;
+}
+#os{
+	width:2px;
+	height:200px;
+	float: left;
+	background-color:white;
+}
