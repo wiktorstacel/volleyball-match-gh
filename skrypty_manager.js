@@ -362,8 +362,11 @@ var sum=parseInt(team1[i][18])+parseInt(team1[i][20])+2*parseInt(team1[i][23])+2
 		adres = adres+"&j"+i+j+"="+sum;
 		
 	}
-        
-	getData33(adres, "screen5");
+        //2021-01-11: jeśli ustawiona zmienna globalna to omiń zapis statystyk do SQL i wypisania efektu do div
+        if(!play_1mecz)
+        {
+            getData33(adres, "screen5");
+        }   
 	
 	adres = "operacje/stat_actual.php?liga="+liga;
 	for(var i=1;i<=12;i++)
@@ -406,7 +409,12 @@ var sum=parseInt(team2[i][18])+parseInt(team2[i][20])+2*parseInt(team2[i][23])+2
 		j=35;//zmeczenie do naliczenia
 		adres = adres+"&j"+i+j+"="+sum;
 	}
-	getData44(adres, "screen5");
+        //2021-01-11: jeśli ustawiona zmienna globalna to omiń zapis statystyk do SQL i wypisania efektu do div
+        if(!play_1mecz)
+        {
+            getData44(adres, "screen5");
+        } 
+	
 }
 
 function czas()

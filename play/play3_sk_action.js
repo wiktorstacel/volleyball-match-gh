@@ -42,8 +42,13 @@ function minus_dosw1(tryb)
 			}
 		}	
 	}
-	scrff = document.getElementById("screen4").innerHTML;
-	document.getElementById("screen4").innerHTML = scrff +"min_dos1: odjeto || ";
+        //2021-01-12: imijanie dla funckji 1mecz
+        if(!play_1mecz)
+        {
+            scrff = document.getElementById("screen4").innerHTML;
+            document.getElementById("screen4").innerHTML = scrff +"min_dos1: odjeto || ";
+        }
+
 	team1 = temm1;
 	}
 	else if(tryb==0 && flag_dosw1==1)
@@ -61,8 +66,12 @@ function minus_dosw1(tryb)
 			}
 		}	
 		}
-		scrff = document.getElementById("screen4").innerHTML;
-		document.getElementById("screen4").innerHTML = scrff +"min_dos1: dodano || ";
+                //2021-01-12: imijanie dla funckji 1mecz
+                if(!play_1mecz)
+                {
+                    scrff = document.getElementById("screen4").innerHTML;
+                    document.getElementById("screen4").innerHTML = scrff +"min_dos1: dodano || ";
+                }
 		team1 = temm1;
 	}
 	else{
@@ -93,8 +102,12 @@ function minus_dosw2(tryb)
 			}
 		}	
 	}
-	scrff = document.getElementById("screen4").innerHTML;
-	document.getElementById("screen4").innerHTML = scrff +"min_dos2: odjeto || ";
+        //2021-01-12: imijanie dla funckji 1mecz
+        if(!play_1mecz)
+        {
+            scrff = document.getElementById("screen4").innerHTML;
+            document.getElementById("screen4").innerHTML = scrff +"min_dos2: odjeto || ";
+        }
 	team2 = temm2;
 	}
 	else if(tryb==0 && flag_dosw2==1)
@@ -112,8 +125,12 @@ function minus_dosw2(tryb)
 			}
 		}	
 		}
-		scrff = document.getElementById("screen4").innerHTML;
-		document.getElementById("screen4").innerHTML = scrff +"min_dos2: dodano || ";
+                        //2021-01-12: imijanie dla funckji 1mecz
+                if(!play_1mecz)
+                {
+                    scrff = document.getElementById("screen4").innerHTML;
+                    document.getElementById("screen4").innerHTML = scrff +"min_dos2: dodano || ";
+                }
 		team2 = temm2;
 	}
 	else{

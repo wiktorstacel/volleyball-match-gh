@@ -426,10 +426,10 @@
 	font-size: 12px;
 }
 #screen3{
-	width: 98px;
+	width: 248px;
 	min-height: 120px;
 	float: left;
-	background-color: red;/*#fafd1a;*/
+	background-color: #fafd1a;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	border-bottom: 1px solid black;
@@ -456,9 +456,9 @@
 	font-size: 12px;
 }
 #screen6{
-	width: 498px;
+	width: 248px;
 	min-height: 120px;
-	float: left;
+	float: right;
 	background-color: #fafd1a;
 	border-left: 1px solid black;
 	border-right: 1px solid black;

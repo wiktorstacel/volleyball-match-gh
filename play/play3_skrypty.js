@@ -185,7 +185,11 @@ function wyniki(wyn)
      res1++;
 	 pkt1++;
 	 punktuj1(pkt_par);
-	 document.getElementById("screen3").innerHTML = pkt_par+" team1";
+        //2021-01-12 omijanie dla funkcji 1mecz
+        if(!play_1mecz)
+        {
+            document.getElementById("screen3").innerHTML = pkt_par+" team1";
+        }
 	 pkt_par = 0;
      document.getElementById("show1").innerHTML = res1;
 	 
@@ -208,7 +212,11 @@ function wyniki(wyn)
      res2++;
 	 pkt2++;
 	 punktuj2(pkt_par);
-	 document.getElementById("screen3").innerHTML = pkt_par+" team2";
+        //2021-01-12 omijanie dla funkcji 1mecz
+        if(!play_1mecz)
+        {
+            document.getElementById("screen3").innerHTML = pkt_par+" team2";
+        }
 	 pkt_par = 0;
      document.getElementById("show2").innerHTML = res2;
 	 
@@ -2417,64 +2425,64 @@ banch_ins();
 
 function optimal_zm_zagr1()
 {
-	var g12=0,tem6=100,g6=0,temp=0,par=0;g1=0;
-	for(var i=1;i<=12;i++)
-	{
-		if(i<=6)//min z z 6
-		{
-			if(team1[i][8]<tem6){tem6=team1[i][8];g6=i;}//min
-			if(team1[i][0]==1){g1=i;}
-		}
-		if(i>7)//max z z lawki
-		{
-			if(team1[i][8]>temp){temp=team1[i][8];g12=i;}//max
-		}
-	}
-	if(g1==g6&&temp>tem6)//najslabszy zagr to ten na zagr
-	{
-if(possible_change(1,team1[g6][3],team1[g12][3])<=4)
-{
-var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"Zmiana zagr: "+team1[g12][5]+" za: "+team1[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
-	flag_zm_zag1=g12;//to jest tylko nr pozycji kurwa a nie nr zaw
-	change1(g6,g12);
-}
-	}
-
+    var g12=0,tem6=100,g6=0,temp=0,par=0;g1=0;
+    for(var i=1;i<=12;i++)
+    {
+            if(i<=6)//min z z 6
+            {
+                    if(team1[i][8]<tem6){tem6=team1[i][8];g6=i;}//min
+                    if(team1[i][0]==1){g1=i;}
+            }
+            if(i>7)//max z z lawki
+            {
+                    if(team1[i][8]>temp){temp=team1[i][8];g12=i;}//max
+            }
+    }
+    if(g1==g6&&temp>tem6)//najslabszy zagr to ten na zagr
+    {
+        if(possible_change(1,team1[g6][3],team1[g12][3])<=4)
+        {
+            //2021-01-12: zmiana z screen6 na screen3
+            var fffv = document.getElementById("screen3").innerHTML;
+            document.getElementById("screen3").innerHTML=fffv+"<br><br>Zmiana na zagrywkę: "+team1[g12][5]+" za: "+team1[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
+            flag_zm_zag1=g12;//to jest tylko nr pozycji a nie nr zaw
+            change1(g6,g12);
+        }
+    }
 }
 
 function optimal_zm_zagr2()
 {
-	var g12=0,tem6=100,g6=0,temp=0,par=0;g1=0;
-	for(var i=1;i<=12;i++)
-	{
-		if(i<=6)//min z z 6
-		{
-			if(team2[i][8]<tem6){tem6=team2[i][8];g6=i;}//min
-			if(team2[i][0]==1){g1=i;}
-		}
-		if(i>7)//max z z lawki
-		{
-			if(team2[i][8]>temp){temp=team2[i][8];g12=i;}//max
-		}
-	}
-	if(g1==g6&&temp>tem6)//najslabszy zagr to ten na zagr
-	{
-if(possible_change(2,team2[g6][3],team2[g12][3])<=4)
-{
-var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"Zmiana zagr: "+team2[g12][5]+" za: "+team2[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
-	flag_zm_zag2=g12;//to jest tylko nr pozycji kurwa a nie nr zaw
-	change2(g6,g12);
-}
-	}
-
+    var g12=0,tem6=100,g6=0,temp=0,par=0;g1=0;
+    for(var i=1;i<=12;i++)
+    {
+            if(i<=6)//min z z 6
+            {
+                    if(team2[i][8]<tem6){tem6=team2[i][8];g6=i;}//min
+                    if(team2[i][0]==1){g1=i;}
+            }
+            if(i>7)//max z z lawki
+            {
+                    if(team2[i][8]>temp){temp=team2[i][8];g12=i;}//max
+            }
+    }
+    if(g1==g6&&temp>tem6)//najslabszy zagr to ten na zagr
+    {
+        if(possible_change(2,team2[g6][3],team2[g12][3])<=4)
+        {
+            //2021-01-12 - rozdzielanie na 2 ekrany
+            var fffv = document.getElementById("screen6").innerHTML;
+            document.getElementById("screen6").innerHTML=fffv+"<br><br>Zmiana na zagrywkę: "+team2[g12][5]+" za: "+team2[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
+            flag_zm_zag2=g12;//to jest tylko nr pozycji kurwa a nie nr zaw
+            change2(g6,g12);
+        }
+    }
 }
 
 function optim_zm_ogr_young(adr)
 {
-var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" Youngs- jestem!!! sety:"+mm1+mm2+"<<";
+//var fffv = document.getElementById("screen6").innerHTML;
+//document.getElementById("screen6").innerHTML=fffv+" Youngs- jestem!!! sety:"+mm1+mm2+"<<";
 
 var maxj=0;
 if(adr==1)
@@ -2502,8 +2510,17 @@ if(adr==1)
 		{
 			if(parseInt(tea[maxj][31])<parseInt(tea[i][31]))
 			{
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>2517[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" zamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";
+document.getElementById("screen6").innerHTML=fffv+"<br>2517[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";                                
+                            }
 if(adr==1)chan1(maxj,i);else chan2(maxj,i);
 			}
 		}
@@ -2522,8 +2539,17 @@ if(adr==1)chan1(maxj,i);else chan2(maxj,i);
 		{
 			if(parseInt(tea[maxj][31])<parseInt(tea[i][31]))
 			{
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>2546[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" zamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";
+document.getElementById("screen6").innerHTML=fffv+"<br>2546[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";                                
+                            }
 if(adr==1)chan1(maxj,i);else chan2(maxj,i);
 			}
 		}
@@ -2543,8 +2569,17 @@ if(adr==1)chan1(maxj,i);else chan2(maxj,i);
 if(parseInt(tea[2][31])>parseInt(tea[5][31]))a=2;else a=5;//a - wieksze dosw z tych na boisku
 			if(parseInt(tea[maxj][31])<parseInt(tea[a][31]))
 			{
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>2576[p3s]YoungZamiana:"+tea[a][5]+" <>"+tea[maxj][5]+" |";
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" zamiana:"+tea[a][5]+" <>"+tea[maxj][5]+" |";
+document.getElementById("screen6").innerHTML=fffv+"<br>2576[p3s]YoungZamiana:"+tea[a][5]+" <>"+tea[maxj][5]+" |";                                
+                            }
 if(adr==1)chan1(maxj,a);else chan2(maxj,a);
 			}
 		}
@@ -2564,8 +2599,17 @@ if(adr==1)chan1(maxj,a);else chan2(maxj,a);
 if(parseInt(tea[3][31])>parseInt(tea[6][31]))a=3;else a=6;//a - mniejsze dosw z tych na boisku
 			if(parseInt(tea[maxj][31])<parseInt(tea[a][31]))
 			{
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>2606[p3s]YoungZamiana:"+tea[a][5]+" na<>"+tea[maxj][5]+" |";
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" zamiana:"+tea[a][5]+" na<>"+tea[maxj][5]+" |";
+document.getElementById("screen6").innerHTML=fffv+"<br>2606[p3s]YoungZamiana:"+tea[a][5]+" na<>"+tea[maxj][5]+" |";                                
+                            }
 if(adr==1)chan1(maxj,a);else chan2(maxj,a);
 			}
 		}
@@ -2584,10 +2628,11 @@ banch_ins();
 ustawienie();
 }
 
+//Poddany set - wchodzą z rezerwy, żeby dać odpocząć pierwszemu składowi
 function optim_zm_set_pod(adr)
 {
-var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" PODDAJ- jestem!!! sety:"+mm1+mm2+"pkt "+pkt1+" : "+pkt2+"<br/>";
+//var fffv = document.getElementById("screen6").innerHTML;
+//document.getElementById("screen6").innerHTML=fffv+" PODDAJ- jestem!!! sety:"+mm1+mm2+"pkt "+pkt1+" : "+pkt2+"<br/>";
 
 var maxj=0;
 if(adr==1)
@@ -2607,8 +2652,17 @@ tea[0][31]=0;
 		{
 			  if(tea[j][4]=="R")	
 			  {
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>2659[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" zamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+document.getElementById("screen6").innerHTML=fffv+"<br>2659[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;                                
+                            }
 if(adr==1)change1(j,i);else change2(j,i);break;
 			  }
 		}
@@ -2620,8 +2674,17 @@ if(adr==1)change1(j,i);else change2(j,i);break;
 		{
 			  if(tea[j][4]=="A")	
 			  {
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>2681[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" zamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+document.getElementById("screen6").innerHTML=fffv+"<br>2681[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;                                
+                            }
 if(adr==1)change1(j,i);else change2(j,i);break;
 			  }
 		}
@@ -2641,8 +2704,17 @@ if(adr==1)change1(j,i);else change2(j,i);break;
 if(parseInt(tea[2][31])>parseInt(tea[5][31]))a=2;else a=5;//a - wieksze dosw z tych na boisku
 			if(parseInt(tea[maxj][31])<parseInt(tea[a][31]))
 			{
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>2711[p3s]PoddajZamiana:"+tea[maxj][5]+" <>"+tea[a][5]+" |i+"+i;
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" zamiana:"+tea[maxj][5]+" <>"+tea[a][5]+" |i+"+i;
+document.getElementById("screen6").innerHTML=fffv+"<br>2711[p3s]PoddajZamiana:"+tea[maxj][5]+" <>"+tea[a][5]+" |i+"+i;                              
+                            }
 if(adr==1)change1(maxj,a);else change2(maxj,a);break;
 			}
 		}
@@ -2662,8 +2734,17 @@ if(adr==1)change1(maxj,a);else change2(maxj,a);break;
 if(parseInt(tea[3][31])>parseInt(tea[6][31]))a=3;else a=6;//a - mniejsze dosw z tych na boisku
 			if(parseInt(tea[maxj][31])<parseInt(tea[a][31]))
 			{
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>2741[p3s]PoddajZamiana:"+tea[maxj][5]+" na<>"+tea[a][5]+" |i:"+i;
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+" zamiana:"+tea[maxj][5]+" na<>"+tea[a][5]+" |i:"+i;
+document.getElementById("screen6").innerHTML=fffv+"<br>2741[p3s]PoddajZamiana:"+tea[maxj][5]+" na<>"+tea[a][5]+" |i:"+i;                                
+                            }
 if(adr==1)change1(maxj,a);else change2(maxj,a);break;
 			}
 		}

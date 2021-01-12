@@ -180,16 +180,16 @@ class strona_plansza_1mecz extends Strona1
 	echo '<div id="screen2">';
 	echo '</div>';			//end screen_2
         
-        //echo '<div style="clear: both;"></div>';
+        echo '<div style="clear: both;"></div>';
 	
 	echo '<div id="screen3">scr3';
 	echo '</div>';			//end screen_3
 	
-	echo '<div id="screen4">scr4: ';
-	echo '</div><br />';			//end screen_3
+	//echo '<div id="screen4">scr4: ';
+	//echo '</div><br />';			//end screen_3
 	
-/*	echo '<div id="screen5">scr5: ';
-	echo '</div><br />';*/			//end screen_3
+	//echo '<div id="screen5">scr5: ';
+	//echo '</div><br />';			//end screen_3
 	
 	echo '<div id="screen6">scr6: ';
 	echo '</div><br />';			//end screen_6
