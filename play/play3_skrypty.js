@@ -198,9 +198,9 @@ function wyniki(wyn)
 	 //aktualizuj wyswietlacz statystyk ind - działa tylko w wyswietlanym meczu
 	 if(flag_star==1)
 	 {
-	 console.time("stat") ;
+	 //console.time("stat") ;
 	 act_stat();			
-	 console.timeEnd("stat") ;
+	 //console.timeEnd("stat") ;
 	 transpa();
 	 }
 	 
@@ -225,9 +225,9 @@ function wyniki(wyn)
 	 //aktualizuj wyswietlacz statystyk ind - działa tylko w wyswietlanym meczu
 	 if(flag_star==1)
 	 {
-	 console.time("stat") ;
+	 //console.time("stat") ;
 	 act_stat();
-	 console.timeEnd("stat") ;
+	 //console.timeEnd("stat") ;
 	 transpa();
 	 }
 	 
@@ -235,21 +235,21 @@ function wyniki(wyn)
   	}
 	if(pkt1==20 && flag_dosw1==0)
 	{
-		console.time("minusdosw1");
+		//console.time("minusdosw1");
 		minus_dosw1(1);
-		console.timeEnd("minusdosw1");
+		//console.timeEnd("minusdosw1");
 	}
 	if(pkt2==20 && flag_dosw2==0)
 	{
-		console.time("minusdosw2");
+		//console.time("minusdosw2");
 		minus_dosw2(1);
-		console.timeEnd("minusdosw2");
+		//console.timeEnd("minusdosw2");
 	}
 	
 	
 	if(pkt1>0 && pkt1%4==0 && flag_tir1==0)
 	{
-		console.time("tired1");tired1();console.timeEnd("tired1");
+		//console.time("tired1");tired1();console.timeEnd("tired1");
 		flag_tir1=1;
 		if(flag_star==1)
 		{
@@ -341,12 +341,13 @@ function wyniki(wyn)
 	{		
 if(team1[i][0]==1){g12=i;}
 	}
-var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"Zmiana powr: "+team1[flag_zm_zag1][5]+" za: "+team1[g12][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" g12: "+g12;
+//2021-01-12 Zmiana na screen3 dla team1
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team1[flag_zm_zag1][5]+" za: "+team1[g12][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" g12: "+g12;
 change1(flag_zm_zag1,g12);
 flag_zm_zag1*=(-1);
-var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"fla*-1: "+flag_zm_zag1+"<br/>";
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+flag_zm_zag1+"<br/>";
 	}	
 	if(pkt1>=19&&przejscie==2&&flag_zm_zag1<0)
 	{
@@ -371,12 +372,13 @@ document.getElementById("screen6").innerHTML=fffv+"fla*-1: "+flag_zm_zag1+"<br/>
 	{		
 if(team2[i][0]==1){g12=i;}
 	}
+//2021-01-12: Zmiana tekstów
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"Zmiana powr: "+team2[flag_zm_zag2][5]+" za: "+team2[g12][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag2+" g12: "+g12;
+document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team2[flag_zm_zag2][5]+" za: "+team2[g12][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag2+" g12: "+g12;
 change2(flag_zm_zag2,g12);
 flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"fla*-1: "+flag_zm_zag2+"<br/>";
+document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+flag_zm_zag2+"<br/>";
 	}
 	
 	if(wyn==3)//tie-break
@@ -2349,8 +2351,18 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
 			if(tea[maxj][11]>(tea[1][11]+1))
 			{
 if(adr==1){if(possible_change(1,tea[maxj][3],tea[1][3])<6){change1(maxj,1);}}else {if(possible_change(2,tea[maxj][3],tea[1][3])<6){change2(maxj,1);}}
-var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"Zmiana: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+                            }
+                            else
+                            {
+ var fffv = document.getElementById("screen6").innerHTML;
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+                               
+                            }
 			}
 		  }	
 		  if(i==4)
@@ -2366,8 +2378,17 @@ document.getElementById("screen6").innerHTML=fffv+"Zmiana: "+tea[1][5]+" za: "+t
 			if(tea[maxj][6]>(tea[4][6]+1))
 			{
 if(adr==1){if(possible_change(1,tea[maxj][3],tea[4][3])<6){change1(maxj,4);}}else {if(possible_change(2,tea[maxj][3],tea[4][3])<6){change2(maxj,4);}}
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"Zmiana: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";                                
+                            }
 			}
 		  }	
 		  if(i==2||i==5)
@@ -2385,8 +2406,17 @@ document.getElementById("screen6").innerHTML=fffv+"Zmiana: "+tea[4][5]+" za: "+t
 			if((tea[maxj][6]+tea[maxj][7])/2>((tea[a][6]+tea[a][7])/2+1))
 			{
 if(adr==1){if(possible_change(1,tea[maxj][3],tea[a][3])<6){change1(maxj,a);}}else {if(possible_change(2,tea[maxj][3],tea[a][3])<6){change2(maxj,a);}}
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2;
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2;				
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2;                                
+                            }
 			}
 		  } 
 		  if(i==3||i==6)
@@ -2404,8 +2434,17 @@ document.getElementById("screen6").innerHTML=fffv+"Zmiana: "+tea[a][5]+" za: "+t
 			if((tea[maxj][6]+tea[maxj][9])/2>((tea[a][6]+tea[a][9])/2+1))
 			{
 if(adr==1){if(possible_change(1,tea[maxj][3],tea[a][3])<6){change1(maxj,a);}}else {if(possible_change(2,tea[maxj][3],tea[a][3])<6){change2(maxj,a);}}	
+                            //2021-01-12: rozdzielono na 2 screeny
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+                            }
+                            else
+                            {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";                                
+                            }
 			}
 		  }  
   }
@@ -2444,7 +2483,7 @@ function optimal_zm_zagr1()
         {
             //2021-01-12: zmiana z screen6 na screen3
             var fffv = document.getElementById("screen3").innerHTML;
-            document.getElementById("screen3").innerHTML=fffv+"<br><br>Zmiana na zagrywkę: "+team1[g12][5]+" za: "+team1[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
+            document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana na zagrywkę: "+team1[g12][5]+" za: "+team1[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
             flag_zm_zag1=g12;//to jest tylko nr pozycji a nie nr zaw
             change1(g6,g12);
         }
@@ -2472,7 +2511,7 @@ function optimal_zm_zagr2()
         {
             //2021-01-12 - rozdzielanie na 2 ekrany
             var fffv = document.getElementById("screen6").innerHTML;
-            document.getElementById("screen6").innerHTML=fffv+"<br><br>Zmiana na zagrywkę: "+team2[g12][5]+" za: "+team2[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
+            document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana na zagrywkę: "+team2[g12][5]+" za: "+team2[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
             flag_zm_zag2=g12;//to jest tylko nr pozycji kurwa a nie nr zaw
             change2(g6,g12);
         }

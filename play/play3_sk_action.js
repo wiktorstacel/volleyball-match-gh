@@ -1257,7 +1257,7 @@ function cpuflow()
 //		if(loophelp()==1)
 //		{
                         if(action_break()==0){return 0;}
-			var atime = setTimeout(help_cpuflow, 200); //wa�ne: funkcja bez nawias�w !!!
+			var atime = setTimeout(help_cpuflow, 200); //ważne: funkcja bez nawiasów !!!
 //		}  
     }
 }
@@ -1523,9 +1523,9 @@ function action_break()
 {		
 		if(a == 1) //punkt po lewej
 		{
-			console.time("akcja1") ;
+			//console.time("akcja1") ;
 			a = akcja1();		//wynik akcji zaczetej po lewej - jesli kolejny punkt - a=1 to nie ma przejscia
-			console.timeEnd("akcja1") ;
+			//console.timeEnd("akcja1") ;
 			if(a == 2)
 			{					//jesli druzyna po prawej zdobyla punkt to robi przejscie
 				przejscie2();
@@ -1533,9 +1533,9 @@ function action_break()
 		}
 		else if(a == 2)
 		{
-			console.time("akcja2") ;
+			//console.time("akcja2") ;
 			a = akcja2();		//wynik akcji zaczetej po prawej - jesli kolejny punkt - a=1 to nie ma przejscia
-			console.timeEnd("akcja2") ;
+			//console.timeEnd("akcja2") ;
 			if(a == 1)
 			{
 				przejscie1();
@@ -1658,17 +1658,17 @@ function akcja2()
 	
 	scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 	
-	console.time("przyjecie1") ;
+	//console.time("przyjecie1") ;
 	prz = przyjecie1(z, 0);
-	console.timeEnd("przyjecie1") ;	
+	//console.timeEnd("przyjecie1") ;	
 	find_leaders();
 	
 	while(1)
 	{
 		
-		console.time("rozegranie_atak1") ;
+		//console.time("rozegranie_atak1") ;
 		pra = rozegranie_atak_1(prz);
-		console.timeEnd("rozegranie_atak1") ;
+		//console.timeEnd("rozegranie_atak1") ;
 		blok = blok2(pra)
 		scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 		if(parseInt(blok) < 1)
@@ -1689,7 +1689,7 @@ function akcja2()
 						prz = zaokr(1.2*parseFloat(obr));
 						if(prz>0.7)prz=0.69; //jakosc przyjecia po obronie
 						scr = document.getElementById("screen1").innerHTML;
-						document.getElementById("screen1").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";
+						document.getElementById("screen1").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";
 					}
 					else//obrona skuteczna
 					{
@@ -1698,7 +1698,7 @@ function akcja2()
 									//obrona nasza - lepsza, to lepsze przyjecie np 62 verbov
 						prz = zaokr(obr/(parseInt(blok)*100));if(prz>1.2)prz=1.2; //jakosc przyjecia po obronie
 						scr = document.getElementById("screen1").innerHTML;
-						document.getElementById("screen1").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";	
+						document.getElementById("screen1").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";	
 					}
 					
 					pra = rozegranie_atak_1(prz);
@@ -1720,9 +1720,9 @@ function akcja2()
 		}
 		else			//blok nieskuteczny
 		{
-			console.time("obrona2") ;
+			//console.time("obrona2") ;
 			obr = obrona2(blok, pra);
-			console.timeEnd("obrona2") ;
+			//console.timeEnd("obrona2") ;
 			scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br /><br />";
 			if(obr == "niema")
 			{	
@@ -1734,14 +1734,14 @@ function akcja2()
 				prz = zaokr(1.2*parseFloat(obr));
 				if(prz>0.7)prz=0.69; //jakosc przyjecia po obronie
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";
+				document.getElementById("screen2").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";
 			}
 			else//obrona skuteczna
 			{
 				blok = (100-blok)*0.01;
 				prz = zaokr(obr/(atak*blok));if(prz>1.2)prz=1.2; //jakosc przyjecia po obronie
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";	
+				document.getElementById("screen2").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";	
 			}
 		} 
 		pra = rozegranie_atak_2(prz);
@@ -1766,14 +1766,14 @@ function akcja2()
 						prz = zaokr(1.2*parseFloat(obr));
 						if(prz>0.7)prz=0.69; //jakosc przyjecia po obronie
 						scr = document.getElementById("screen2").innerHTML;
-						document.getElementById("screen2").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";
+						document.getElementById("screen2").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";
 					}
 					else//obrona skuteczna
 					{
 						prz = zaokr(obr/(parseInt(blok)*100));if(prz>1.2)prz=1.2; //jakosc przyjecia po obronie
 				
 						scr = document.getElementById("screen2").innerHTML;
-						document.getElementById("screen2").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";	
+						document.getElementById("screen2").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";	
 					}
 					
 					pra = rozegranie_atak_2(prz);
@@ -1807,14 +1807,14 @@ function akcja2()
 				prz = zaokr(1.2*parseFloat(obr));
 				if(prz>0.7)prz=0.69; //jakosc przyjecia po obronie
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";
+				document.getElementById("screen1").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";
 			}
 			else//obrona skuteczna
 			{
 				blok = (100-blok)*0.01;
 				prz = zaokr(obr/(atak*blok));if(prz>1.2)prz=1.2; //jakosc przyjecia po obronie
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";	
+				document.getElementById("screen1").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";	
 			}
 		}
 	}	
@@ -1823,9 +1823,9 @@ function akcja2()
 function akcja1()
 {
 	po = spr_przyjecie2();
-	console.time("zagrywka1");
+	//console.time("zagrywka1");
 	z = zagrywka1(po);
-	console.timeEnd("zagrywka1");
+	//console.timeEnd("zagrywka1");
 	if(z == "as")
 	{ 
 		przyjecie2(0, 1);
@@ -1841,22 +1841,22 @@ function akcja1()
 	
 	scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br />";
 	
-	console.time("przyjecie2");
+	//console.time("przyjecie2");
 	prz = przyjecie2(z, 0);
-	console.timeEnd("przyjecie2");
+	//console.timeEnd("przyjecie2");
 	
-	console.time("find lider");	
+	//console.time("find lider");	
 	find_leaders();
-	console.timeEnd("find lider");
+	//console.timeEnd("find lider");
 	
 	while(1)
 	{
-		console.time("rozegranie_atak2");
+		//console.time("rozegranie_atak2");
 		pra = rozegranie_atak_2(prz);
-		console.timeEnd("rozegranie_atak2") ;
-		console.time("blok1") ;
+		//console.timeEnd("rozegranie_atak2") ;
+		//console.time("blok1") ;
 		blok = blok1(pra);
-		console.timeEnd("blok1") ;
+		//console.timeEnd("blok1") ;
 		scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br />";
 		if(parseInt(blok) < 1)
 		{		
@@ -1877,14 +1877,14 @@ function akcja1()
 						prz = zaokr(1.2*parseFloat(obr));
 						if(prz>0.7)prz=0.69; //jakosc przyjecia po obronie
 						scr = document.getElementById("screen2").innerHTML;
-						document.getElementById("screen2").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";
+						document.getElementById("screen2").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";
 					}
 					else//obrona skuteczna
 					{
 						prz = zaokr(obr/(parseInt(blok)*100));if(prz>1.2)prz=1.2; //jakosc przyjecia po obronie
 						
 						scr = document.getElementById("screen2").innerHTML;
-						document.getElementById("screen2").innerHTML =scr+ ",Obr=>Przyjęcie: "+prz+"%<br/>";	
+						document.getElementById("screen2").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";	
 					}
 					
 					pra = rozegranie_atak_2(prz);
@@ -1907,9 +1907,9 @@ function akcja1()
 		}
 		else			//blok nieskuteczny
 		{
-			console.time("obrona1") ;
+			//console.time("obrona1") ;
 			obr = obrona1(blok, pra);
-			console.timeEnd("obrona1") ;
+			//console.timeEnd("obrona1") ;
 			scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br /><br />";
 			if(obr == "niema")
 			{	
@@ -1921,14 +1921,14 @@ function akcja1()
 				prz = zaokr(1.2*parseFloat(obr));
 				if(prz>0.7)prz=0.69; //jakosc przyjecia po obronie
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";
+				document.getElementById("screen1").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";
 			}
 			else//obrona skuteczna
 			{
 				blok = (100-blok)*0.01;
 				prz = zaokr(obr/(atak*blok));if(prz>1.2)prz=1.2; //jakosc przyjecia po obronie
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";	
+				document.getElementById("screen1").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";	
 			}
 		} 
 		pra = rozegranie_atak_1(prz);
@@ -1953,14 +1953,14 @@ function akcja1()
 						prz = zaokr(1.2*parseFloat(obr));
 						if(prz>0.7)prz=0.69; //jakosc przyjecia po obronie
 						scr = document.getElementById("screen1").innerHTML;
-						document.getElementById("screen1").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";
+						document.getElementById("screen1").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";
 					}
 					else//obrona skuteczna
 					{
 						prz = zaokr(obr/(parseInt(blok)*100));if(prz>1.2)prz=1.2; //jakosc przyjecia po obronie
 						
 						scr = document.getElementById("screen1").innerHTML;
-						document.getElementById("screen1").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";	
+						document.getElementById("screen1").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";	
 					}
 					
 					pra = rozegranie_atak_1(prz);
@@ -1994,14 +1994,14 @@ function akcja1()
 				prz = zaokr(1.2*parseFloat(obr));
 				if(prz>0.7)prz=0.69; //jakosc przyjecia po obronie
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";
+				document.getElementById("screen2").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";
 			}
 			else//obrona skuteczna
 			{
 				blok = (100-blok)*0.01;
 				prz = zaokr(obr/(atak*blok));if(prz>1.2)prz=1.2; //jakosc przyjecia po obronie
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML =scr+ "Obr=>Przyjęcie: "+prz+"%<br/>";	
+				document.getElementById("screen2").innerHTML =scr+ " - jakość: "+Math.round(prz * 80)/1+"%<br/>";	
 			}
 		}
 	}
@@ -2011,7 +2011,8 @@ function przyjecie1(z, as)
 {	
 	happy = 0;	
 	var los = Math.floor(Math.random() * 100 + 1); //losowanie
-	document.getElementById("screen3").innerHTML = los;
+	//document.getElementById("screen3").innerHTML = los;
+        //document.getElementById("input_screen3").value = los;
 	
 	if(document.getElementById("tktz2.1").checked) //brak taktyki
 	{
@@ -2075,7 +2076,8 @@ function przyjecie1(z, as)
 				nazw = team1[i][5];
 				iss = i;
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Przyjął: "+nazw+"("+par+")";
+				//document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                                document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			}	
 		}
 	}
@@ -2087,7 +2089,8 @@ function przyjecie1(z, as)
 				nazw = team1[2][5];
 				iss = 2;
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Przyjął: "+nazw+"("+par+")";
+				//document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                                document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 				
 			}
 			else //spr ktory przyjmujacy ma lepsze przyjecie
@@ -2096,8 +2099,8 @@ function przyjecie1(z, as)
 				nazw = team1[5][5];
 				iss = 5;
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Przyjął: "+nazw+"("+par+") ";
-				
+				//document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+				document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			}	
 	}
 	else if(happy == "PP")//przyjmuje przyjmujacy z lepszym przyjeciem
@@ -2108,7 +2111,8 @@ function przyjecie1(z, as)
 				nazw = team1[2][5];
 				iss = 2;
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Przyjął: "+nazw+"("+par+") ";
+				//document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                                document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 				
 			}
 			else //spr ktory przyjmujacy ma lepsze przyjecie
@@ -2117,8 +2121,8 @@ function przyjecie1(z, as)
 				nazw = team1[5][5];
 				iss = 5;
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Przyjął: "+nazw+"("+par+") ";
-				
+				//document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+				document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			}	
 	}
 	else
@@ -2128,7 +2132,8 @@ function przyjecie1(z, as)
 		iss = happy;
 		flag_lib=1;
 		scr = document.getElementById("screen1").innerHTML;
-		document.getElementById("screen1").innerHTML = scr + "Przyjął: "+nazw+"("+par+") ";
+		//document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                document.getElementById("screen1").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			
 	}
 		if(as == 1)
@@ -2160,7 +2165,7 @@ function przyjecie1(z, as)
 		wagab = 1 - wagaa;
 		team1[iss][19] = Math.round(team1[iss][19]*wagaa + prz_st*wagab);
 		scr = document.getElementById("screen1").innerHTML;
-		document.getElementById("screen1").innerHTML =scr+ "Przyjęcie: "+Math.round(prz_st)+"%<br />";//+" wa:"+wagaa+" wb:"+wagab
+		document.getElementById("screen1").innerHTML =scr+ "- jakość: "+Math.round(prz_st * 100)/100+"%<br />";//+" wa:"+wagaa+" wb:"+wagab
 		scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br />";
 		return prz;
 }
@@ -2232,7 +2237,8 @@ function przyjecie2(z, as)
 				nazw = team2[i][5];
 				iss = i;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                                document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			}	
 		}
 	break;
@@ -2245,7 +2251,8 @@ function przyjecie2(z, as)
 				nazw = team2[2][5];
 				iss = 2;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                                document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			}
 			else //spr ktory przyjmujacy ma lepsze przyjecie
 			{
@@ -2253,7 +2260,8 @@ function przyjecie2(z, as)
 				nazw = team2[5][5];
 				iss = 5;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                                document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			}
 	break;	
 	}
@@ -2265,7 +2273,8 @@ function przyjecie2(z, as)
 				nazw = team2[2][5];
 				iss = 2;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                                document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			}
 			else //spr ktory przyjmujacy ma lepsze przyjecie
 			{
@@ -2273,7 +2282,8 @@ function przyjecie2(z, as)
 				nazw = team2[5][5];
 				iss = 5;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                                document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 			}	
 	break;
 	}
@@ -2284,7 +2294,8 @@ function przyjecie2(z, as)
 		iss = happy;
 		flag_lib=1;
 		scr = document.getElementById("screen2").innerHTML;
-		document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+")";		
+		//document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+"("+par+") ";
+                document.getElementById("screen2").innerHTML = scr + "Przyjmuje: "+nazw+" ";
 	}
 	}
 		if(as == 1)
@@ -2305,7 +2316,7 @@ function przyjecie2(z, as)
 		wagab = 1 - wagaa;
 		team2[iss][19] = Math.round(team2[iss][19]*wagaa + prz_st*wagab);
 		scr = document.getElementById("screen2").innerHTML;
-		document.getElementById("screen2").innerHTML =scr+"Przyjęcie: "+prz_st+"%<br/>";
+		document.getElementById("screen2").innerHTML =scr+"- jakość: "+Math.round(prz_st * 100)/100+"%<br/>";
 		scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 		return prz;
 }
@@ -2337,7 +2348,9 @@ function zagrywka2(po)
 		if(los_a < par)
 		{
 			//scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" ("+par+")Skut:" + shot+"%, As serwisowy!<br/>"; 	
+			//document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" ("+par+")Skut:" + shot+"%, As serwisowy!<br/>";
+                        //document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" - wartość: " + Math.round(shot * 10000) / 100 +". As serwisowy!<br/>";
+                        document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+". As serwisowy!<br/>";
 			team2[pkt_zag][25]++;
 			team2[pkt_zag][21]++;
 			return "as";
@@ -2345,15 +2358,18 @@ function zagrywka2(po)
 		else if(los_z < (200 - par))
 		{
 			//scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" ("+par+")Skut:" + shot+"%, Zepsuta zagr.<br/>"; 	
+			//document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" ("+par+")Skut:" + shot+"%, Zepsuta zagr.<br/>"; 
+                        //document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" - wartość: " + Math.round(shot * 10000) / 100 +". Zepsuta zagrywka.<br/>";
+                        document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+". Zepsuta zagrywka.<br/>";
 			team2[pkt_zag][22]++;
 			return "zeps";
 		}
 		else
 		{
 			//scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" ("+par+")Skut:" + shot+"%<br/>";
-			
+			//document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" ("+par+")Skut:" + shot+"%<br/>";
+                        //document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+" - wartość: " + Math.round(shot * 10000) / 100 +"<br/>";
+                        document.getElementById("screen2").innerHTML ="Zagrywa: "+zawodnik+"<br/>";
 		}
 	
 	
@@ -2394,7 +2410,9 @@ function zagrywka1(po)
 		if(los_a < par)
 		{
 			//scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" ("+par+") Skut:" + shot+"%, As serwisowy!<br />"; 
+			//document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" ("+par+") Skut:" + shot+"%, As serwisowy!<br />";
+                        //document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" - wartość: " + Math.round(shot * 10000) / 100 +". As serwisowy!<br />";
+                        document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+". As serwisowy!<br />";
 			team1[pkt_zag][25]++;
 			team1[pkt_zag][21]++;
 			//punktuj1(pkt_par);
@@ -2403,15 +2421,18 @@ function zagrywka1(po)
 		else if(los_z < (200 - par))
 		{
 			//scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" ("+par+") Skut:" + shot+"%, Zepsuta zagr.<br />";
+			//document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" ("+par+") Skut:" + shot+"%, Zepsuta zagr.<br />";
+                        //document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" - wartość: " + Math.round(shot * 10000) / 100 +". Zepsuta zagrywka<br />";
+                        document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+". Zepsuta zagrywka<br />";
 			team1[pkt_zag][22]++;	
 			return "zeps";
 		}
 		else
 		{
 			//scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" ("+par+") Skut:" + shot+"%<br/>";
-				
+			//document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" ("+par+") Skut:" + shot+"%<br/>";
+                        //document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+" - wartość: " + Math.round(shot * 10000) / 100 +"<br/>";
+                        document.getElementById("screen1").innerHTML ="Zagrywa: "+zawodnik+"<br/>";
 		}
 	
 	
@@ -2486,8 +2507,8 @@ function obrona2(blok, pra)
 
 		//losowanie zawodnka do obrony
 			var los = Math.floor(Math.random() * 100 + 1);//losowanie zawodnika do ataku
-			scr = document.getElementById("screen3").innerHTML;
-			document.getElementById("screen3").innerHTML = scr +","+ los;
+			//scr = document.getElementById("screen3").innerHTML;
+			//document.getElementById("screen3").innerHTML = scr +","+ los;
 			if(liberoflag == 1)	//jest libero na '1'
 			{
 				if(los<=50) {happy = o1i;} //broni libero
@@ -2528,18 +2549,20 @@ function obrona2(blok, pra)
 		obrona = zaokr(krzyw_o/pra*500*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
 		if(obrona<1)obrona=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
-		scr = document.getElementById("screen3").innerHTML;
-		document.getElementById("screen3").innerHTML = scr +","+ los;
+		//scr = document.getElementById("screen3").innerHTML;
+		//document.getElementById("screen3").innerHTML = scr +","+ los;
 		if(los < obrona)
 		{
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML = scr + "Obrona"+Math.round(sro)+"/"+sumo+": "+" "+Math.round(obrona)+"%";
+			//document.getElementById("screen2").innerHTML = scr + "Obrona"+Math.round(sro)+"/"+sumo+": "+" "+Math.round(obrona)+"%";
+                        document.getElementById("screen2").innerHTML = scr + "Obrona - szanse: "+Math.round(obrona)+"%";
 			
 			par = team2[happy][10];
 			nazw = team2[happy][5]; //nazwisko
 			team2[happy][23]++;
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML = scr + ": "+nazw+"("+par+")<br/>";
+			//document.getElementById("screen2").innerHTML = scr + ": "+nazw+"("+par+")<br/>";
+                        document.getElementById("screen2").innerHTML = scr + " - broni: "+nazw;
 			if(happy == 1) //jesli obronil rozgrywajacy to nie moze potem rozgrywac
 			{
 				return 0+"."+par; //zakodowanie parametru obrony Rozgr
@@ -2552,7 +2575,8 @@ function obrona2(blok, pra)
 		else
 		{
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML = scr + "Obrona"+Math.round(sro)+"/"+sumo+": "+" "+Math.round(obrona)+"% nieskt<br/>";
+			//document.getElementById("screen2").innerHTML = scr + "Obrona"+Math.round(sro)+"/"+sumo+": "+" "+Math.round(obrona)+"% nieskt<br/>";
+                        document.getElementById("screen2").innerHTML = scr + "Obrona - szanse: "+Math.round(obrona)+"% - niesktuteczna<br/>";
 			return "niema";
 		}
 }
@@ -2617,8 +2641,8 @@ function obrona1(blok, pra)
 
 		//losowanie zawodnka do obrony
 			var los = Math.floor(Math.random() * 100 + 1);//losowanie zawodnika do ataku
-			scr = document.getElementById("screen3").innerHTML;
-			document.getElementById("screen3").innerHTML = scr +","+ los;
+			//scr = document.getElementById("screen3").innerHTML;
+			//document.getElementById("screen3").innerHTML = scr +","+ los;
 			if(liberoflag == 1)	//jest libero na '1'
 			{
 				if(los<=50) {happy = o1i;} //broni libero
@@ -2659,18 +2683,20 @@ function obrona1(blok, pra)
 		obrona = zaokr(krzyw_o/pra*500*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
 		if(obrona<1)obrona=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
-		scr = document.getElementById("screen3").innerHTML;
-		document.getElementById("screen3").innerHTML = scr +","+ los;
+		//scr = document.getElementById("screen3").innerHTML;
+		//document.getElementById("screen3").innerHTML = scr +","+ los;
 		if(los < obrona)
 		{
 			scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML = scr + "Obrona"+Math.round(sro)+"/"+sumo+": "+" "+Math.round(obrona)+"%";
+			//document.getElementById("screen1").innerHTML = scr + "Obrona"+Math.round(sro)+"/"+sumo+": "+" "+Math.round(obrona)+"%";
+                        document.getElementById("screen1").innerHTML = scr + "Obrona - szanse: "+Math.round(obrona)+"%";
 			
 			par = team1[happy][10];
 			nazw = team1[happy][5]; //nazwisko
 			team1[happy][23]++;
 			scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML = scr + ": "+nazw+"("+par+")<br/>";//1 10 11
+			//document.getElementById("screen1").innerHTML = scr + ": "+nazw+"("+par+")<br/>";//1 10 11
+                        document.getElementById("screen1").innerHTML = scr + " - broni: "+nazw;
 			//jesli kulikowski bronil to happy = 1;//wylosowalo ze poz '1' jest w 2 lini
 			if(happy == 1) //jesli obronil rozgrywajacy to nie moze potem rozgrywac
 			{							//team1[1][4] - happy to indez teraz//wiec na ind 1 jest zawsze R
@@ -2686,7 +2712,8 @@ function obrona1(blok, pra)
 		else
 		{
 			scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML = scr + "Obrona"+Math.round(sro)+"/"+sumo+": "+" "+Math.round(obrona)+"%nieskt<br/>";
+			//document.getElementById("screen1").innerHTML = scr + "Obrona"+Math.round(sro)+"/"+sumo+": "+" "+Math.round(obrona)+"%nieskt<br/>";
+                        document.getElementById("screen1").innerHTML = scr + "Obrona - szanse: "+Math.round(obrona)+"% - niesktuteczna<br/>";
 			return "niema";
 		}
 }
@@ -2755,8 +2782,8 @@ function blok2(pra)
 		blok = zaokr(krzyw_b/pra*(500*reg));	//parametr do regulacji wartosci bloku !!!
 		if(blok<1)blok=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
-		scr = document.getElementById("screen3").innerHTML;
-		document.getElementById("screen3").innerHTML = scr +","+ los;
+		//scr = document.getElementById("screen3").innerHTML;
+		//document.getElementById("screen3").innerHTML = scr +","+ los;
 		pon = blok/2;
 		
 		aut = blok*1.5;
@@ -2822,7 +2849,8 @@ function blok2(pra)
 			
 			//np "blok zaw ktory nie skakał to obrona..."
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny->"+nazw+"<br/>";
+			//document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny->"+nazw+"<br/>";
+                        document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - blokuje: "+nazw+"<br/>";
  
  			team2[pkt_blo][25]++;
 			team2[pkt_blo][24]++;
@@ -2832,22 +2860,25 @@ function blok2(pra)
 		else if(los < pon)
 		{
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny.<br/> Powrót piłki.<br/>";
-			scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
+			//document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny.<br/> Powrót piłki.<br/>";
+			document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - powrót piłki<br/>";			
+                        scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 			pkt_blo = 0;
 			return 0+"."+blok;//zakodowanie wart bloku
 		}
 		else if(los < aut && los >= blok)					//aut
 		{
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w aut<br/>";
+			//document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w aut<br/>";
+                        document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+" "+Math.round(blok)+"% - atak w aut<br/>";
  			pkt_blo = 0;
 			return "aut";
 		}
 		else if(los < ant && los >= aut)
 		{
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w antenke<br/>";
+			//document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w antenke<br/>";
+                        document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - atak w antenke<br/>";
  			pkt_blo = 0;
 			return "aut";
 		}
@@ -2855,7 +2886,8 @@ function blok2(pra)
 		{
 			nazw = team2[i][5];
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% nieskt<br/>";
+			//document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% nieskt<br/>";
+                        document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - niesktuteczny<br/>";
 			pkt_blo = 0;
 			return blok;
 		}
@@ -2923,8 +2955,8 @@ function blok1(pra)
 		if(blok<1)blok=1.1;
 		
 		var los = Math.floor(Math.random() * 100 + 1);
-		scr = document.getElementById("screen3").innerHTML;
-		document.getElementById("screen3").innerHTML = scr +","+ los;
+		//scr = document.getElementById("screen3").innerHTML;
+		//document.getElementById("screen3").innerHTML = scr +","+ los;
 		pon = blok/2;									//!!ustawienie:po ilu sk blokach piłka powraca - ponowienia
 		
 		aut = blok*1.5;						//decyduje a tym ile ma być autów
@@ -2982,7 +3014,8 @@ function blok1(pra)
 			}
 			
 			scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny =>"+nazw+"<br/>";
+			//document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny =>"+nazw+"<br/>";
+                        document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - blokuje: "+nazw+"<br/>";
  
  			team1[pkt_blo][25]++;
 			team1[pkt_blo][24]++;
@@ -2992,31 +3025,35 @@ function blok1(pra)
 		else if(los < pon)
 		{
 			scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny.<br/> Powrót piłki:<br/>";
-			scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br />";
+			//document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny.<br/> Powrót piłki:<br/>";
+			document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - powrót piłki.<br/>";
+                        scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br />";
 			pkt_blo = 0;
 			return 0+"."+blok;		//zakodowanie wart bloku
 		}
 		else if(los < aut && los >= blok)					//aut
 		{
 			scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w aut<br/>";
- 			pkt_blo = 0;
+			//document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w aut<br/>";
+ 			document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+" "+Math.round(blok)+"% - atak w aut<br/>";
+                        pkt_blo = 0;
 			return "aut";
 		}
 		else if(los < ant && los >= aut)
 		{
 			scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w antenke<br/>";
- 			pkt_blo = 0;
+			//document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w antenke<br/>";
+ 			document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - atak w antenke<br/>";
+                        pkt_blo = 0;
 			return "aut";
 		}
 		else
 		{
 			nazw = team2[i][5];
 			scr = document.getElementById("screen1").innerHTML;
-			document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% nieskt<br/>";
-			pkt_blo = 0;
+			//document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% nieskt<br/>";
+			document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - niesktuteczny<br/>";
+                        pkt_blo = 0;
 			return blok;
 		}
 }
@@ -3024,15 +3061,16 @@ function blok1(pra)
 function rozegranie_atak_1(prz)
 {
 	var los = Math.floor(Math.random() * 100 + 1);//losowanie zawodnika do ataku
-	scr = document.getElementById("screen3").innerHTML;
-	document.getElementById("screen3").innerHTML = scr +","+ los;
+	//scr = document.getElementById("screen3").innerHTML;
+	//document.getElementById("screen3").innerHTML = scr +","+ los;
 	if(prz <= 0.7 && flag_lib==0)	//rozgrywa libero
 	{
 		roz = team1[7][11];
 		nazw = team1[7][5];
 		team1[7][26]++;
 		scr = document.getElementById("screen1").innerHTML;
-		document.getElementById("screen1").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+		//document.getElementById("screen1").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+                document.getElementById("screen1").innerHTML =scr+"Rozgrywa: "+nazw+"<br />";
 		if(los<=40) {happy = 4;} //atakujacy
 		if(40<los && los<=70) {happy = "PA";} //przyjmujacy z lepszym atakiem
 		if(70<los && los<=90) {happy = "PP";}			//przyjmujacy z gorszym atakiem
@@ -3045,7 +3083,8 @@ function rozegranie_atak_1(prz)
 		nazw = team1[1][5];
 		team1[1][26]++;
 		scr = document.getElementById("screen1").innerHTML;
-		document.getElementById("screen1").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+		//document.getElementById("screen1").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+                document.getElementById("screen1").innerHTML =scr+"Rozgrywa: "+nazw+"<br />";
 		if(los<=40) {happy = 4;} //atakujacy
 		if(40<los && los<=65) {happy = "PA";} //przyjmujacy z lepszym atakiem
 		if(65<los && los<=101) {happy = "PP";}			//przyjmujacy z gorszym atakiem
@@ -3056,7 +3095,8 @@ function rozegranie_atak_1(prz)
 		nazw = team1[1][5];
 		team1[1][26]++;
 		scr = document.getElementById("screen1").innerHTML;
-		document.getElementById("screen1").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+		//document.getElementById("screen1").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+                document.getElementById("screen1").innerHTML =scr+"Rozgrywa: "+nazw+"<br />";
 		if(los<=40) {happy = 4;} //atakujacy
 		if(40<los && los<=65) {happy = "PA";} //przyjmujacy z lepszym atakiem
 		if(65<los && los<=80) {happy = "PP";}			//przyjmujacy z gorszym atakiem
@@ -3069,7 +3109,8 @@ function rozegranie_atak_1(prz)
 		nazw = team1[1][5];
 		team1[1][26]++;
 		scr = document.getElementById("screen1").innerHTML;
-		document.getElementById("screen1").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+		//document.getElementById("screen1").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+                document.getElementById("screen1").innerHTML =scr+"Rozgrywa: "+nazw+"<br />";
 		if(los<=1) {happy = "R";}			//kiwka mozliwa tylko jesli rozegranie >54
 		if(1<los && los<=20) {happy = 4;} //atakujacy
 		if(20<los && los<=40) {happy = "PA";} //przyjmujacy z lepszym atakiem
@@ -3092,7 +3133,8 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				team1[1][18]++;
 				pkt_par = 1;//pobranie numeru indeksu
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Atak 2 piłka: "+nazw+"("+par+")";
+				//document.getElementById("screen1").innerHTML = scr + "Atak 2 piłka: "+nazw+"("+par+")";
+                                document.getElementById("screen1").innerHTML = scr + "Atak 2-ga piłka: "+nazw;
 				//return par;
 			}
 			else if(team1[1][11] > 50)
@@ -3102,7 +3144,8 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				team1[1][18]++;
 				pkt_par = 1;
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Kiwka: "+nazw+"("+par+")";
+				//document.getElementById("screen1").innerHTML = scr + "Kiwka: "+nazw+"("+par+")";
+                                document.getElementById("screen1").innerHTML = scr + "Kiwka: "+nazw;
 				//return par;
 			}
 			else
@@ -3112,7 +3155,8 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				team1[4][18]++;
 				pkt_par = 4;
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";		
+				//document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";	
+                                document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw;	
 			}	
 	}
 	
@@ -3131,7 +3175,8 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				team1[i][18]++;
 				pkt_par = i;
 				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Atak-krótka: "+nazw+"("+par+")";
+				//document.getElementById("screen1").innerHTML = scr + "Atak-krótka: "+nazw+"("+par+")";
+                                document.getElementById("screen1").innerHTML = scr + "Atak-krótka: "+nazw;
 				middle = 1;
 				//return par;
 			}	
@@ -3148,12 +3193,14 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				if(team1[2][0] == 1 || team1[2][0] == 5 || team1[2][0] == 6)
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw;
 				}
 				else
 				{
 					scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw;
 				}
 			}
 			else //spr ktory przyjmujacy ma lepsze przyjecie
@@ -3165,12 +3212,14 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				if(team1[5][0] == 1 || team1[5][0] == 5 || team1[5][0] == 6)
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak-pipe: "+nazw;
 				}
 				else
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw;
 				}
 			}	
 	}
@@ -3185,13 +3234,15 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				if(team1[2][0] == 1 || team1[2][0] == 5 || team1[2][0] == 6)
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak-pipe: "+nazw;
 				}
 				else
 				{
-				scr = document.getElementById("screen1").innerHTML;
-				document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
-				//return par;
+                                        scr = document.getElementById("screen1").innerHTML;
+                                        //document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw;
+                                        //return par;
 				}
 			}
 			else //spr ktory przyjmujacy ma lepsze przyjecie
@@ -3203,12 +3254,14 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				if(team1[5][0] == 1 || team1[5][0] == 5 || team1[5][0] == 6)
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak-pipe: "+nazw;
 				}
 				else
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw;
 				}
 			}	
 	}
@@ -3225,12 +3278,14 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				if((team1[i][0] == 1 || team1[i][0] == 5 || team1[i][0] == 6) && team1[i][4] == "P")//jesli druga linnia i P
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak-pipe: "+nazw;
 				}
 				else if(team1[i][4] == "S")
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak przes-krótka: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak przes-krótka: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak-przesunięta krótka: "+nazw;
 					middle = 1;
 				}
 				else if((team1[i][0] == 1 || team1[i][0] == 5 || team1[i][0] == 6) && team1[i][4] == "A")
@@ -3239,18 +3294,21 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 					{
 					par = parseInt(zaokr(par*1.5));
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atomowy Atak 2-linia: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atomowy Atak 2-linia: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atomowy atak 2-ga linia: "+nazw;
 					}
 					else
 					{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak 2-linia: "+nazw+"("+par+")";	
+					//document.getElementById("screen1").innerHTML = scr + "Atak 2-linia: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak 2-ga linia: "+nazw;
 					}
 				}
 				else
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw;
 				}
 			}	
 		}
@@ -3268,12 +3326,14 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 				if((team1[i][0] == 1 || team1[i][0] == 5 || team1[i][0] == 6) && team1[i][4] == "P")//jesli druga linnia i P
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak-pipe: "+nazw;
 				}
 				else if(team1[i][4] == "S")
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak krótka z tyłu: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak krótka z tyłu: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak-krótka z tyłu: "+nazw;
 					middle = 1;
 					
 				}
@@ -3283,18 +3343,21 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 					{
 					par = parseInt(zaokr(par*1.5));
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atomowy Atak 2-linia: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atomowy Atak 2-linia: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atomowy atak 2-ga linia: "+nazw;
 					}
 					else
 					{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak 2-linia: "+nazw+"("+par+")";	
+					//document.getElementById("screen1").innerHTML = scr + "Atak 2-linia: "+nazw+"("+par+")";	
+                                        document.getElementById("screen1").innerHTML = scr + "Atak 2-ga linia: "+nazw;	
 					}
 				}
 				else
 				{
 					scr = document.getElementById("screen1").innerHTML;
-					document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw;
 				}
 			}	
 		}
@@ -3311,13 +3374,14 @@ scr = document.getElementById("screen2").innerHTML;document.getElementById("scre
 		pkt_par = happy;
 		scr = document.getElementById("screen1").innerHTML;
 		document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                document.getElementById("screen1").innerHTML = scr + "Atak: "+nazw;
 		//return par;	
 	}
-	scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br />";
+	scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br /><br />";
 	pra = zaokr(prz*roz*par);
 	atak = par;
 	scr = document.getElementById("screen1").innerHTML;
-	document.getElementById("screen1").innerHTML = scr + "<br/>PRA:"+pra;
+	document.getElementById("screen1").innerHTML = scr + "<br/>Siła PRA: "+Math.round(pra * 1)/1;
 	return pra;
 	
 }
@@ -3333,7 +3397,8 @@ function rozegranie_atak_2(prz)
 		nazw = team2[7][5];
 		team2[7][26]++;
 		scr = document.getElementById("screen2").innerHTML;
-		document.getElementById("screen2").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+		//document.getElementById("screen2").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+                document.getElementById("screen2").innerHTML =scr+"Rozgrywa: "+nazw+"<br />";
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 		if(los<=40) {happy = 4;} //atakujacy
 		if(40<los && los<=70) {happy = "PA";} //przyjmujacy z lepszym atakiem
@@ -3347,7 +3412,8 @@ function rozegranie_atak_2(prz)
 		nazw = team2[1][5];
 		team2[1][26]++;
 		scr = document.getElementById("screen2").innerHTML;
-		document.getElementById("screen2").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+		//document.getElementById("screen2").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+                document.getElementById("screen2").innerHTML =scr+"Rozgrywa: "+nazw+"<br />";
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 		if(los<=40) {happy = 4;} //atakujacy
 		if(40<los && los<=65) {happy = "PA";} //przyjmujacy z lepszym atakiem
@@ -3360,7 +3426,8 @@ function rozegranie_atak_2(prz)
 		nazw = team2[1][5];
 		team2[1][26]++;
 		scr = document.getElementById("screen2").innerHTML;
-		document.getElementById("screen2").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+		//document.getElementById("screen2").innerHTML =scr+"Rozegrał: "+nazw+"("+roz+")<br />";
+                document.getElementById("screen2").innerHTML =scr+"Rozgrywa: "+nazw+"<br />";
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 		if(los<=40) {happy = 4;} //atakujacy
 		if(40<los && los<=65) {happy = "PA";} //przyjmujacy z lepszym atakiem
@@ -3374,7 +3441,8 @@ function rozegranie_atak_2(prz)
 		nazw = team2[1][5];
 		team2[1][26]++;
 			scr = document.getElementById("screen2").innerHTML;
-			document.getElementById("screen2").innerHTML =scr+ "Rozegrał: "+nazw+"("+roz+")<br />";
+			//document.getElementById("screen2").innerHTML =scr+ "Rozegrał: "+nazw+"("+roz+")<br />";
+                        document.getElementById("screen2").innerHTML =scr+ "Rozgrywa: "+nazw+"<br />";
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 		if(los<=1) {happy = "R";}			//kiwka mozliwa tylko jesli rozegranie >54
 		if(1<los && los<=20) {happy = 4;} //atakujacy
@@ -3399,7 +3467,8 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				team2[1][18]++;
 				pkt_par = 1;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Atak 2 piłka: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Atak 2 piłka: "+nazw+"("+par+")";
+                                document.getElementById("screen2").innerHTML = scr + "Atak 2-ga piłka: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				//return par;
 			}
@@ -3410,7 +3479,8 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				team2[1][18]++;
 				pkt_par = 1;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Kiwka: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Kiwka: "+nazw+"("+par+")";
+                                document.getElementById("screen2").innerHTML = scr + "Kiwka: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				//return par;
 			}
@@ -3421,7 +3491,8 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				team2[4][18]++;
 				pkt_par = 4;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";	
 			}	
 	break;
@@ -3442,7 +3513,8 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				team2[i][18]++;
 				pkt_par = i;
 				scr = document.getElementById("screen2").innerHTML;
-				document.getElementById("screen2").innerHTML = scr + "Atak-krótka: "+nazw+"("+par+")";
+				//document.getElementById("screen2").innerHTML = scr + "Atak-krótka: "+nazw+"("+par+")";
+                                document.getElementById("screen2").innerHTML = scr + "Atak-krótka: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				middle = 1;
 				//return par;
@@ -3461,13 +3533,15 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				if(team2[2][0] == 1 || team2[2][0] == 5 || team2[2][0] == 6)
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak-pipe: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 				else
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 				
@@ -3482,13 +3556,15 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				if(team2[5][0] == 1 || team2[5][0] == 5 || team2[5][0] == 6)
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak-pipe: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 				else
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 			}
@@ -3505,13 +3581,15 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				if(team2[2][0] == 1 || team2[2][0] == 5 || team2[2][0] == 6)
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak-pipe: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 				else
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 			}
@@ -3524,13 +3602,15 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				if(team2[2][0] == 1 || team2[2][0] == 5 || team2[2][0] == 6)
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak-pipe: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 				else
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 			}
@@ -3553,13 +3633,15 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				if((team2[i][0] == 1 || team2[i][0] == 5 || team2[i][0] == 6) && team2[i][4] == "P")//jesli druga linnia i P
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak-pipe: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 				else if(team2[i][4] == "S")
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak przes-krótka: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak przes-krótka: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak-przesunięta krótka: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 					middle = 1;
 				}
@@ -3569,20 +3651,24 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 					{
 					par = parseInt(zaokr(par*1.5));
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atomowy Atak 2-linia: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atomowy Atak 2-linia: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atomowy atak 2-ga linia: "+nazw;
+                                        
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 					}
 					else
 					{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak 2-linia: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak 2-linia: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak 2-ga linia: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";	
 					}
 				}
 				else
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 			}
@@ -3602,13 +3688,15 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				if((team2[i][0] == 1 || team2[i][0] == 5 || team2[i][0] == 6) && team2[i][4] == "P")//jesli druga linnia i P
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak-Pipe: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak-pipe: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 				else if(team2[i][4] == "S")
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak krótka z tyłu: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak krótka z tyłu: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak-krótka z tyłu: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 					middle = 1;
 				}
@@ -3618,13 +3706,15 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 					{
 					par = parseInt(zaokr(par*1.5));
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atomowy Atak 2-linia: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atomowy Atak 2-linia: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atomowy Atak 2-ga linia: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 					}
 					else
 					{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak 2-linia: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak 2-linia: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak 2-ga linia: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";	
 					}
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
@@ -3633,7 +3723,8 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 				else
 				{
 					scr = document.getElementById("screen2").innerHTML;
-					document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+					//document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                                        document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 				}
 			}	
@@ -3651,16 +3742,17 @@ scr = document.getElementById("screen1").innerHTML;document.getElementById("scre
 		team2[happy][18]++;
 		pkt_par = happy;
 		scr = document.getElementById("screen2").innerHTML;
-		document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+		//document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw+"("+par+")";
+                document.getElementById("screen2").innerHTML = scr + "Atak: "+nazw;
 //scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 		//return par;	
 	}
 	}
-	scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
+	scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br /><br />";
 	pra = zaokr(prz*roz*par);
 	atak = par;
 	scr = document.getElementById("screen2").innerHTML;
-	document.getElementById("screen2").innerHTML = scr + "<br/>PRA:"+pra;
+	document.getElementById("screen2").innerHTML = scr + "<br/>Siła PRA: "+Math.round(pra * 1)/1;
 	return pra;
 	
 }

@@ -180,7 +180,7 @@ class strona_plansza_1mecz extends Strona1
 	echo '<div id="screen2">';
 	echo '</div>';			//end screen_2
         
-        echo '<div style="clear: both;"></div>';
+        //echo '<div style="clear: both;"></div>';
 	
 	echo '<div id="screen3">scr3';
 	echo '</div>';			//end screen_3
@@ -296,8 +296,14 @@ class strona_plansza_1mecz extends Strona1
 	echo'<div id=idteam1></div>
 	<div id=idteam2></div>
 	<div id=kolejka></div>
-	<div id=liga></div>';
+	<div id=liga></div>'; //p3s - optimal_composition_tlo, linia 1637 wpisanie wartości
+                              //mogą służyć np potem w celu zapisu wyniku
+                              //p3a 0 action_break, 1559, 1607 - korzysta z tych danych
+        
+        echo'<input id="input-screen3" type="hidden" value="" />'; //zastąpić screen3 //p3a, przyjecie1,2013
+                                                                    //p3a, przyjecie2, 2494
 	}
+        
     
     //Check if exactly 2 team id come by GET and copy them to public variabl
     public function SprawdzDaneGet() 
