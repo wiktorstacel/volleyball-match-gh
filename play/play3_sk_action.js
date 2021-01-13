@@ -1,5 +1,6 @@
 var push = 0;
 var time = 0;
+var _1akcja = 0;
 var pkt1 = 0, pkt2 = 0;
 var pkt1s = 0, pkt2s = 0;
 var mm1 = 0, mm2 = 0;
@@ -1233,12 +1234,15 @@ function time_take()
 {
     time = 1;
 }
-
 function time_no()
 {
     time = 0;
 }
-
+function contin_1()
+{
+    time = 0;
+    _1akcja = 1;
+}
 
 function time_flow()
 {
@@ -1257,7 +1261,12 @@ function cpuflow()
 //		if(loophelp()==1)
 //		{
                         if(action_break()==0){return 0;}
-			var atime = setTimeout(help_cpuflow, 200); //ważne: funkcja bez nawiasów !!!
+			var atime = setTimeout(help_cpuflow, 1000); //ważne: funkcja bez nawiasów !!!
+                        if(_1akcja)
+                        {
+                            time = 1;
+                            _1akcja = 0;
+                        }
 //		}  
     }
 }
@@ -1314,6 +1323,8 @@ function init1()
 {
 	document.getElementById("show1").innerHTML = 0;
 	document.getElementById("show2").innerHTML = 0;
+        document.getElementById("change_info1").innerHTML = "";
+        document.getElementById("change_info2").innerHTML = "";
 	pkt1 = 0, pkt2 = 0;
     a = akcja1();   //zainicjowanie//seruje dr po lewej
 	push = 0;
@@ -1323,6 +1334,8 @@ function init2()
 {
 	document.getElementById("show1").innerHTML = 0;
 	document.getElementById("show2").innerHTML = 0;
+        document.getElementById("change_info1").innerHTML = "";
+        document.getElementById("change_info2").innerHTML = "";
 	pkt1 = 0, pkt2 = 0;
     a = akcja2();   //zainicjowanie//seruje dr po lewej
 	push = 0;
@@ -1359,9 +1372,12 @@ function init1_break()
 {
 	document.getElementById("show1").innerHTML = 0;
 	document.getElementById("show2").innerHTML = 0;
-	pkt1 = 0, pkt2 = 0;zeruj_changes();
-	host_give(1);flag_host=0;flag_zm_zag1=0;flag_zm_zag2=0;
-	if(document.getElementById("tres1").checked)
+        document.getElementById("change_info1").innerHTML = "";
+        document.getElementById("change_info2").innerHTML = "";
+	pkt1 = 0, pkt2 = 0;
+        zeruj_changes();
+	host_give(1); flag_host=0; flag_zm_zag1=0; flag_zm_zag2=0;
+	if(document.getElementById("tres1").checked)//czy zaznaczony trener - przechodzi tu na pocz każdego seta
 	{
 		if((mm1+mm2)==2&&(pkt2s/pkt1s)<=0.8)
 		{
@@ -1372,7 +1388,7 @@ function init1_break()
 			optimal_compos_zm_begin(1);
 		}
 	}
-	if(document.getElementById("tres2").checked)
+	if(document.getElementById("tres2").checked)//czy zaznaczony trener przechodzi tu na pocz każdego seta
 	{
 		if((mm1+mm2)==2&&(pkt1s/pkt2s)<=0.8)
 		{
@@ -1400,7 +1416,10 @@ function init2_break()
 {
 	document.getElementById("show1").innerHTML = 0;
 	document.getElementById("show2").innerHTML = 0;
-	pkt1 = 0, pkt2 = 0;zeruj_changes()
+        document.getElementById("change_info1").innerHTML = "";
+        document.getElementById("change_info2").innerHTML = "";
+	pkt1 = 0, pkt2 = 0;
+        zeruj_changes();
 	host_give(1);flag_host=0;flag_zm_zag1=0;flag_zm_zag2=0;
 	if(document.getElementById("tres1").checked)
 	{
@@ -1443,9 +1462,7 @@ function action()
 {		
 		if(a == 1) //punkt po lewej
 		{
-			console.time("akcja1") ;
 			a = akcja1();		//wynik akcji zaczetej po lewej - jesli kolejny punkt - a=1 to nie ma przejscia
-			console.timeEnd("akcja1") ;
 			if(a == 2)
 			{					//jesli druzyna po prawej zdobyla punkt to robi przejscie
 				przejscie2();
@@ -1453,9 +1470,7 @@ function action()
 		}
 		else if(a == 2)
 		{
-			console.time("akcja2") ;
 			a = akcja2();		//wynik akcji zaczetej po prawej - jesli kolejny punkt - a=1 to nie ma przejscia
-			console.timeEnd("akcja2") ;
 			if(a == 1)
 			{
 				przejscie1();
@@ -1476,11 +1491,19 @@ function action()
 			}
 			document.getElementById("set1").innerHTML = mm1;
 			document.getElementById("set2").innerHTML = mm2;
-			alert(pkt1+":"+pkt2+" KONIEC MECZU: "+mm1+" : "+mm2);
+                        m_res = m_res+", "+pkt1+":"+pkt2;
+			m_res = mm1+":"+mm2+" "+m_res+")";
+			alert("Tie-break:"+pkt1+":"+pkt2+" KONIEC MECZU: "+mm1+" : "+mm2);
+                        document.getElementById("tablica_wyn_sety").innerHTML = m_res;
+			m_res="";
 			//koniec meczu - zapis do tabeli
 			tum1 = document.getElementById("idteam1").innerHTML;
 			tum2 = document.getElementById("idteam2").innerHTML;
-			act_table(mm1,mm2,tum1,tum2,0,0,0);
+                        //2021-01-13 - omijamy dla 1 mecz
+                        if(!play_1mecz)
+                        {
+                            act_table(mm1,mm2,tum1,tum2,0,0,0);
+                        }
 			pkt1=0;pkt2=0;push = 0;
 			return 0;
 			}
@@ -1497,16 +1520,33 @@ function action()
 				{
 					mm2++;	
 				}
+                        if((mm1+mm2)==1)
+			{
+				m_res = "("+pkt1+":"+pkt2;
+			}
+			else
+			{
+				m_res = m_res+", "+pkt1+":"+pkt2;
+			}
 			document.getElementById("set1").innerHTML = mm1;
 			document.getElementById("set2").innerHTML = mm2;
-			alert(pkt1+":"+pkt2);
+                        alert(" KONIEC SETA: "+m_res);
+                        document.getElementById("tablica_wyn_sety").innerHTML = m_res;
+			//alert(pkt1+":"+pkt2);//KONIEC SETA
 			
 					if(mm1 == 3 || mm2 == 3)//koniec meczu
 					{
 						tum1 = document.getElementById("idteam1").innerHTML;
 						tum2 = document.getElementById("idteam2").innerHTML;
-						act_table(mm1,mm2,tum1,tum2,0,0,0);
-						alert(" KONIEC MECZU: "+mm1+" : "+mm2);
+                                                //2021-01-13 - omijamy dla 1 mecz
+                                                if(!play_1mecz)
+                                                {
+                                                    act_table(mm1,mm2,tum1,tum2,0,0,0);
+                                                }
+                                                m_res = mm1+":"+mm2+" "+m_res+")";
+						alert(" KONIEC MECZU: "+m_res);
+                                                document.getElementById("tablica_wyn_sety").innerHTML = m_res;
+						//alert(" KONIEC MECZU: "+mm1+" : "+mm2);
 						pkt1=0;pkt2=0;push = 0;
 						return 0;
 					}
@@ -1566,8 +1606,14 @@ function action_break()
 			
 			flag_star=0;
 if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrownacz_give(2);transpa();flag_wyr2=0;}
-			act_table(mm1,mm2,tum1,tum2,kkk,m_res,0,0,liga,pkt1s,pkt2s);
-                        alert(pkt1+":"+pkt2+" KONIEC MECZU: "+mm1+" : "+mm2);
+                        //2021-01-13 - omijamy dla 1 mecz
+                        if(!play_1mecz)
+                        {
+                            act_table(mm1,mm2,tum1,tum2,kkk,m_res,0,0,liga,pkt1s,pkt2s);
+                        }
+                        //alert("Tie-break:"+pkt1+":"+pkt2+" KONIEC MECZU: "+mm1+" : "+mm2);
+                        time=1;
+                        document.getElementById("tablica_wyn_sety").innerHTML = m_res;
 			m_res="";
 			pkt1=0;pkt2=0;time=1;push=0;
 			//clearTimeout(atime);
@@ -1598,8 +1644,13 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 			{
 				m_res = m_res+", "+pkt1+":"+pkt2;
 			}
-			pkt1s+=pkt1;pkt2s+=pkt2;
-			if(mm1 < 3 & mm2 < 3){alert(" KONIEC SETA: "+m_res);}
+			pkt1s+=pkt1; pkt2s+=pkt2;
+			if(mm1 < 3 & mm2 < 3)
+                        {
+                            //alert(" KONIEC SETA: "+m_res);
+                            time=1;
+                            document.getElementById("tablica_wyn_sety").innerHTML = m_res;
+                        }
 			//clearTimeout(atime);
 					if(mm1 > 2 || mm2 > 2)//koniec meczu
 					{
@@ -1610,9 +1661,15 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 						var liga = document.getElementById("liga").innerHTML;
 						m_res = mm1+":"+mm2+" "+m_res+")";
 if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrownacz_give(2);transpa();flag_wyr2=0;}
-						alert(" KONIEC MECZU: "+m_res);
+						//alert(" KONIEC MECZU: "+m_res);
+                                                time=1;
+                                                document.getElementById("tablica_wyn_sety").innerHTML = m_res;
 						flag_star=0;
-						act_table(mm1,mm2,tum1,tum2,kkk,m_res,0,0,liga,pkt1s,pkt2s);
+                                                //2021-01-13 - omijamy dla 1 mecz
+                                                if(!play_1mecz)
+                                                {
+                                                    act_table(mm1,mm2,tum1,tum2,kkk,m_res,0,0,liga,pkt1s,pkt2s);
+                                                }
 						m_res="";
 						//document.getElementById("screen5").innerHTML = "jestem2";
 						

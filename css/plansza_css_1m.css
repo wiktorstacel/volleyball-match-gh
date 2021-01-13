@@ -304,20 +304,6 @@
 	right: 300px;
 	bottom:100px;
 }
-#change_info1{
-	font-size:11px;
-        text-align: left;
-	position:absolute;
-	left: 5px;
-	top: 58px;
-}
-#change_info2{
-	font-size:11px;
-        text-align: right;
-	position:absolute;
-	right: 5px;
-	top: 58px;
-}
 #liberofield1{
 	font-size:11px;
 	position:absolute;
@@ -329,6 +315,20 @@
 	position:absolute;
 	right: 120px;
 	bottom: 72px;
+}
+#change_info1{
+	font-size:11px;
+        text-align: left;
+	position:absolute;
+	left: 5px;
+	top: 46px;
+}
+#change_info2{
+	font-size:11px;
+        text-align: right;
+	position:absolute;
+	right: 5px;
+	top: 46px;
 }
 #treserfield1{
 	font-size:11px;
@@ -505,6 +505,14 @@
 	width:170px;
 	height:20px;
 	margin:auto;
+}
+#tablica_wyn_sety{
+	width:140px;
+	height:20px;
+	margin:auto;
+        margin-top:2px;
+        text-align:center;
+        font-size: 11px;
 }
 #set1{
 	height:20px; 

@@ -399,11 +399,11 @@ document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+f
 		{
 		if(pkt1 >= pkt2)
 		{
-			if((pkt1 - pkt2) > 1){console.time("minusback1");minus_dosw1(0);minus_dosw2(0);console.timeEnd("minusbackt1");return 0;}else{return 1;}
+			if((pkt1 - pkt2) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
 		}
 		else
 		{
-			if((pkt2 - pkt1) > 1){console.time("minusback2");minus_dosw1(0);minus_dosw2(0);console.timeEnd("minusbackt2");return 0;}else{return 1;}
+			if((pkt2 - pkt1) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
 		}
 		}
 	}
@@ -415,11 +415,11 @@ document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+f
 		{
 		if(pkt1 >= pkt2)
 		{
-			if((pkt1 - pkt2) > 1){console.time("minusbackw1");minus_dosw1(0);minus_dosw2(0);console.timeEnd("minusbackw1");return 0;}else{return 1;}
+			if((pkt1 - pkt2) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
 		}
 		else
 		{
-			if((pkt2 - pkt1) > 1){console.time("minusbackw2");minus_dosw1(0);minus_dosw2(0);console.timeEnd("minusbackw2");return 0;}else{return 1;}
+			if((pkt2 - pkt1) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
 		}
 		}
 }
@@ -608,7 +608,8 @@ function zmia_1_nex()
 	change1(zz1,zz2);
 	document.getElementById("screen1").innerHTML="zmiana: "+team1[zz1][5]+" za "+team1[zz2][5];
         //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
-        document.getElementById("change_info1").innerHTML="(10:12) "+team1[zz1][5]+" za "+team1[zz2][5]+"";        
+        var fffv = document.getElementById("change_info1").innerHTML;
+        document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[zz1][5]+" za "+team1[zz2][5]+"";        
 	//document.getElementById("l"+zz1).innerHTML = "<div onclick=banch_go1("+team1[zz1][3]+") class='zaw'>"+team1[zz1][5]+"</div>";
 	ustawienie();
 	banch_ins();
@@ -640,7 +641,8 @@ function zmia_2_nex()
 	change2(zz1,zz2);
 	document.getElementById("screen2").innerHTML="zmiana: "+team2[zz1][5]+" za "+team2[zz2][5];
         //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
-        document.getElementById("change_info2").innerHTML="(24:25) "+team2[zz1][5]+" za "+team2[zz2][5]+"";
+        var fffv = document.getElementById("change_info2").innerHTML;
+        document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[zz1][5]+" za "+team2[zz2][5]+"";
 	ustawienie();
 	banch_ins();
 	document.getElementById("kwadrat22").innerHTML="";
