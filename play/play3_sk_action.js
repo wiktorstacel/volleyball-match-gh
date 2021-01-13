@@ -1261,7 +1261,7 @@ function cpuflow()
 //		if(loophelp()==1)
 //		{
                         if(action_break()==0){return 0;}
-			var atime = setTimeout(help_cpuflow, 1000); //ważne: funkcja bez nawiasów !!!
+			var atime = setTimeout(help_cpuflow, 200); //ważne: funkcja bez nawiasów !!!
                         if(_1akcja)
                         {
                             time = 1;
@@ -1479,8 +1479,8 @@ function action()
 		
 		if(mm1 == 2 && mm2 == 2)//tie-break
 		{
-			if(wyniki(3) == 0)//koniec seta
-			{
+                    if(wyniki(3) == 0)//koniec seta
+                    {
 			if(pkt1 > pkt2)
 			{
 				mm1++;
@@ -1506,7 +1506,7 @@ function action()
                         }
 			pkt1=0;pkt2=0;push = 0;
 			return 0;
-			}
+                    }
 		}
 		else
 		{
@@ -1563,9 +1563,7 @@ function action_break()
 {		
 		if(a == 1) //punkt po lewej
 		{
-			//console.time("akcja1") ;
 			a = akcja1();		//wynik akcji zaczetej po lewej - jesli kolejny punkt - a=1 to nie ma przejscia
-			//console.timeEnd("akcja1") ;
 			if(a == 2)
 			{					//jesli druzyna po prawej zdobyla punkt to robi przejscie
 				przejscie2();
@@ -1573,9 +1571,7 @@ function action_break()
 		}
 		else if(a == 2)
 		{
-			//console.time("akcja2") ;
 			a = akcja2();		//wynik akcji zaczetej po prawej - jesli kolejny punkt - a=1 to nie ma przejscia
-			//console.timeEnd("akcja2") ;
 			if(a == 1)
 			{
 				przejscie1();
@@ -1676,7 +1672,9 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 						//pkt1=0;pkt2=0;time=1;push=0;
 						//clearTimeout(atime);
                                                 return 0;
-					}			
+					}
+                                //czy nie ma tak, że ten kto przegrał seta zaczyna kolejnego
+                                //albo czy nie zaczynają na przemian w setach, nieważne kto wygrywa bieżące
 				var los = Math.floor(Math.random() * 100 + 1);
 				if(los<50)
 				{
@@ -1882,9 +1880,7 @@ function akcja2()
 function akcja1()
 {
 	po = spr_przyjecie2();
-	//console.time("zagrywka1");
 	z = zagrywka1(po);
-	//console.timeEnd("zagrywka1");
 	if(z == "as")
 	{ 
 		przyjecie2(0, 1);
@@ -2605,7 +2601,7 @@ function obrona2(blok, pra)
 		krzyw_o = zaokr(a*pra + b);
 		var reg=1;
 		if(team2[13][11])reg=team2[13][11]/100;
-		obrona = zaokr(krzyw_o/pra*500*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
+		obrona = zaokr(krzyw_o/pra*1000*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
 		if(obrona<1)obrona=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
 		//scr = document.getElementById("screen3").innerHTML;
@@ -2739,7 +2735,7 @@ function obrona1(blok, pra)
 		krzyw_o = zaokr(a*pra + b);
 		var reg=1;
 		if(team1[13][11])reg=team1[13][11]/100;
-		obrona = zaokr(krzyw_o/pra*500*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
+		obrona = zaokr(krzyw_o/pra*1000*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
 		if(obrona<1)obrona=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
 		//scr = document.getElementById("screen3").innerHTML;
@@ -2838,7 +2834,7 @@ function blok2(pra)
 		krzyw_b = zaokr(a*pra + b);
 		var reg=1;
 		if(team2[13][12])reg=team2[13][12]/100;
-		blok = zaokr(krzyw_b/pra*(500*reg));	//parametr do regulacji wartosci bloku !!!
+		blok = zaokr(krzyw_b/pra*(1000*reg));	//parametr do regulacji wartosci bloku !!!
 		if(blok<1)blok=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
 		//scr = document.getElementById("screen3").innerHTML;
@@ -2920,7 +2916,7 @@ function blok2(pra)
 		{
 			scr = document.getElementById("screen2").innerHTML;
 			//document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny.<br/> Powrót piłki.<br/>";
-			document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - powrót piłki<br/>";			
+			document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - powrót piłki";			
                         scr = document.getElementById("screen1").innerHTML;document.getElementById("screen1").innerHTML =scr+ "<br />";
 			pkt_blo = 0;
 			return 0+"."+blok;//zakodowanie wart bloku
@@ -3010,7 +3006,7 @@ function blok1(pra)
 		krzyw_b = zaokr(a*pra + b);
 		var reg=1;
 		if(team1[13][12])reg=team1[13][12]/100;
-		blok = zaokr(krzyw_b/pra*(500*reg));	//parametr do regulacji wartosci bloku !!!
+		blok = zaokr(krzyw_b/pra*(1000*reg));	//parametr do regulacji wartosci bloku !!!
 		if(blok<1)blok=1.1;
 		
 		var los = Math.floor(Math.random() * 100 + 1);
@@ -3085,7 +3081,7 @@ function blok1(pra)
 		{
 			scr = document.getElementById("screen1").innerHTML;
 			//document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% skuteczny.<br/> Powrót piłki:<br/>";
-			document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - powrót piłki.<br/>";
+			document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - powrót piłki.";
                         scr = document.getElementById("screen2").innerHTML;document.getElementById("screen2").innerHTML =scr+ "<br />";
 			pkt_blo = 0;
 			return 0+"."+blok;		//zakodowanie wart bloku
