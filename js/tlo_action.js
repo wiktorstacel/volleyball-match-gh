@@ -923,8 +923,8 @@ function blok1_tlo(pra)
 		if(blok<1)blok=1.1;
 		
 		var los = Math.floor(Math.random() * 100 + 1);
-		scr = document.getElementById("screen3").innerHTML;
-		document.getElementById("screen3").innerHTML = scr +","+ los;
+		//scr = document.getElementById("screen3").innerHTML;
+		//document.getElementById("screen3").innerHTML = scr +","+ los;
 		pon = blok/2;									//!!ustawienie:po ilu sk blokach piłka powraca - ponowienia
 		aut = blok*1.5;						//decyduje a tym ile ma być autów
 		ant = blok*1.54;

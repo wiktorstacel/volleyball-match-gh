@@ -155,7 +155,7 @@ function removeWhitespace(xml)
 	}
 }
 
-
+// Po naciścnięciu "KOLEJKA" rozpoczyna się procedura rozgrywania kolejki meczów w manager
 function getGuest(k, pl, para, liga) //pobiera pary do kolejki: k - nr kolejki; pl - id teamu gracza; para - nr pary,
 {
 adres = "operacje/ask_kolejka.php?kol="+k+"&liga="+liga;
@@ -208,7 +208,7 @@ d1 = hostnode.firstChild.nodeValue;
 d2 = guestnode.firstChild.nodeValue;
  if(para == j)
  {
- 	if(document.getElementById("see"+d1+d2).checked)
+ 	if(document.getElementById("see"+d1+d2).checked)//UWAGA: 2 drużyny z d1=1 i d2=11 i problem
 	{
 		para++;
 	}

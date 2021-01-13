@@ -112,22 +112,30 @@ class strona_plansza_1mecz extends Strona1
 	echo '</div>';			//end boisko
 	
 	echo '<div id="banch_1">';
+            echo '<button style="margin: 0 20px 0 0;" onclick="zmia_1_nex()">Zmiana</button>';
 	echo '</div>';			//end banch1
 	echo '<div id="liberofield1">991';
 	echo '</div>';			//end liberofield1
+        echo '<div id="change_info1">a jak będzie kilka zmian?';
+	echo '</div>';
 	echo '<div id="treserfield1">coach1';
 	echo '</div>';
 	echo '<div id="treserbut1">';
-	echo '<input checked="checked" type="checkbox" id="tres1" onclick=""/></div>';
+            echo '<input checked="checked" type="checkbox" id="tres1" onclick=""/>';
+        echo'</div>';
 	
 	echo '<div id="banch_2">';
+            echo '<button style="margin: 0 0 0 21px;" onclick="zmia_2_nex()">Zmiana</button>';
 	echo '</div>';			//end banch2
 	echo '<div id="liberofield2">992';
 	echo '</div>';			//end liberofield2
+        echo '<div id="change_info2">8822222222222222';
+	echo '</div>';
 	echo '<div id="treserfield2">coach2';
 	echo '</div>';
 	echo '<div id="treserbut2">';
-	echo '<input checked="checked" type="checkbox" id="tres2" onclick=""/></div>';
+            echo '<input checked="checked" type="checkbox" id="tres2" onclick=""/>';
+        echo '</div>';
 	
 	print ("<div id=\"kwadrat_1_1\" class=\"kwadrat\">11");
 	echo '</div>';			//end kwadrat_1
@@ -162,8 +170,6 @@ class strona_plansza_1mecz extends Strona1
 	echo "<button onclick=\"init_break()\">Start</button>";
 	echo '<button onclick="time_take()">Time</button>';
 	echo '<button onclick="time_no()">Notime</button>';
-	echo '<button onclick="zmia_1_nex()">Zmia1</button>';
-	echo '<button onclick="zmia_2_nex()">Zmia2</button>';
 	echo '<button onclick="init()">init</button>';
 	echo '<button onclick="goo()">GO</button>';
         //echo '<button onclick="play_meczyk_tlo('.$this->t1.','.$this->t2.',0,0,0,0)">LOAD</button>';//TEMP: insert teams id as 1st and 2nd parameter of play_meczyk_tlo()
@@ -293,12 +299,14 @@ class strona_plansza_1mecz extends Strona1
 	
     echo '<div style="clear: both;"></div>';//CLEAR: BOTH
 	
-	echo'<div id=idteam1></div>
-	<div id=idteam2></div>
-	<div id=kolejka></div>
-	<div id=liga></div>'; //p3s - optimal_composition_tlo, linia 1637 wpisanie wartości
+	echo'<div id=idteam1 style="float:left;"></div>
+	<div id=idteam2 style="float:left;"></div>
+	<div id=kolejka style="float:left;"></div>
+	<div id=liga style="float:left;"></div>'; //p3s - optimal_composition_tlo, linia 1637 wpisanie wartości
                               //mogą służyć np potem w celu zapisu wyniku
                               //p3a 0 action_break, 1559, 1607 - korzysta z tych danych
+        
+        echo '<div style="clear: both;"></div>'; //CLEAR: BOTH
         
         echo'<input id="input-screen3" type="hidden" value="" />'; //zastąpić screen3 //p3a, przyjecie1,2013
                                                                     //p3a, przyjecie2, 2494

@@ -1639,6 +1639,8 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                 
 }
 
+//TUTAJ PODZIELIĆ NA 2 PLIKI
+
 function akcja2()
 {
 	po = spr_przyjecie1();

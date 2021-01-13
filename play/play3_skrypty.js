@@ -249,7 +249,9 @@ function wyniki(wyn)
 	
 	if(pkt1>0 && pkt1%4==0 && flag_tir1==0)
 	{
-		//console.time("tired1");tired1();console.timeEnd("tired1");
+		//console.time("tired1");
+                tired1();
+                //console.timeEnd("tired1");
 		flag_tir1=1;
 		if(flag_star==1)
 		{
@@ -344,6 +346,9 @@ if(team1[i][0]==1){g12=i;}
 //2021-01-12 Zmiana na screen3 dla team1
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team1[flag_zm_zag1][5]+" za: "+team1[g12][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" g12: "+g12;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za "+team1[g12][5];
 change1(flag_zm_zag1,g12);
 flag_zm_zag1*=(-1);
 var fffv = document.getElementById("screen3").innerHTML;
@@ -375,6 +380,9 @@ if(team2[i][0]==1){g12=i;}
 //2021-01-12: Zmiana tekstów
 var fffv = document.getElementById("screen6").innerHTML;
 document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team2[flag_zm_zag2][5]+" za: "+team2[g12][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag2+" g12: "+g12;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[flag_zm_zag2][5]+" za "+team2[g12][5];
 change2(flag_zm_zag2,g12);
 flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
@@ -598,7 +606,9 @@ function zmia_1_nex()
 		}
 	}
 	change1(zz1,zz2);
-	document.getElementById("screen1").innerHTML="zmiana: "+team1[zz1][5]+" <> "+team1[zz2][5];
+	document.getElementById("screen1").innerHTML="zmiana: "+team1[zz1][5]+" za "+team1[zz2][5];
+        //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
+        document.getElementById("change_info1").innerHTML="(10:12) "+team1[zz1][5]+" za "+team1[zz2][5]+"";        
 	//document.getElementById("l"+zz1).innerHTML = "<div onclick=banch_go1("+team1[zz1][3]+") class='zaw'>"+team1[zz1][5]+"</div>";
 	ustawienie();
 	banch_ins();
@@ -628,7 +638,9 @@ function zmia_2_nex()
 		}
 	}
 	change2(zz1,zz2);
-	document.getElementById("screen2").innerHTML="zmiana: "+team2[zz1][5]+" <> "+team2[zz2][5];
+	document.getElementById("screen2").innerHTML="zmiana: "+team2[zz1][5]+" za "+team2[zz2][5];
+        //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
+        document.getElementById("change_info2").innerHTML="(24:25) "+team2[zz1][5]+" za "+team2[zz2][5]+"";
 	ustawienie();
 	banch_ins();
 	document.getElementById("kwadrat22").innerHTML="";
@@ -2356,12 +2368,17 @@ if(adr==1){if(possible_change(1,tea[maxj][3],tea[1][3])<6){change1(maxj,1);}}els
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[1][5]+" za "+tea[maxj][5];
                             }
                             else
                             {
  var fffv = document.getElementById("screen6").innerHTML;
 document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
-                               
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[1][5]+" za "+tea[maxj][5];
                             }
 			}
 		  }	
@@ -2383,11 +2400,17 @@ if(adr==1){if(possible_change(1,tea[maxj][3],tea[4][3])<6){change1(maxj,4);}}els
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[4][5]+" za "+tea[maxj][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";                                
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[4][5]+" za "+tea[maxj][5];
                             }
 			}
 		  }	
@@ -2411,11 +2434,17 @@ if(adr==1){if(possible_change(1,tea[maxj][3],tea[a][3])<6){change1(maxj,a);}}els
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2;                                
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
                             }
 			}
 		  } 
@@ -2439,11 +2468,17 @@ if(adr==1){if(possible_change(1,tea[maxj][3],tea[a][3])<6){change1(maxj,a);}}els
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";                                
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
                             }
 			}
 		  }  
@@ -2484,6 +2519,9 @@ function optimal_zm_zagr1()
             //2021-01-12: zmiana z screen6 na screen3
             var fffv = document.getElementById("screen3").innerHTML;
             document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana na zagrywkę: "+team1[g12][5]+" za: "+team1[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
+            //2021-01-13: nowy screen do zapisu zmian na czas seta
+            var fffv = document.getElementById("change_info1").innerHTML;
+            document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[g12][5]+" za "+team1[g6][5];
             flag_zm_zag1=g12;//to jest tylko nr pozycji a nie nr zaw
             change1(g6,g12);
         }
@@ -2512,6 +2550,9 @@ function optimal_zm_zagr2()
             //2021-01-12 - rozdzielanie na 2 ekrany
             var fffv = document.getElementById("screen6").innerHTML;
             document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana na zagrywkę: "+team2[g12][5]+" za: "+team2[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
+            //2021-01-13: nowy screen do zapisu zmian na czas seta
+            var fffv = document.getElementById("change_info2").innerHTML;
+            document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[g12][5]+" za "+team2[g6][5];
             flag_zm_zag2=g12;//to jest tylko nr pozycji kurwa a nie nr zaw
             change2(g6,g12);
         }
@@ -2554,11 +2595,17 @@ if(adr==1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>2517[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2517[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";                                
+document.getElementById("screen6").innerHTML=fffv+"<br>2517[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |"; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5];
                             }
 if(adr==1)chan1(maxj,i);else chan2(maxj,i);
 			}
@@ -2583,11 +2630,17 @@ if(adr==1)chan1(maxj,i);else chan2(maxj,i);
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>2546[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2546[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";                                
+document.getElementById("screen6").innerHTML=fffv+"<br>2546[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |"; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5];
                             }
 if(adr==1)chan1(maxj,i);else chan2(maxj,i);
 			}
@@ -2613,11 +2666,17 @@ if(parseInt(tea[2][31])>parseInt(tea[5][31]))a=2;else a=5;//a - wieksze dosw z t
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>2576[p3s]YoungZamiana:"+tea[a][5]+" <>"+tea[maxj][5]+" |";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2576[p3s]YoungZamiana:"+tea[a][5]+" <>"+tea[maxj][5]+" |";                                
+document.getElementById("screen6").innerHTML=fffv+"<br>2576[p3s]YoungZamiana:"+tea[a][5]+" <>"+tea[maxj][5]+" |"; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
                             }
 if(adr==1)chan1(maxj,a);else chan2(maxj,a);
 			}
@@ -2643,11 +2702,17 @@ if(parseInt(tea[3][31])>parseInt(tea[6][31]))a=3;else a=6;//a - mniejsze dosw z 
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>2606[p3s]YoungZamiana:"+tea[a][5]+" na<>"+tea[maxj][5]+" |";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2606[p3s]YoungZamiana:"+tea[a][5]+" na<>"+tea[maxj][5]+" |";                                
+document.getElementById("screen6").innerHTML=fffv+"<br>2606[p3s]YoungZamiana:"+tea[a][5]+" na<>"+tea[maxj][5]+" |";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
                             }
 if(adr==1)chan1(maxj,a);else chan2(maxj,a);
 			}
@@ -2696,11 +2761,17 @@ tea[0][31]=0;
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>2659[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" za "+tea[i][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2659[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;                                
+document.getElementById("screen6").innerHTML=fffv+"<br>2659[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" za "+tea[i][5];
                             }
 if(adr==1)change1(j,i);else change2(j,i);break;
 			  }
@@ -2718,11 +2789,17 @@ if(adr==1)change1(j,i);else change2(j,i);break;
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>2681[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" za "+tea[i][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2681[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;                                
+document.getElementById("screen6").innerHTML=fffv+"<br>2681[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" za "+tea[i][5];
                             }
 if(adr==1)change1(j,i);else change2(j,i);break;
 			  }
@@ -2748,11 +2825,17 @@ if(parseInt(tea[2][31])>parseInt(tea[5][31]))a=2;else a=5;//a - wieksze dosw z t
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>2711[p3s]PoddajZamiana:"+tea[maxj][5]+" <>"+tea[a][5]+" |i+"+i;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2711[p3s]PoddajZamiana:"+tea[maxj][5]+" <>"+tea[a][5]+" |i+"+i;                              
+document.getElementById("screen6").innerHTML=fffv+"<br>2711[p3s]PoddajZamiana:"+tea[maxj][5]+" <>"+tea[a][5]+" |i+"+i;  
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
                             }
 if(adr==1)change1(maxj,a);else change2(maxj,a);break;
 			}
@@ -2778,11 +2861,17 @@ if(parseInt(tea[3][31])>parseInt(tea[6][31]))a=3;else a=6;//a - mniejsze dosw z 
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>2741[p3s]PoddajZamiana:"+tea[maxj][5]+" na<>"+tea[a][5]+" |i:"+i;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
                             }
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2741[p3s]PoddajZamiana:"+tea[maxj][5]+" na<>"+tea[a][5]+" |i:"+i;                                
+document.getElementById("screen6").innerHTML=fffv+"<br>2741[p3s]PoddajZamiana:"+tea[maxj][5]+" na<>"+tea[a][5]+" |i:"+i; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
                             }
 if(adr==1)change1(maxj,a);else change2(maxj,a);break;
 			}

@@ -211,6 +211,7 @@
 	left: 120px;
 	bottom: 50px;
 	background-color: #fafd1a;
+        text-align: right;
 }
 #banch_2{
 	width:160px;
@@ -221,6 +222,7 @@
 	right: 120px;
 	bottom: 50px;
 	background-color: #fafd1a;
+        text-align: left;
 }
 #kwadrat_1_1{
 	position:absolute;
@@ -301,6 +303,20 @@
 	position:absolute;
 	right: 300px;
 	bottom:100px;
+}
+#change_info1{
+	font-size:11px;
+        text-align: left;
+	position:absolute;
+	left: 5px;
+	top: 58px;
+}
+#change_info2{
+	font-size:11px;
+        text-align: right;
+	position:absolute;
+	right: 5px;
+	top: 58px;
 }
 #liberofield1{
 	font-size:11px;
