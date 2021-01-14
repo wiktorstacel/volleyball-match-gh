@@ -4,6 +4,8 @@ var _1akcja = 0;
 var pkt1 = 0, pkt2 = 0;
 var pkt1s = 0, pkt2s = 0;
 var mm1 = 0, mm2 = 0;
+var mm_prev = 0; //info, kto wygrał poprzedni set
+var serv_first = 0; //info o tym, kto wylosował serwowanie w 1 secie(i w tie-break);
 var serv = 0; //info o tym kto ostatnio serwował
 var a =0;
 var middle = 0; //1 jesli atak byl ze srodka
@@ -12,6 +14,10 @@ var changes = new Array();
 var flag_lib=0;
 var wyk1 = 50;
 var wyk2 = 50;
+var slepa = 0;
+var init_ustawienie1 = new Array(0);
+var init_ustawienie2 = new Array(0);
+
 
 function minus_dosw_licz(d)
 {
@@ -1342,6 +1348,81 @@ function init2()
 	cpuLoop();
 }
 
+function init_save_ustawienie(adr)
+{
+    if(adr == 1)
+    {
+        for(i = 1; i <=12; i++)
+        {
+            init_ustawienie1[i] = team1[i][2];           
+        }
+        //alert("Zapis:"+init_ustawienie1);
+    }
+    else
+    {
+        for(i = 1; i <=12; i++)
+        {
+            init_ustawienie2[i] = team2[i][2];           
+        }
+        //alert("Zapis:"+init_ustawienie2);
+    }
+}
+
+function init_load_ustawienie(adr)
+{
+    if(adr == 1)
+    {
+        for(i = 1; i <=12; i++)
+        {
+            if(team1[i][2] != init_ustawienie1[i])//trzeba znaleźć gracza o potrzebnym indeksie i wstawić go
+            {
+                for(j = 1; j <=12; j++)
+                {
+                    if(team1[j][2] == init_ustawienie1[i])
+                    {
+                        chan1(j,i);alert("chan1-in:"+team1[j][5]);
+                    }
+                }
+            }
+        }
+        var scr = "LOAD: ";
+        for(i = 1; i <=12; i++)
+        {
+            scr = scr + team1[i][5]+",";
+        }
+        //alert(scr);
+        
+        ustawienie();
+	banch_ins();
+    }
+    else if(adr == 2)
+    {
+        for(i = 1; i <=12; i++)
+        {
+            if(team2[i][2] != init_ustawienie2[i])//trzeba znaleźć gracza o potrzebnym indeksie i wstawić go
+            {
+                for(j = 1; j <=12; j++)
+                {
+                    if(team2[j][2] == init_ustawienie2[i])
+                    {
+                        chan2(j,i);alert("chan1-in:"+team2[j][5]);
+                    }
+                }
+            }
+        }
+        var scr = "LOAD: ";
+        for(i = 1; i <=12; i++)
+        {
+            scr = scr + team2[i][5]+",";
+        }
+        //alert(scr);
+        
+        ustawienie();
+	banch_ins();
+    }
+    
+}
+
 //Activated by 'Start' button on 'plansza.php'
 //Init the first action of the match
 function init_break()
@@ -1360,24 +1441,27 @@ function init_break()
 	if(los<50)
 	{
 		init1_break();   //zainicjowanie//seruje dr po lewej
+                serv_first = 1;
 	}
 	else
 	{
 		init2_break();   //zainicjowanie//seruje dr po prawej
+                serv_first = 2;
 	}
     
 }
 
 function init1_break()
 {
-	document.getElementById("show1").innerHTML = 0;
-	document.getElementById("show2").innerHTML = 0;
-        document.getElementById("change_info1").innerHTML = "";
-        document.getElementById("change_info2").innerHTML = "";
+//	document.getElementById("show1").innerHTML = 0;
+//	document.getElementById("show2").innerHTML = 0;
+//        document.getElementById("change_info1").innerHTML = "";
+//        document.getElementById("change_info2").innerHTML = "";
 	pkt1 = 0, pkt2 = 0;
-        zeruj_changes();
+        zeruj_changes();        
 	host_give(1); flag_host=0; flag_zm_zag1=0; flag_zm_zag2=0;
-	if(document.getElementById("tres1").checked)//czy zaznaczony trener - przechodzi tu na pocz każdego seta
+        //2021-01-14 zakomentowano i funkcjonalość przeniesiono do action_break do 'slepej' akcji
+	/*if(document.getElementById("tres1").checked)//czy zaznaczony trener - przechodzi tu na pocz każdego seta
 	{
 		if((mm1+mm2)==2&&(pkt2s/pkt1s)<=0.8)
 		{
@@ -1398,7 +1482,7 @@ function init1_break()
 		{
 			optimal_compos_zm_begin(2);
 		}
-	}
+	}*/
 	if(flag_wyr1==1)
 	{
 		wyrownacz_give(1);
@@ -1414,14 +1498,15 @@ function init1_break()
 }
 function init2_break()
 {
-	document.getElementById("show1").innerHTML = 0;
-	document.getElementById("show2").innerHTML = 0;
-        document.getElementById("change_info1").innerHTML = "";
-        document.getElementById("change_info2").innerHTML = "";
+//	document.getElementById("show1").innerHTML = 0;
+//	document.getElementById("show2").innerHTML = 0;
+//        document.getElementById("change_info1").innerHTML = "";
+//        document.getElementById("change_info2").innerHTML = "";
 	pkt1 = 0, pkt2 = 0;
         zeruj_changes();
 	host_give(1);flag_host=0;flag_zm_zag1=0;flag_zm_zag2=0;
-	if(document.getElementById("tres1").checked)
+        //2021-01-14 zakomentowano i funkcjonalość przeniesiono do action_break do 'slepej' akcji
+	/*if(document.getElementById("tres1").checked)
 	{
 		if((mm1+mm2)==2&&(pkt2s/pkt1s)<=0.85)
 		{
@@ -1442,7 +1527,7 @@ function init2_break()
 		{
 			optimal_compos_zm_begin(2);
 		}
-	}
+	}*/
 	if(flag_wyr1==1)
 	{
 		wyrownacz_give(1);
@@ -1464,7 +1549,7 @@ function action()
 		{
 			a = akcja1();		//wynik akcji zaczetej po lewej - jesli kolejny punkt - a=1 to nie ma przejscia
 			if(a == 2)
-			{					//jesli druzyna po prawej zdobyla punkt to robi przejscie
+			{                       //jesli druzyna po prawej zdobyla punkt to robi przejscie
 				przejscie2();
 			}
 		}
@@ -1561,6 +1646,36 @@ function action()
 
 function action_break()
 {		
+
+        
+        if((pkt1+pkt2)==0 && slepa == 1)//wejdzie najwczejścniej na początku 2 seta
+        {
+            document.getElementById("show1").innerHTML = 0;
+            document.getElementById("show2").innerHTML = 0;
+            document.getElementById("change_info1").innerHTML = "<br>Zmiany w ustawieniu:";
+            document.getElementById("change_info2").innerHTML = "<br>Zmiany w ustawieniu:";
+            init_load_ustawienie(1);
+            init_load_ustawienie(2);
+            //dodać omijanie funkcji dla drużyny, która wygrała ostatniego seta
+            if(document.getElementById("tres1").checked && mm_prev == 2)// //czy zaznaczony trener - przechodzi tu na pocz każdego seta
+            {
+                //zanim wykonam tą funkcję muszę przywrócić ustawienie z początku zakończonego właśnie seta,
+                //tak to działą, że dokonuje się zmian w ustawieniu a nie skład przechodzi z poprzedniego na nastepny
+                //wtedy mogę wyłączyć tą funkcję dla drużyny wygrywającej seta, bo nie zostanie mi np bag w ustawieniu
+                //jak atakujący wchodzi na zagreywkę (24:20) za rozgryw i potem zostaje na kolejnego seta.
+                //user też będzie mógł dokonać swoich zmian w ustawieniu przed setem
+
+                optimal_compos_zm_begin(1);//alert("robie op_begin_1");
+            }
+            if(document.getElementById("tres2").checked && mm_prev == 1)// //czy zaznaczony trener przechodzi tu na pocz każdego seta
+            {
+                optimal_compos_zm_begin(2);//alert("robie op_begin_2");
+            }
+            slepa=0;
+            time=1;
+        }
+        else
+        {
 		if(a == 1) //punkt po lewej
 		{
 			a = akcja1();		//wynik akcji zaczetej po lewej - jesli kolejny punkt - a=1 to nie ma przejscia
@@ -1614,22 +1729,21 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 			pkt1=0;pkt2=0;time=1;push=0;
 			//clearTimeout(atime);
 			return 0;
-			}
+			}//koniec IF - koniec seta po tie-break
 		}
-		else //wynik liczony do 25
+		else //wynik liczony do 25 - NIE tie-break
 		{
-			if(wyniki(9) == 0)//koniec seta
-			{
-				if(pkt1 > pkt2)
-				{
-					mm1++;
-				}
-				else
-				{
-					mm2++;	
-				}
-				
-				
+                    if(wyniki(9) == 0)//koniec seta
+                    {
+                        if(pkt1 > pkt2)
+                        {
+                                mm1++;
+                        }
+                        else
+                        {
+                                mm2++;	
+                        }
+								
 			document.getElementById("set1").innerHTML = mm1;
 			document.getElementById("set2").innerHTML = mm2;
 			if((mm1+mm2)==1)
@@ -1644,7 +1758,9 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 			if(mm1 < 3 & mm2 < 3)
                         {
                             //alert(" KONIEC SETA: "+m_res);
+                            if(pkt1>pkt2)mm_prev = 1;else mm_prev = 2;//alert("mm_prev:"+mm_prev);//do użycia z optimal_compos_zm_begin
                             time=1;
+                            slepa=1;
                             document.getElementById("tablica_wyn_sety").innerHTML = m_res;
                         }
 			//clearTimeout(atime);
@@ -1673,9 +1789,8 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 						//clearTimeout(atime);
                                                 return 0;
 					}
-                                //czy nie ma tak, że ten kto przegrał seta zaczyna kolejnego
-                                //albo czy nie zaczynają na przemian w setach, nieważne kto wygrywa bieżące
-				var los = Math.floor(Math.random() * 100 + 1);
+                                //Przerobić na bieżącą wersje a potem dostosować do '1mecz'
+				/*var los = Math.floor(Math.random() * 100 + 1);
 				if(los<50)
 				{
 					init1_break();   //zainicjowanie//seruje dr po lewej
@@ -1685,13 +1800,28 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 				{
 					init2_break();   //zainicjowanie//seruje dr po prawej
 					return 0;
-				}
+				}*/
+                                if(serv_first == 1)
+                                {
+                                    if((mm1+mm2)%2 == 0){init1_break();return 0;}else{init2_break();return 0;}
+                                }
+                                else if(serv_first == 2)
+                                {
+                                    if((mm1+mm2)%2 == 0){init2_break();return 0;}else{init1_break();return 0;}
+                                }
 				//pkt1 = 0, pkt2 = 0;
     			//a = akcja1();
-			}
-		}
+                    }//koniec IF koniec seta
+		} //koniec ELSE nie tie-break
 		//cpuflow();
-                
+        }   //koniec slepa    
+        if((pkt1+pkt2)==1)
+        {
+            document.getElementById("change_info1").innerHTML = "";
+            document.getElementById("change_info2").innerHTML = "";
+            init_save_ustawienie(1);
+            init_save_ustawienie(2);
+        }
 }
 
 //TUTAJ PODZIELIĆ NA 2 PLIKI

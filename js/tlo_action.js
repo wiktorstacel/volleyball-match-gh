@@ -919,7 +919,7 @@ function blok1_tlo(pra)
 		krzyw_b = zaokr(a*pra + b);
 		var reg=1;
 		if(team1[13][12])reg=team1[13][12]/100;
-		blok = zaokr(krzyw_b/pra*(500*reg));	//parametr do regulacji wartosci bloku !!!
+		blok = zaokr(krzyw_b/pra*(1000*reg));	//parametr do regulacji wartosci bloku !!!
 		if(blok<1)blok=1.1;
 		
 		var los = Math.floor(Math.random() * 100 + 1);
@@ -1059,7 +1059,7 @@ function blok2_tlo(pra)
 		var reg=1;
 		//document.write(team2);
 		if(team2[13][12])reg=team2[13][12]/100;
-		blok = zaokr(krzyw_b/pra*(500*reg));	//parametr do regulacji wartosci bloku !!!
+		blok = zaokr(krzyw_b/pra*(1000*reg));	//parametr do regulacji wartosci bloku !!!
 		if(blok<1)blok=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
 		pon = blok/2;
@@ -1230,7 +1230,7 @@ function obrona1_tlo(blok, pra)
 		krzyw_o = zaokr(a*pra + b);
 		var reg=1;
 		if(team1[13][11])reg=team1[13][11]/100;
-		obrona = zaokr(krzyw_o/pra*500*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
+		obrona = zaokr(krzyw_o/pra*1000*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
 		if(obrona<1)obrona=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
 		if(los < obrona)
@@ -1345,7 +1345,7 @@ function obrona2_tlo(blok, pra)
 		krzyw_o = zaokr(a*pra + b);
 		var reg=1;
 		if(team2[13][11])reg=team2[13][11]/100;
-		obrona = zaokr(krzyw_o/pra*500*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
+		obrona = zaokr(krzyw_o/pra*1000*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
 		if(obrona<1)obrona=1.1;
 		var los = Math.floor(Math.random() * 100 + 1);
 		if(los < obrona)

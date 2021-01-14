@@ -359,7 +359,7 @@ document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+f
 		var zawi=flag_zm_zag1*(-1);		
 		if(team1[zawi][0]==1)
 		{
-			optimal_zm_zagr1();
+			optimal_zm_zagr1();alert("podejrzana zm_zagr1, linia362 p3s");
 		}
 	}
 	
@@ -585,6 +585,33 @@ return r;//zm dozwolona 0,1,2,3,4,5,6
 
 function zmia_1_nex()
 {
+    if(pkt1 == 0 && pkt2 == 0)
+    {
+        var z1 = parseInt(document.getElementById("window_zm1").value);//wchodzi
+	var z2 = parseInt(document.getElementById("kwadnazw11").innerHTML);//zchodzi
+        for(var i=1;i<=12;i++)
+	{
+		if(team1[i][3]==z1)
+		{
+			var zz1 = i;
+		}
+		if(team1[i][3]==z2)
+		{
+			var zz2 = i;
+		}
+	}
+        chan1(zz1,zz2);//(wchodzi,schodzi)
+
+        //2021-01-14: dodano div w celu wyśw info o zmianach na gemafield
+        var fffv = document.getElementById("change_info1").innerHTML;
+        document.getElementById("change_info1").innerHTML=fffv+"<br>"+team1[zz1][5]+" za "+team1[zz2][5]+""; 
+        ustawienie();
+	banch_ins();
+	document.getElementById("kwadrat11").innerHTML="";
+	document.getElementById("kwadnazw11").innerHTML="";
+    }
+    else
+    {
 	if(possible_change(1)>=6)
 	{
 		document.getElementById("screen1").innerHTML=" wykorzystano limit zmian";
@@ -615,9 +642,37 @@ function zmia_1_nex()
 	banch_ins();
 	document.getElementById("kwadrat11").innerHTML="";
 	document.getElementById("kwadnazw11").innerHTML="";
+    }
 }
 function zmia_2_nex()
 {
+    if(pkt1 == 0 && pkt2 == 0)
+    {
+        var z1 = parseInt(document.getElementById("window_zm2").value);//wchodzi
+	var z2 = parseInt(document.getElementById("kwadnazw22").innerHTML);//zchodzi
+        for(var i=1;i<=12;i++)
+	{
+		if(team2[i][3]==z1)
+		{
+			var zz1 = i;
+		}
+		if(team2[i][3]==z2)
+		{
+			var zz2 = i;
+		}
+	}
+        chan2(zz1,zz2);//(wchodzi,schodzi)
+
+        //2021-01-14: dodano div w celu wyśw info o zmianach na gemafield
+        var fffv = document.getElementById("change_info2").innerHTML;
+        document.getElementById("change_info2").innerHTML=fffv+"<br>"+team2[zz1][5]+" za "+team2[zz2][5]+""; 
+        ustawienie();
+	banch_ins();
+	document.getElementById("kwadrat22").innerHTML="";
+	document.getElementById("kwadnazw22").innerHTML="";
+    }
+    else
+    {
 	if(possible_change(2)>=6)
 	{
 		document.getElementById("screen2").innerHTML=" wykorzystano limit zmian";
@@ -647,6 +702,7 @@ function zmia_2_nex()
 	banch_ins();
 	document.getElementById("kwadrat22").innerHTML="";
 	document.getElementById("kwadnazw22").innerHTML="";
+    }
 }
 
 function zmiana1()
@@ -2240,7 +2296,24 @@ function optimal_compos_zm_begin(adr)//mam sklad 7, szukam czy ktos na lawce sie
 			}
 			if(tea[maxj][11]>(tea[1][11]+1))
 			{
-if(adr==1)chan1(maxj,1);else chan2(maxj,1);
+if(adr==1)chan1(maxj,1);else chan2(maxj,1);//alert(tea[1][5]+" za "+tea[maxj][5]);
+                            //2021-01-14: sygnalizacja zmian przed nowym setem
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>Nowy set: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[1][5]+" za "+tea[maxj][5];
+                            }
+                            else
+                            {
+var fffv = document.getElementById("screen6").innerHTML;
+document.getElementById("screen6").innerHTML=fffv+"<br>Nowy set:: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>"+tea[1][5]+" za "+tea[maxj][5];
+                            }
 			}
 		  }	
 		  if(i==4)
@@ -2255,7 +2328,24 @@ if(adr==1)chan1(maxj,1);else chan2(maxj,1);
 			}
 			if(tea[maxj][6]>(tea[4][6]+1))
 			{
-if(adr==1)chan1(maxj,4);else chan2(maxj,4);
+if(adr==1)chan1(maxj,4);else chan2(maxj,4);//alert(tea[4][5]+" za "+tea[maxj][5]);
+                            //2021-01-14: sygnalizacja zmian przed nowym setem
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>Nowy set: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[4][5]+" za "+tea[maxj][5];
+                            }
+                            else
+                            {
+var fffv = document.getElementById("screen6").innerHTML;
+document.getElementById("screen6").innerHTML=fffv+"<br>Nowy set:: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>"+tea[4][5]+" za "+tea[maxj][5];
+                            }
 			}
 		  }	
 		  if(i==2||i==5)
@@ -2272,7 +2362,24 @@ if(adr==1)chan1(maxj,4);else chan2(maxj,4);
 			if(((tea[2][6]+tea[2][7])/2)<((tea[5][6]+tea[5][7])/2))a=2;else a=5;
 			if((tea[maxj][6]+tea[maxj][7])/2>((tea[a][6]+tea[a][7])/2+1))
 			{
-if(adr==1)chan1(maxj,a);else chan2(maxj,a);			
+if(adr==1)chan1(maxj,a);else chan2(maxj,a);//alert(tea[a][5]+" za "+tea[maxj][5]);
+                            //2021-01-14: sygnalizacja zmian przed nowym setem
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>Nowy set: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[a][5]+" za "+tea[maxj][5];
+                            }
+                            else
+                            {
+var fffv = document.getElementById("screen6").innerHTML;
+document.getElementById("screen6").innerHTML=fffv+"<br>Nowy set:: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>"+tea[a][5]+" za "+tea[maxj][5];
+                            }
 			}
 		  } 
 		  if(i==3||i==6)
@@ -2303,7 +2410,24 @@ if((tea[maxj][6]+tea[maxj][9])/2>((tea[a][6]+tea[a][9])/2+1))
 {
 //nr = document.getElementById("screen6").innerHTML;
 //document.getElementById("screen6").innerHTML=nr+" TEA1: "+tea[maxj][5]+" TEA2: "+tea[a][5]+"|";
-if(adr==1)chan1(maxj,a);else{chan2(maxj,a);}
+if(adr==1)chan1(maxj,a);else{chan2(maxj,a);}//alert(tea[a][5]+" za "+tea[maxj][5]);
+                            //2021-01-14: sygnalizacja zmian przed nowym setem
+                            if(adr == 1)
+                            {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>Nowy set: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[a][5]+" za "+tea[maxj][5];
+                            }
+                            else
+                            {
+var fffv = document.getElementById("screen6").innerHTML;
+document.getElementById("screen6").innerHTML=fffv+"<br>Nowy set:: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>"+tea[a][5]+" za "+tea[maxj][5];
+                            }
 }
 			}
 			

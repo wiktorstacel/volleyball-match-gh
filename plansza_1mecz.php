@@ -117,10 +117,12 @@ class strona_plansza_1mecz extends Strona1
 	
 	echo '<div id="banch_1">';
             echo '<button style="margin: 0 20px 0 0;" onclick="zmia_1_nex()">Zmiana</button>';
+            //echo '<button style="margin: 0 90px 0 0;" onclick="chan1(1,8)">Chan1</button>';
 	echo '</div>';			//end banch1
 	echo '<div id="liberofield1">991';
 	echo '</div>';			//end liberofield1
         echo '<div id="change_info1">';
+            //echo'<br>Zmiany w ustawieniu:';
 	echo '</div>';
 	echo '<div id="treserfield1">coach1';
 	echo '</div>';
@@ -130,6 +132,7 @@ class strona_plansza_1mecz extends Strona1
 	
 	echo '<div id="banch_2">';
             echo '<button style="margin: 0 0 0 21px;" onclick="zmia_2_nex()">Zmiana</button>';
+            //echo '<button style="margin: 0 0 0 91px;" onclick="chan2()">Chan2</button>';
 	echo '</div>';			//end banch2
 	echo '<div id="liberofield2">992';
 	echo '</div>';			//end liberofield2
@@ -175,6 +178,8 @@ class strona_plansza_1mecz extends Strona1
 	echo '<button onclick="time_take()">Time</button>';
 	echo '<button onclick="time_no()">NoTi</button>';
         echo '<button onclick="contin_1()">1 Action</button>';
+        echo '<button onclick="init_save_ustawienie(1)">save</button>';
+        echo '<button onclick="init_load_ustawienie(1)">load</button>';
 	//echo '<button onclick="init()">init</button>';
 	//echo '<button onclick="goo()">GO</button>';
         //echo '<button onclick="play_meczyk_tlo('.$this->t1.','.$this->t2.',0,0,0,0)">LOAD</button>';//TEMP: insert teams id as 1st and 2nd parameter of play_meczyk_tlo()
