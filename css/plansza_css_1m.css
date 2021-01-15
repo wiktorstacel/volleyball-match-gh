@@ -167,6 +167,7 @@
 	border-left: 1px solid black; 
 	border-bottom: 1px solid black;
 	float:left;
+        text-align: right;
 }
 
 
@@ -284,11 +285,22 @@
 }
 #window_zm1{
 	width:18px;
+        pointer-events: none;
 }
 #kwadnazw11{
 	position:absolute;
 	left: 300px;
-	bottom:100px;
+	bottom:103px;
+        font-style: normal;
+        font-variant-ligatures: normal;
+        font-variant-caps: normal;
+        font-variant-numeric: normal;
+        font-variant-east-asian: normal;
+        font-weight: 400;
+        font-stretch: normal;
+        font-size: 13.3333px;
+        line-height: normal;
+        font-family: Arial;
 }
 
 #kwadrat22{
@@ -298,11 +310,22 @@
 }
 #window_zm2{
 	width:18px;
+        pointer-events: none;
 }
 #kwadnazw22{
 	position:absolute;
 	right: 300px;
-	bottom:100px;
+	bottom:103px;
+        font-style: normal;
+        font-variant-ligatures: normal;
+        font-variant-caps: normal;
+        font-variant-numeric: normal;
+        font-variant-east-asian: normal;
+        font-weight: 400;
+        font-stretch: normal;
+        font-size: 13.3333px;
+        line-height: normal;
+        font-family: Arial;
 }
 #liberofield1{
 	font-size:11px;

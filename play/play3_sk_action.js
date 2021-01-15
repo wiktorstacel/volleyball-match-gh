@@ -1646,7 +1646,14 @@ function action()
 
 function action_break()
 {		
-
+        //hidden dla okienek do zmian zawodników
+        document.getElementById("kwadrat11").innerHTML="";
+	document.getElementById("kwadnazw11").innerHTML="";
+        document.getElementById("kwadrat22").innerHTML="";
+	document.getElementById("kwadnazw22").innerHTML="";
+        //disable dla przycisków zmiana
+        document.getElementById("button_zmiana1").disabled = "disabled";
+        document.getElementById("button_zmiana2").disabled = "disabled";
         
         if((pkt1+pkt2)==0 && slepa == 1)//wejdzie najwczejścniej na początku 2 seta
         {

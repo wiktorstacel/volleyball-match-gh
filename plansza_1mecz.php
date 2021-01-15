@@ -18,6 +18,7 @@ class strona_plansza_1mecz extends Strona1
 	
     public function WyswietlSkrypty()
     {
+        echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
         echo '<script language="JavaScript" type="text/javascript" src="play\play3_skrypty.js"></script>';
 	echo '<script language="JavaScript" type="text/javascript" src="play\play3_sk_action.js"></script>';
         echo '<script language="JavaScript" type="text/javascript" src="skrypty_ksm.js"></script>';
@@ -44,7 +45,7 @@ class strona_plansza_1mecz extends Strona1
 	<div id="zmeczenie1">
 	
 <div id="opis_y"><div id="opis_y_top">100</div><div id="opis_y_m">85</div><div id="opis_y_bot"></div></div>
-<div id="wykres1" class="wykres"></div>
+<div id="wykres1" class="wykres">Wydajność&nbsp</div>
 <div id="opis_x"><div id="opis_x10">75</div><div id="opis_x20"></div><div id="opis_x30">t</div></div>
 	
 	</div>
@@ -74,7 +75,7 @@ class strona_plansza_1mecz extends Strona1
 	<div id="zmeczenie2">
 	
 <div id="opis_y"><div id="opis_y_top">100</div><div id="opis_y_m">85</div><div id="opis_y_bot"></div></div>
-<div id="wykres2" class="wykres"></div>
+<div id="wykres2" class="wykres">Wydajność&nbsp</div>
 <div id="opis_x"><div id="opis_x10">75</div><div id="opis_x20"></div><div id="opis_x30">t</div></div>
 	
 	</div>
@@ -116,7 +117,7 @@ class strona_plansza_1mecz extends Strona1
 	echo '</div>';			//end boisko
 	
 	echo '<div id="banch_1">';
-            echo '<button style="margin: 0 20px 0 0;" onclick="zmia_1_nex()">Zmiana</button>';
+            echo '<button style="margin: 0 20px 0 0;" onclick="zmia_1_nex()" id="button_zmiana1">Zmiana</button>';
             //echo '<button style="margin: 0 90px 0 0;" onclick="chan1(1,8)">Chan1</button>';
 	echo '</div>';			//end banch1
 	echo '<div id="liberofield1">991';
@@ -131,7 +132,7 @@ class strona_plansza_1mecz extends Strona1
         echo'</div>';
 	
 	echo '<div id="banch_2">';
-            echo '<button style="margin: 0 0 0 21px;" onclick="zmia_2_nex()">Zmiana</button>';
+            echo '<button style="margin: 0 0 0 21px;" onclick="zmia_2_nex()" id="button_zmiana2">Zmiana</button>';
             //echo '<button style="margin: 0 0 0 91px;" onclick="chan2()">Chan2</button>';
 	echo '</div>';			//end banch2
 	echo '<div id="liberofield2">992';
@@ -178,8 +179,6 @@ class strona_plansza_1mecz extends Strona1
 	echo '<button onclick="time_take()">Time</button>';
 	echo '<button onclick="time_no()">NoTi</button>';
         echo '<button onclick="contin_1()">1 Action</button>';
-        echo '<button onclick="init_save_ustawienie(1)">save</button>';
-        echo '<button onclick="init_load_ustawienie(1)">load</button>';
 	//echo '<button onclick="init()">init</button>';
 	//echo '<button onclick="goo()">GO</button>';
         //echo '<button onclick="play_meczyk_tlo('.$this->t1.','.$this->t2.',0,0,0,0)">LOAD</button>';//TEMP: insert teams id as 1st and 2nd parameter of play_meczyk_tlo()
