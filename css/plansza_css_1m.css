@@ -47,52 +47,64 @@
 }
 #stat_atak1{
 	width:120px;
-	height:200px; 
+	height:210px; 
 	float:left;
 	background-color:#6df3bc;
 }
 #stat_przy1{
 	width:130px;
-	height:200px; 
+	height:210px; 
 	float:left;
 	background-color:#97aaf1;
 }
 #stat_blok1{ 
-	width:88px;
-	height:200px;
+	width:85px;
+	height:190px;
 	float:left;
 	background-color:#a7ddf9;
 }
+#stat_obrona1{ 
+	width:85px;
+	height:190px;
+	float:left;
+	background-color:#a7eef9;
+}
 #stat_pkt1{
 	width:80px;
-	height:200px; 
-	float:right;
+	height:190px; 
+	float:left;
 	background-color:#f6e0f4;
 }
 
 #stat_atak2{
 	width:120px;
-	height:200px;
+	height:210px;
 	float:right;
 	background-color:#6df3bc;
 }
 #stat_przy2{
 	width:130px;
-	height:200px; 
+	height:210px; 
 	float:right;
 	background-color:#97aaf1;
 }
 #stat_blok2{
-	height:200px; 
-	width:88px;
+        width:85px;
+        height:190px; 
 	float:right;
 	background-color:#a7ddf9;
 }
-#stat_pkt2{
-	height:200px; 
+#stat_obrona2{ 
+	width:85px;
+	height:190px;
+	float:right;
+	background-color:#a7eef9;
+}
+#stat_pkt2{ 
 	width:80px;
-	float:left;
-	/*background-color:#f6e0f4;*/
+        height:190px;
+	float:right;
+	background-color:#f6e0f4;
 }
 #zmeczenie1{
 	width:160px;

@@ -38,6 +38,7 @@ class strona_plansza_1mecz extends Strona1
 	<div><input type="radio" name="tkt1" id="tktz1.2" onclick="" /><span id="tktzz2.2">o</span></div>
 	<div><input type="radio" name="tkt1" id="tktz1.3" onclick="" /><span id="tktzz2.3">o</span></div>
 	<div><input type="radio" name="tkt1" id="tktz1.4" onclick="" /><span id="tktzz2.4">o</span></div>
+        <div id="asy_serw1">Asy serwisowe:</div>
 	</div>';
 	
 	echo'
@@ -52,6 +53,7 @@ class strona_plansza_1mecz extends Strona1
 	<div id="stat_atak1"></div>
 	<div id="stat_przy1"></div>
 	<div id="stat_blok1"></div>
+        <div id="stat_obrona1"></div>
 	<div id="stat_pkt1"></div>
 	<div></div>
 	<div></div>';
@@ -82,6 +84,7 @@ class strona_plansza_1mecz extends Strona1
 	<div id="stat_atak2"></div>
 	<div id="stat_przy2"></div>
 	<div id="stat_blok2"></div>
+        <div id="stat_obrona2"></div>
 	<div id="stat_pkt2"></div>
 	<div></div>
 	<div></div>';
