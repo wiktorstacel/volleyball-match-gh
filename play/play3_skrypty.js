@@ -585,7 +585,21 @@ return r;//zm dozwolona 0,1,2,3,4,5,6
 
 function zmia_1_nex()
 {
-    if(pkt1 == 0 && pkt2 == 0)
+   //sprawdzenie czy pola wypełnione
+    if(typeof window_zm1 != "undefined") 
+    {
+        if(document.getElementById("window_zm1").value == "")
+        {
+            document.getElementById("screen1").innerHTML="wybierz zawodników do zmiany";return 0;
+        }
+    }
+    else
+    {
+            document.getElementById("screen1").innerHTML="wybierz zawodników do zmiany";return 0;
+    }
+    
+    
+    if(pkt1 == 0 && pkt2 == 0)//document.getElementById("kwadnazw11").innerText
     {
         var z1 = parseInt(document.getElementById("window_zm1").value);//wchodzi
 	var z2 = parseInt(document.getElementById("kwadnazw11").innerHTML);//zchodzi
@@ -646,6 +660,19 @@ function zmia_1_nex()
 }
 function zmia_2_nex()
 {
+    //sprawdzenie czy pola wypełnione
+    if(typeof window_zm2 != "undefined") 
+    {
+        if(document.getElementById("window_zm2").value == "")
+        {
+            document.getElementById("screen2").innerHTML="wybierz zawodników do zmiany";return 0;
+        }
+    }
+    else
+    {
+            document.getElementById("screen2").innerHTML="wybierz zawodników do zmiany";return 0;
+    }
+    
     if(pkt1 == 0 && pkt2 == 0)
     {
         var z1 = parseInt(document.getElementById("window_zm2").value);//wchodzi

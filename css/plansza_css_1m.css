@@ -608,3 +608,29 @@
 	left: 248px;
 	bottom: 5px;
 }
+
+#button_1action_init {
+  position: absolute;
+  left: 50;
+  top: 2;
+  z-index: 1001;
+}
+#button_1action {
+  position: absolute;
+  left: 50;
+  top:2;
+ z-index: 1000;
+}
+
+#button_start {
+  position: absolute;
+  left: 2;
+  top: 2;
+  z-index: 1001;
+}
+#button_time_no {
+  /*position: absolute;*/
+  left: 2;
+  top:2;
+ z-index: 1000;
+}

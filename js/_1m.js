@@ -17,6 +17,8 @@ $(document).ready(function(){
     $(document).on("change", "#tres1", function(){
         var value_1 = $(this).prop('checked');
         $("#button_zmiana1").prop( "disabled", value_1);
+        //$("#button_zmiana1").hide();
+        //$("#button_zmiana1").css("display", "none");
         if(value_1 == true)
         {
             document.getElementById("tktz1.1").disabled = "disabled";

@@ -38,7 +38,7 @@ class strona_plansza_1mecz extends Strona1
 	<div><input type="radio" name="tkt1" id="tktz1.2" onclick="" /><span id="tktzz2.2">o</span></div>
 	<div><input type="radio" name="tkt1" id="tktz1.3" onclick="" /><span id="tktzz2.3">o</span></div>
 	<div><input type="radio" name="tkt1" id="tktz1.4" onclick="" /><span id="tktzz2.4">o</span></div>
-        <div id="asy_serw1">Asy serwisowe:</div>
+        <div id="asy_serw1"></div>
 	</div>';
 	
 	echo'
@@ -178,10 +178,12 @@ class strona_plansza_1mecz extends Strona1
 	
 	echo '<div id="buttony">';
 	
-	echo "<button onclick=\"init_break()\">Start</button>";
-	echo '<button onclick="time_take()">Time</button>';
-	echo '<button onclick="time_no()">NoTi</button>';
-        echo '<button onclick="contin_1()">1 Action</button>';
+	echo '<button id="button_start" onclick="init_break(0)">Start</button>';
+        echo '<button d="button_time_no" onclick="time_no()">Start</button>';
+	echo '<button id="button_time_take" onclick="time_take()">Stop</button>';
+
+        echo '<button id="button_1action_init" onclick="init_break(1)">Jedna Akcja</button>';
+        echo '<button id="button_1action" onclick="contin_1()">Jedna Akcja</button>';
 	//echo '<button onclick="init()">init</button>';
 	//echo '<button onclick="goo()">GO</button>';
         //echo '<button onclick="play_meczyk_tlo('.$this->t1.','.$this->t2.',0,0,0,0)">LOAD</button>';//TEMP: insert teams id as 1st and 2nd parameter of play_meczyk_tlo()

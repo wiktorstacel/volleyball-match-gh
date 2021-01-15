@@ -451,7 +451,7 @@ function act_stat()
 	document.getElementById("stat_przy1").innerHTML = scr_przyj + scr_as;
         document.getElementById("asy_serw1").innerHTML = scr_as;//test
 	
-	scr_obro = "Obrona:<br/>";
+	scr_obro = "Obrony:<br/>";
 	var bl_23=0;
 	for(i=1;i<=12;i++)
 	{
@@ -468,7 +468,7 @@ function act_stat()
 	}
 	document.getElementById("stat_obrona1").innerHTML = scr_obro;
 	
-	scr_blok = "Blok:<br/>";
+	scr_blok = "Bloki:<br/>";
 	var bl_24=0;
 	for(i=1;i<=12;i++)
 	{
@@ -550,7 +550,7 @@ function act_stat()
 	}
 	document.getElementById("stat_przy2").innerHTML = scr_przyj + scr_as;
 	
-	scr_obro = "Obrona:<br/>";
+	scr_obro = "Obrony:<br/>";
 	bl_23=0;
 	for(i=1;i<=12;i++)
 	{
@@ -567,7 +567,7 @@ function act_stat()
 	}
         document.getElementById("stat_obrona2").innerHTML = scr_obro;
 	
-	scr_blok = "Blok:<br/>";
+	scr_blok = "Bloki:<br/>";
 	bl_24=0;
 	for(i=1;i<=12;i++)
 	{
@@ -1429,11 +1429,14 @@ function init_load_ustawienie(adr)
 
 //Activated by 'Start' button on 'plansza.php'
 //Init the first action of the match
-function init_break()
+function init_break(par)
 {
 	//document.write(team1, team2);
 	document.getElementById("show1").innerHTML = 0;
 	document.getElementById("show2").innerHTML = 0;
+        //document.getElementById("button_start").innerHTML = 0;
+        document.getElementById("button_start").style.visibility = "hidden";button_1action_init
+        document.getElementById("button_1action_init").style.visibility = "hidden";
 	pkt1 = 0, pkt2 = 0;
 	pkt1s = 0; pkt2s = 0;
 	mm1 = 0; mm2 = 0;
@@ -1452,7 +1455,11 @@ function init_break()
 		init2_break();   //zainicjowanie//seruje dr po prawej
                 serv_first = 2;
 	}
-    
+        
+        if(par == 1)
+        {
+            time=1;
+        }
 }
 
 function init1_break()
@@ -1656,9 +1663,16 @@ function action_break()
         document.getElementById("kwadrat22").innerHTML="";
 	document.getElementById("kwadnazw22").innerHTML="";
         //disable dla przycisków zmiana
-        document.getElementById("button_zmiana1").disabled = "disabled";
-        document.getElementById("button_zmiana2").disabled = "disabled";
-        
+        /*if(time == 1)
+        {
+            document.getElementById("button_zmiana1").disabled = "";
+            document.getElementById("button_zmiana2").disabled = "";
+        }
+        else
+        {
+            document.getElementById("button_zmiana1").disabled = "disabled";
+            document.getElementById("button_zmiana2").disabled = "disabled";
+        }*/
         if((pkt1+pkt2)==0 && slepa == 1)//wejdzie najwczejścniej na początku 2 seta
         {
             document.getElementById("show1").innerHTML = 0;
@@ -1670,12 +1684,6 @@ function action_break()
             //dodać omijanie funkcji dla drużyny, która wygrała ostatniego seta
             if(document.getElementById("tres1").checked && mm_prev == 2)// //czy zaznaczony trener - przechodzi tu na pocz każdego seta
             {
-                //zanim wykonam tą funkcję muszę przywrócić ustawienie z początku zakończonego właśnie seta,
-                //tak to działą, że dokonuje się zmian w ustawieniu a nie skład przechodzi z poprzedniego na nastepny
-                //wtedy mogę wyłączyć tą funkcję dla drużyny wygrywającej seta, bo nie zostanie mi np bag w ustawieniu
-                //jak atakujący wchodzi na zagreywkę (24:20) za rozgryw i potem zostaje na kolejnego seta.
-                //user też będzie mógł dokonać swoich zmian w ustawieniu przed setem
-
                 optimal_compos_zm_begin(1);//alert("robie op_begin_1");
             }
             if(document.getElementById("tres2").checked && mm_prev == 1)// //czy zaznaczony trener przechodzi tu na pocz każdego seta
@@ -1833,6 +1841,7 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
             init_save_ustawienie(1);
             init_save_ustawienie(2);
         }
+
 }
 
 //TUTAJ PODZIELIĆ NA 2 PLIKI
