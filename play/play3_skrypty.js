@@ -1731,10 +1731,14 @@ function optimal_composition_tlo(d1,d2,k,pl,para,liga)
    {
    	banch_ins();
 	transpa();
+        //2021-01-15 omijanie dla _1mecz, bo usunięto te divy
+        if(!play_1mecz)
+        {
 	document.getElementById("idteam1").innerHTML=d1;
 	document.getElementById("idteam2").innerHTML=d2;
 	document.getElementById("kolejka").innerHTML=k;
 	document.getElementById("liga").innerHTML=liga;
+        }
    }
    
    ustawienie();//czy to potrzebne

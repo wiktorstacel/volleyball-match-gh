@@ -200,9 +200,25 @@ class strona_plansza_1mecz extends Strona1
 	echo '<div id="screen2">';
 	echo '</div>';			//end screen_2
         
-        //echo '<div style="clear: both;"></div>';
+        echo '<div style="clear: both;"></div>';
+        
+        echo'<div style="float: left;"><form style="border:none; width: 410px;">'
+        . '<fieldset style="border:none; width: 410px; font-size: 13px;">';
+        print("<input id=\"history1_ch\" type=\"checkbox\" name=\"checktown\" value=\"true\" onclick=\"Set_non_hidden1()\" /><label for=\"history1_ch\">Pokaż historię zmian: </label>");
+        echo'<br><input id="changes_history1" type="text" name="history1" hidden="hidden" disabled="disabled" id="wp4" style="width:400px;"/>';
+        echo'</fieldset>'
+        . '</form></div>';
+        
+        echo'<div style="float: right;"><form style="border:none; width: 410px;">'
+        . '<fieldset style="border:none; width: 410px; text-align:right; font-size: 13px;">';
+        print("<input id=\"history2_ch\" type=\"checkbox\" name=\"checktown\" value=\"true\" onclick=\"Set_non_hidden2()\" /><label for=\"history2_ch\">Pokaż historię zmian: </label>");
+        echo'<br><input id="changes_history2" type="text" name="history2" hidden="hidden" disabled="disabled" id="wp4" style="width:400px;"/>';
+        echo'</fieldset>'
+        . '</form></div>';
+        
+        echo '<div style="clear: both;"></div>';
 	
-	echo '<div id="screen3">scr3';
+	echo '<div id="screen3" >scr3';//style="visibility: hidden"
 	echo '</div>';			//end screen_3
 	
 	//echo '<div id="screen4">scr4: ';
@@ -313,17 +329,18 @@ class strona_plansza_1mecz extends Strona1
 	
     echo '<div style="clear: both;"></div>';//CLEAR: BOTH
 	
-	echo'<div id=idteam1 style="float:left;"></div>
+	/*echo'<div id=idteam1 style="float:left;"></div>
 	<div id=idteam2 style="float:left;"></div>
 	<div id=kolejka style="float:left;"></div>
 	<div id=liga style="float:left;"></div>'; //p3s - optimal_composition_tlo, linia 1637 wpisanie wartości
                               //mogą służyć np potem w celu zapisu wyniku
                               //p3a 0 action_break, 1559, 1607 - korzysta z tych danych
-        
+        */
         echo '<div style="clear: both;"></div>'; //CLEAR: BOTH
         
-        echo'<input id="input-screen3" type="hidden" value="" />'; //zastąpić screen3 //p3a, przyjecie1,2013
+        //echo'<input id="input-screen3" type="hidden" value="" />'; //zastąpić screen3 //p3a, przyjecie1,2013
                                                                     //p3a, przyjecie2, 2494
+
 	}
         
     

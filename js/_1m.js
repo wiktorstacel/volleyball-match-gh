@@ -9,6 +9,29 @@ var play_1mecz = 0;//alert(play_1mecz);
 //ustaw flagę na potrzeby rozegrania 1 meczu aby omijać wypisywanie danych na ekran i zapis do MySQL
 function Set_play_1mecz(){
     play_1mecz = 1;
+    document.getElementById('screen3').style.visibility = "hidden";
+    document.getElementById('screen6').style.visibility = "hidden";
+}
+
+function Set_non_hidden1(){
+    if(document.getElementById('history1_ch').checked)
+    {
+        document.getElementById('screen3').style.visibility = "";
+    }
+    else
+    {
+        document.getElementById('screen3').style.visibility = "hidden";
+    }  
+}
+function Set_non_hidden2(){
+    if(document.getElementById('history2_ch').checked)
+    {
+        document.getElementById('screen6').style.visibility = "";
+    }
+    else
+    {
+        document.getElementById('screen6').style.visibility = "hidden";
+    }  
 }
 
 //uzależnienie disable zmiana od checkboxa trener_on

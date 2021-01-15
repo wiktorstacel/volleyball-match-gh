@@ -1435,7 +1435,7 @@ function init_break(par)
 	document.getElementById("show1").innerHTML = 0;
 	document.getElementById("show2").innerHTML = 0;
         //document.getElementById("button_start").innerHTML = 0;
-        document.getElementById("button_start").style.visibility = "hidden";button_1action_init
+        document.getElementById("button_start").style.visibility = "hidden";
         document.getElementById("button_1action_init").style.visibility = "hidden";
 	pkt1 = 0, pkt2 = 0;
 	pkt1s = 0; pkt2s = 0;
@@ -1726,10 +1726,14 @@ function action_break()
 			document.getElementById("set1").innerHTML = mm1;
 			document.getElementById("set2").innerHTML = mm2;
 			//koniec meczu - zapis do tabeli
+                        //2021-01-15 omijanie dla _1mecz, bo usunięto te divy
+                        if(!play_1mecz)
+                        {
 			tum1 = document.getElementById("idteam1").innerHTML;
 			tum2 = document.getElementById("idteam2").innerHTML;
 			var kkk = document.getElementById("kolejka").innerHTML;
 			var liga = document.getElementById("liga").innerHTML;
+                        }
 			m_res = m_res+", "+pkt1+":"+pkt2;
 			pkt1s+=pkt1;pkt2s+=pkt2;
 			m_res = mm1+":"+mm2+" "+m_res+")";
@@ -1786,10 +1790,14 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 					if(mm1 > 2 || mm2 > 2)//koniec meczu
 					{
 					//document.write("jestem");
+                                                //2021-01-15 omijanie dla _1mecz, bo usunięto te divy
+                                                if(!play_1mecz)
+                                                {
 						tum1 = document.getElementById("idteam1").innerHTML;
 						tum2 = document.getElementById("idteam2").innerHTML;
 						var kkk = document.getElementById("kolejka").innerHTML;
 						var liga = document.getElementById("liga").innerHTML;
+                                                }
 						m_res = mm1+":"+mm2+" "+m_res+")";
 if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrownacz_give(2);transpa();flag_wyr2=0;}
 						//alert(" KONIEC MECZU: "+m_res);
