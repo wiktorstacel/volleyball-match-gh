@@ -184,7 +184,6 @@ class strona_plansza_1mecz extends Strona1
 
         echo '<button id="button_1action_init" onclick="init_break(1)">Jedna Akcja</button>';
         echo '<button id="button_1action" onclick="contin_1()">Jedna Akcja</button>';
-        echo '<button onclick="var a=wyniki_czy_set_skonczony(1), alert(a)">set state</button>';
 	//echo '<button onclick="init()">init</button>';
 	//echo '<button onclick="goo()">GO</button>';
         //echo '<button onclick="play_meczyk_tlo('.$this->t1.','.$this->t2.',0,0,0,0)">LOAD</button>';//TEMP: insert teams id as 1st and 2nd parameter of play_meczyk_tlo()
@@ -218,6 +217,8 @@ class strona_plansza_1mecz extends Strona1
         . '</form></div>';
         
         echo '<div style="clear: both;"></div>';
+        echo '<button id="button_1action" onclick="console.log(changes)">changes</button>';
+
 	
 	echo '<div id="screen3" >scr3';//style="visibility: hidden"
 	echo '</div>';			//end screen_3
@@ -341,7 +342,6 @@ class strona_plansza_1mecz extends Strona1
         
         //echo'<input id="input-screen3" type="hidden" value="" />'; //zastąpić screen3 //p3a, przyjecie1,2013
                                                                     //p3a, przyjecie2, 2494
-
 	}
         
     

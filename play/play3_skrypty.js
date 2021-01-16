@@ -11,7 +11,8 @@ var flag_wyr2=0;
 var flag_star=0;
 var flag_zm_zag1=0;
 var flag_zm_zag2=0;
-var changesind=0;
+var changesind=0; //ilość wpisów w changes[], nieważne jak drużyna bo wpisuje array [1, 10, 12] lub [2, 4, 11]
+var changes = [];//array do zmiany, w którą wpisywane są wpisy array [druzyna, nr zaw out, nr zaw in]
 
 function wyrownacz_give(par)
 {
@@ -375,7 +376,9 @@ function wyniki(wyn)
                 if(set_ended == 0)alert("Wszedłem r2>5, set_ended:"+set_ended);
 	}
 	//Zmiana na zagrywkę team1
-	if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4&&set_ended!=0)//dop r1
+        //possible change <= 4, bo nie będzie miał jak wrócić, tu to nie jest sprawdzane więc wykona 7 zmianę
+        //user może zrobić zmiany jak gracz jest na zagrywce, trzeba uniemożliwić powrót jak zmian będzie 6
+	if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4&&set_ended!=0)
 	{
 		if(flag_star==0)optimal_zm_zagr1();
 		else if(flag_star==1&&document.getElementById("tres1").checked)
@@ -385,19 +388,21 @@ function wyniki(wyn)
         //Zmiana powrotna z zagrywki - flag_zm_zag1 pamięta nr zawodnika
 	if(flag_zm_zag1>0&&przejscie==1&&set_ended!=0)
 	{
-	var g12=0;
+	var do_zejscia=0;// z zagrywki; w funckacja opt_comp_zagryw1 odpowienidk g12, który tam wszedł z ławki
 	for(var i=1;i<=6;i++)
 	{		
-if(team1[i][0]==1){g12=i;}//przy indeksie 0 jesr aktualna pozycja, więc na 0 jest zawsze ostanio serwujący
+if(team1[i][0]==1){do_zejscia=i;}//przy indeksie 0 jesr aktualna pozycja, więc na 0 jest zawsze ostanio serwujący
 	}
 //2021-01-12 Zmiana na screen3 dla team1
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team1[flag_zm_zag1][5]+" za: "+team1[g12][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" g12: "+g12;
+document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team1[flag_zm_zag1][5]+" za: "+team1[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" do_zejscia: "+do_zejscia;
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
-document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za "+team1[g12][5];
-change1(flag_zm_zag1,g12);
-flag_zm_zag1*=(-1);
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za "+team1[do_zejscia][5];
+change1(flag_zm_zag1,do_zejscia);
+//if(possible_change(1,team1[flag_zm_zag1][3],team1[do_zejscia][3])<6){change1(flag_zm_zag1,do_zejscia);}
+
+flag_zm_zag1*=(-1);//change1(zz1,zz2);//(wchodzi,schodzi)
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+flag_zm_zag1+"<br/>";
 	}	
@@ -418,20 +423,23 @@ document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+f
 		optimal_zm_zagr2();
                 if(set_ended == 0)alert("Wszedłem zagr2, set_ended:"+set_ended);
 	}
+        //zmiana powrotna z zagrywki
 	if(flag_zm_zag2>0&&przejscie==2&&set_ended!=0)
 	{
-	var g12=0;
+	var do_zejscia=0;
 	for(var i=1;i<=6;i++)
 	{		
-if(team2[i][0]==1){g12=i;}
+if(team2[i][0]==1){do_zejscia=i;}
 	}
 //2021-01-12: Zmiana tekstów
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team2[flag_zm_zag2][5]+" za: "+team2[g12][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag2+" g12: "+g12;
+document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team2[flag_zm_zag2][5]+" za: "+team2[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag2+" do_zejscia: "+do_zejscia;
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
-document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[flag_zm_zag2][5]+" za "+team2[g12][5];
-change2(flag_zm_zag2,g12);
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[flag_zm_zag2][5]+" za "+team2[do_zejscia][5];
+change2(flag_zm_zag2,do_zejscia);
+//if(possible_change(2,team2[flag_zm_zag2][3],team2[do_zejscia][3])<6){change2(flag_zm_zag2,do_zejscia);}
+
 flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
 document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+flag_zm_zag2+"<br/>";
@@ -539,9 +547,23 @@ function find_leaders()
 
 function change1(zmj,j)
 {
-	
-	changes[changesind] = Array(1, team1[zmj][3], team1[j][3]);
-	changesind++;
+	//alert(team1[zmj][3]);alert(team1[j][3]);
+        item = [1, team1[zmj][3], team1[j][3]];
+        changes.push(item);
+        changesind++;
+        //changes[changesind] = new Array(1, team1[zmj][3], team1[j][3]);
+        //changes[changesind] = [];
+        //changes[changesind][0] = 1; 
+        //changes[changesind][1] = team1[zmj][3];
+        //changes[changesind][2] = team1[j][3];
+        //changes[changesind] = new Array('1', 'team1[zmj][3]', 'team1[j][3])');
+        //changes[changesind] = (1, team1[zmj][3], team1[j][3]);
+        /*item = {}
+        item[0] = 1;
+        item[1] = team1[zmj][3]; 
+        item[2] = team1[j][3];
+	changes.push(item);*/
+
 	out = team1[zmj].shift();//Usuwa pierwszy element z tablicy i zwraca go. Metoda ta zmienia długość tablicy.
 	ins = team1[j].shift();	 
 	
@@ -594,44 +616,49 @@ function zamamiana_zmiana(id)
 
 function possible_change(par,z1,z2)//pomiedzy zaw//jesli sa obok siebie w tabeli i r<6 to ok
 {
-//	dfd=document.getElementById("screen4").innerHTML;
-//	document.getElementById("screen4").innerHTML=dfd+changes+"<br/>";
-	var r=0;
-	if(par==1)
-	{
-		for(var u=0;u<changesind;u++)
-		{
-		if(changes[u][0]==1)
-		{
-if(changes[u][1]==z1||changes[u][1]==z2||changes[u][2]==z1||changes[u][2]==z2)
+if(par==1)
 {
-if((changes[u][1]!=z1||changes[u][2]==z2)||(changes[u][1]==z1||changes[u][2]!=z2)||(changes[u][1]!=z2||changes[u][2]==z1)||(changes[u][1]==z2||changes[u][2]!=z1))
+    var r=0;
+    for(var u=0;u<changes.length;u++)
+    {
+        if(changes[u][0]==1)
+        {
+            r++;
+            if(changes[u][1]==z1||changes[u][1]==z2||changes[u][2]==z1||changes[u][2]==z2)
+            {
+                /*if((changes[u][1]!=z1||changes[u][2]==z2)||(changes[u][1]==z1||changes[u][2]!=z2)||(changes[u][1]!=z2||changes[u][2]==z1)||(changes[u][1]==z2||changes[u][2]!=z1))
+                {
+                    alert("jestem-return 6");return 6;
+                }*/
+                //zmiana niemożliwa bo zawodnik już brał udział w zmianie
+                return 6;alert("1- jestem-return 6 - już uczesniczył w zmianie.");
+            }
+        }
+    }
+    alert("return possible change1: "+r);
+    return r;//zm dozwolona 0,1,2,3,4,5,6
+}
+else if(par==2)
 {
-return 6;
+    var r=0;
+    for(var u=0;u<changes.length;u++)
+    {
+        if(changes[u][0]==2)
+        {
+            r++;
+            if(changes[u][1]==z1||changes[u][1]==z2||changes[u][2]==z1||changes[u][2]==z2)
+            {
+                /*if((changes[u][1]!=z1||changes[u][2]==z2)||(changes[u][1]==z1||changes[u][2]!=z2)||(changes[u][1]!=z2||changes[u][2]==z1)||(changes[u][1]==z2||changes[u][2]!=z1))
+                {
+                    alert("jestem-return 6");return 6;
+                }*/
+                return 6;alert("2- jestem-return 6 - już uczesniczył w zmianie.");
+            }
+        }
+    }
+    alert("return possible change2: "+r);
+    return r;//zm dozwolona 0,1,2,3,4,5,6
 }
-r++;	
-}
-		}
-		}
-	}
-	else if(par==2)
-	{
-		for(var u=0;u<changesind;u++)
-		{
-		if(changes[u][0]==2)
-		{
-if(changes[u][1]==z1||changes[u][1]==z2||changes[u][2]==z1||changes[u][2]==z2)
-{
-if((changes[u][1]!=z1||changes[u][2]==z2)||(changes[u][1]==z1||changes[u][2]!=z2)||(changes[u][1]!=z2||changes[u][2]==z1)||(changes[u][1]==z2||changes[u][2]!=z1))
-{
-return 6;
-}
-r++;	
-}
-		}
-		}
-	}
-return r;//zm dozwolona 0,1,2,3,4,5,6
 }
 
 function zmia_1_nex()
@@ -654,7 +681,7 @@ function zmia_1_nex()
     {
         var z1 = parseInt(document.getElementById("window_zm1").value);//wchodzi
 	var z2 = parseInt(document.getElementById("kwadnazw11").innerHTML);//zchodzi
-        for(var i=1;i<=12;i++)
+        for(var i=1;i<=12;i++)//przepisanie nr zawodników na index główny
 	{
 		if(team1[i][3]==z1)
 		{
@@ -690,14 +717,14 @@ function zmia_1_nex()
 	{
 		if(team1[i][3]==z1)
 		{
-			var zz1 = i;
+			var zz1 = i; //znajduje nr i zapamietuje index
 		}
 		if(team1[i][3]==z2)
 		{
 			var zz2 = i;
 		}
 	}
-	change1(zz1,zz2);
+	change1(zz1,zz2);//(wchodzi,schodzi) //operuje na indeks glowny
 	document.getElementById("screen1").innerHTML="zmiana: "+team1[zz1][5]+" za "+team1[zz2][5];
         //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
         var fffv = document.getElementById("change_info1").innerHTML;
@@ -751,7 +778,7 @@ function zmia_2_nex()
     }
     else
     {
-	if(possible_change(2)>=6)
+	if(possible_change(2)>=6)//!!!
 	{
 		document.getElementById("screen2").innerHTML=" wykorzystano limit zmian";
 		document.getElementById("kwadrat22").innerHTML="";
@@ -834,8 +861,8 @@ function change2(zmj,j)
 {
 	changes[changesind] = Array(2, team2[zmj][3], team2[j][3]);
 	changesind++;
-	out = team2[zmj].shift(); //skrócenie o 1 tabeli
-	ins = team2[j].shift();	  //skrócenie o 1 tabeli
+	out = team2[zmj].shift(); 
+	ins = team2[j].shift();	
 	
 	team2[j].unshift(out);
 	team2[zmj].unshift(ins);
@@ -1824,14 +1851,14 @@ function banch_go1(nr)
 	{
 		for(var u=0;u<changesind;u++)
 		{
-		if(changes[u][0]==1)
-		{
-			if(changes[u][1]==nr||changes[u][2]==nr)
-			{
-				document.getElementById("screen1").innerHTML = " zmiana niedozwolona";
-				return 0;
-			}
-		}
+                        if(changes[u][0]==1)
+                        {
+                                if(changes[u][1]==nr||changes[u][2]==nr)
+                                {
+                                        document.getElementById("screen1").innerHTML = " zmiana niedozwolona";
+                                        return 0;
+                                }
+                        }
 		}
 		document.getElementById("window_zm1").value = nr;
 		document.getElementById("screen1").innerHTML = "";
@@ -1843,14 +1870,14 @@ function banch_go2(nr)
 	{
 		for(var u=0;u<changesind;u++)
 		{
-		if(changes[u][0]==2)
-		{
-			if(changes[u][1]==nr||changes[u][2]==nr)
-			{
-				document.getElementById("screen2").innerHTML = " zmiana niedozwolona";
-				return 0;
-			}
-		}
+                        if(changes[u][0]==2)
+                        {
+                                if(changes[u][1]==nr||changes[u][2]==nr)
+                                {
+                                        document.getElementById("screen2").innerHTML = " zmiana niedozwolona";
+                                        return 0;
+                                }
+                        }
 		}
 		document.getElementById("window_zm2").value = nr;
 		document.getElementById("screen2").innerHTML = "";
@@ -1913,14 +1940,15 @@ function banch_ins()
 }
 function zeruj_changes()
 {
-	for(var u=0;u<changesind;u++)
+	/*for(var u=0;u<changesind;u++)
 		{
 			for(var y=0;y<=2;y++)
 			{
 				changes[u][y]=0;
 			}
-		}
-	changesind=0;
+		}*/
+    changes = [];
+    changesind=0;
 }
 
 function interw(sel)
@@ -2531,19 +2559,6 @@ return 1;
 
 function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaje//szukanie lepszego perfo-nie roz problem
 {	
-/*	var adr = 1;
-	var dwa = 2;
-	if(d1 == pl)
-	{
-		adr = 2;
-	}
-	if(d2 == pl)
-	{
-		dwa = 1;
-	}
-	for(;adr<=dwa;adr++)
-	{*/
-
   if(adr==1)
   {
   	tea = team1;//z tempo odczyt, a do tempz zapisuje;
@@ -2553,7 +2568,7 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
   	tea = team2;//z tempo odczyt, a do tempz zapisuje;
   }
 //obliczyć perfo jeszcze raz
-alert("porbuje zmiane");
+console.log(changes);console.log("changesind: "+changesind);
   for(var i=1;i<=12;i++)//mam gwaracje, że przejdzie przez każdego R na ławce, ale dalej zawsze wybierze najlepszego
   {	
           tea[0]=Array(0,0,0,0,0,0,0,0,0,0,0,0);
@@ -2567,11 +2582,11 @@ alert("porbuje zmiane");
 			{
 			  if(tea[j][4]=="R")//Jak 2óch R na ławce, to jest info, że 2 razy próbuje - OK; ale tylko jednego	
 			  {
-			  	if(tea[j][11] > tea[maxj][11]){maxj=j;var test = rozgryw_lawka.unshift(j);alert("R-unshift: "+test);}//na początek array
-                                else {var test = rozgryw_lawka.push(j);alert("R-push: "+test);}//na koniec array
+			  	if(tea[j][11] > tea[maxj][11]){maxj=j;var test = rozgryw_lawka.unshift(j);}//na początek array
+                                else {var test = rozgryw_lawka.push(j);}//na koniec array
 			  }
-			}console.log(rozgryw_lawka);
-                        //albo zrobić array z zawodnikami R i tutaj spróbować po kolei forem ich wpuszczać
+			}//console.log(rozgryw_lawka);
+                        //array z zawodnikami R i tutaj probuje po kolei forem ich wpuszczać
                         for(p=0; p<rozgryw_lawka.length; p++)
                         {
                           maxj = rozgryw_lawka[p];
@@ -2580,7 +2595,7 @@ alert("porbuje zmiane");
 //R i A: potrzeba ponowić próbę wpuszcz kolejnych gorszych, bo poprz próby mogły być blokowane zm powrotnymi
 //Jak 2óch R na ławce, to jest info, że 2 razy próbuje - OK; ale tylko jednego
 //jakby było 5 R na ławce to ma spróbować każdego wpóścić, jak jednego wpósci, np3 może iść dalej. Zm powr nie powinny
-//ani zrobić, ani pokazać tych zmian.
+//ani zrobić, ani pokazać tych zmian.//                    change1(zz1,zz2);//(wchodzi,schodzi) //numery zawodników
 if(adr==1){if(possible_change(1,tea[maxj][3],tea[1][3])<6){change1(maxj,1);}}else {if(possible_change(2,tea[maxj][3],tea[1][3])<6){change2(maxj,1);}}
                             //2021-01-12: rozdzielono na 2 screeny
                             if(adr == 1)//wyświetlam zmiany, które zaproponowała funckja ale nie doszły do skutku
@@ -2745,7 +2760,7 @@ function optimal_zm_zagr1()
             flag_zm_zag1=g12;//to jest tylko nr pozycji a nie nr zaw
             change1(g6,g12);
         }
-    }
+    }console.log(changes);
 }
 
 function optimal_zm_zagr2()
@@ -2776,7 +2791,7 @@ function optimal_zm_zagr2()
             flag_zm_zag2=g12;//to jest tylko nr pozycji kurwa a nie nr zaw
             change2(g6,g12);
         }
-    }
+    }console.log(changes);
 }
 
 function optim_zm_ogr_young(adr)

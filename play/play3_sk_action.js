@@ -10,7 +10,6 @@ var serv = 0; //info o tym kto ostatnio serwował
 var a =0;
 var middle = 0; //1 jesli atak byl ze srodka
 var m_res = "";
-var changes = new Array();
 var flag_lib=0;
 var wyk1 = 50;
 var wyk2 = 50;
