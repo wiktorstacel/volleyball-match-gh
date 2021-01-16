@@ -174,10 +174,53 @@ function punktuj2(pkt_par)//par - numer absolutny rce//pomimo zmian pozostaje st
 		team2[pkt_par][17]++;
 	 }
 }
+//dla uniknięcia sytuacji, gdy robi zmiany przy wyniku seta np 25:19
+function wyniki_czy_set_skonczony(wyn)
+{
+    if(wyn==3)//tie-break
+    {
+        if(pkt1 < 15 && pkt2 < 15)
+        {
+            return 1;
+        }
+        else
+        {
+            if(pkt1 >= pkt2)
+            {
+                if((pkt1 - pkt2) > 1){return 0;}else{return 1;}
+            }
+            else
+            {
+                if((pkt2 - pkt1) > 1){return 0;}else{return 1;}
+            }
+        }
+    }
+    else
+    {
+        if(pkt1 < 25 && pkt2 < 25)
+        {
+            return 1;
+        }
+        else //pkt1 lub pkt2 co najmiej równe 25
+        {
+            if(pkt1 >= pkt2)
+            {
+                if((pkt1 - pkt2) > 1){return 0;}else{return 1;}
+            }
+            else
+            {
+                if((pkt2 - pkt1) > 1){return 0;}else{return 1;}
+            }
+        }
+    }
+}
 
 function wyniki(wyn)
 {		
-	var res1, res2;
+	
+    var set_ended = wyniki_czy_set_skonczony(wyn);//0 to skończony set
+    if(set_ended == 0)alert("skonczony set set_ended:"+set_ended);
+        var res1, res2;
 	if(wyn==1)
   	{
 	
@@ -233,6 +276,7 @@ function wyniki(wyn)
 	 
 	
   	}
+        //POZA IF
 	if(pkt1==20 && flag_dosw1==0)
 	{
 		//console.time("minusdosw1");
@@ -295,13 +339,13 @@ function wyniki(wyn)
 	
 	var r1=pkt1-pkt2;
 	var r2=pkt2-pkt1;
-	if((r1)>7&&flag_wyr1==0)
+	if((r1)>7&&flag_wyr1==0&&set_ended!=0)
 	{
 		wyrownacz_take(1);
 		if(mm1==1&&mm1==2)optim_zm_set_pod(2);
 		flag_wyr1=1;
 	}
-	if((r2)>7&&flag_wyr2==0)
+	if((r2)>7&&flag_wyr2==0&&set_ended!=0)
 	{
 		wyrownacz_take(2);
 		if(mm1==2&&mm2==1)optim_zm_set_pod(1);
@@ -318,30 +362,33 @@ function wyniki(wyn)
 		flag_wyr2=0;
 	}
 	
-	if((r1)>5&&flag_wyr1==0)
+	if((r1)>5&&flag_wyr1==0&&set_ended!=0)//!!! przy jakiej różnicy robi duże zmiany
 	{
 		if(flag_star==0)optimal_compos_zm(2);
-		else if(flag_star==1&&document.getElementById("tres2").checked)
-		optimal_compos_zm(2);
+		else if(flag_star==1&&document.getElementById("tres2").checked){optimal_compos_zm(2);}
+                if(set_ended == 0)alert("Wszedłem r1>5, set_ended:"+set_ended);
 	}
-	if((r2)>5&&flag_wyr2==0)
+	if((r2)>5&&flag_wyr2==0&&set_ended!=0)//!!! przy jakiej różnicy robi duże zmiany
 	{
 		if(flag_star==0){optimal_compos_zm(1);}
 		else if(flag_star==1&&document.getElementById("tres1").checked){optimal_compos_zm(1);}
+                if(set_ended == 0)alert("Wszedłem r2>5, set_ended:"+set_ended);
 	}
-	
-	if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4)//dop r1
+	//Zmiana na zagrywkę team1
+	if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4&&set_ended!=0)//dop r1
 	{
 		if(flag_star==0)optimal_zm_zagr1();
 		else if(flag_star==1&&document.getElementById("tres1").checked)
 		optimal_zm_zagr1();
+                if(set_ended == 0)alert("Wszedłem zagr1, set_ended:"+set_ended);
 	}
-	if(flag_zm_zag1>0&&przejscie==1)
+        //Zmiana powrotna z zagrywki - flag_zm_zag1 pamięta nr zawodnika
+	if(flag_zm_zag1>0&&przejscie==1&&set_ended!=0)
 	{
 	var g12=0;
 	for(var i=1;i<=6;i++)
 	{		
-if(team1[i][0]==1){g12=i;}
+if(team1[i][0]==1){g12=i;}//przy indeksie 0 jesr aktualna pozycja, więc na 0 jest zawsze ostanio serwujący
 	}
 //2021-01-12 Zmiana na screen3 dla team1
 var fffv = document.getElementById("screen3").innerHTML;
@@ -354,23 +401,24 @@ flag_zm_zag1*=(-1);
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+flag_zm_zag1+"<br/>";
 	}	
-	if(pkt1>=19&&przejscie==2&&flag_zm_zag1<0)
+	/*if(pkt1>=19&&przejscie==2&&flag_zm_zag1<0)
 	{
 		var zawi=flag_zm_zag1*(-1);		
 		if(team1[zawi][0]==1)
 		{
 			optimal_zm_zagr1();alert("podejrzana zm_zagr1, linia362 p3s");
 		}
-	}
+	}*/
 	
-	
-	if(pkt2>=19&&przejscie==1&&flag_zm_zag2==0&&r2<4)//dop r1
+	//Zmiana na zagrywkę team1
+	if(pkt2>=19&&przejscie==1&&flag_zm_zag2==0&&r2<4&&set_ended!=0)//dop r1
 	{
 		if(flag_star==0)optimal_zm_zagr2();
 		else if(flag_star==1&&document.getElementById("tres2").checked)
 		optimal_zm_zagr2();
+                if(set_ended == 0)alert("Wszedłem zagr2, set_ended:"+set_ended);
 	}
-	if(flag_zm_zag2>0&&przejscie==2)
+	if(flag_zm_zag2>0&&przejscie==2&&set_ended!=0)
 	{
 	var g12=0;
 	for(var i=1;i<=6;i++)
@@ -388,7 +436,10 @@ flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
 document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+flag_zm_zag2+"<br/>";
 	}
-	
+
+
+//KONIEC poza IFami    
+    
 	if(wyn==3)//tie-break
 	{
 		if(pkt1 < 15 && pkt2 < 15)
@@ -411,7 +462,7 @@ document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+f
 		{
 		return 1;
 		}
-		else
+		else //pkt1 lub pkt2 co najmiej równe 25
 		{
 		if(pkt1 >= pkt2)
 		{
@@ -491,10 +542,10 @@ function change1(zmj,j)
 	
 	changes[changesind] = Array(1, team1[zmj][3], team1[j][3]);
 	changesind++;
-	out = team1[zmj].shift(); //skrócenie o 1 tabeli
-	ins = team1[j].shift();	  //skrócenie o 1 tabeli
+	out = team1[zmj].shift();//Usuwa pierwszy element z tablicy i zwraca go. Metoda ta zmienia długość tablicy.
+	ins = team1[j].shift();	 
 	
-	team1[j].unshift(out);
+	team1[j].unshift(out);//Dodaje jeden lub więcej elementów na początek tablicy i zwraca jej nową długość.
 	team1[zmj].unshift(ins);
 	
 	temp = team1[zmj];
@@ -504,10 +555,10 @@ function change1(zmj,j)
 
 function chan1(zmj,j)
 {
-	out = team1[zmj].shift(); //skrócenie o 1 tabeli
-	ins = team1[j].shift();	  //skrócenie o 1 tabeli
+	out = team1[zmj].shift(); //Usuwa pierwszy element z tablicy i zwraca go. Metoda ta zmienia długość tablicy.
+	ins = team1[j].shift();	  
 	
-	team1[j].unshift(out);
+	team1[j].unshift(out);//Dodaje jeden lub więcej elementów na początek tablicy i zwraca jej nową długość.
 	team1[zmj].unshift(ins);
 	
 	temp = team1[zmj];
@@ -2502,26 +2553,37 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
   	tea = team2;//z tempo odczyt, a do tempz zapisuje;
   }
 //obliczyć perfo jeszcze raz
-  for(var i=1;i<=12;i++)
+alert("porbuje zmiane");
+  for(var i=1;i<=12;i++)//mam gwaracje, że przejdzie przez każdego R na ławce, ale dalej zawsze wybierze najlepszego
   {	
           tea[0]=Array(0,0,0,0,0,0,0,0,0,0,0,0);
 		  //var tak[0]=Array(0,0,0,0,0,0);
 		  //sprawdzenie czy jest zawodnik - lepiej rozgryw//
-		  if(i==1)
+		  if(i==1)//algorytm wykona się 1 raz
 		  {
 		  	var maxj=0;
-			for(var j=8;j<=12;j++)//szuka max//moze jest 2 rozgr na lawce
+                        var rozgryw_lawka = [];
+			for(var j=8;j<=12;j++)//szuka max//moze jest 2 rozgr na lawce - sprawdza każdego
 			{
-			  if(tea[j][4]=="R")	
+			  if(tea[j][4]=="R")//Jak 2óch R na ławce, to jest info, że 2 razy próbuje - OK; ale tylko jednego	
 			  {
-			  	if(tea[j][11]>tea[maxj][11])maxj=j;
+			  	if(tea[j][11] > tea[maxj][11]){maxj=j;var test = rozgryw_lawka.unshift(j);alert("R-unshift: "+test);}//na początek array
+                                else {var test = rozgryw_lawka.push(j);alert("R-push: "+test);}//na koniec array
 			  }
-			}
-			if(tea[maxj][11]>(tea[1][11]+1))
-			{
+			}console.log(rozgryw_lawka);
+                        //albo zrobić array z zawodnikami R i tutaj spróbować po kolei forem ich wpuszczać
+                        for(p=0; p<rozgryw_lawka.length; p++)
+                        {
+                          maxj = rozgryw_lawka[p];
+			  if(tea[maxj][11] > (tea[1][11]+1))
+			  {
+//R i A: potrzeba ponowić próbę wpuszcz kolejnych gorszych, bo poprz próby mogły być blokowane zm powrotnymi
+//Jak 2óch R na ławce, to jest info, że 2 razy próbuje - OK; ale tylko jednego
+//jakby było 5 R na ławce to ma spróbować każdego wpóścić, jak jednego wpósci, np3 może iść dalej. Zm powr nie powinny
+//ani zrobić, ani pokazać tych zmian.
 if(adr==1){if(possible_change(1,tea[maxj][3],tea[1][3])<6){change1(maxj,1);}}else {if(possible_change(2,tea[maxj][3],tea[1][3])<6){change2(maxj,1);}}
                             //2021-01-12: rozdzielono na 2 screeny
-                            if(adr == 1)
+                            if(adr == 1)//wyświetlam zmiany, które zaproponowała funckja ale nie doszły do skutku
                             {
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
@@ -2537,7 +2599,8 @@ document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmi
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[1][5]+" za "+tea[maxj][5];
                             }
-			}
+			  }
+                        }//end of for with p paramentr
 		  }	
 		  if(i==4)
 		  {
@@ -2582,7 +2645,7 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
 			  }
 			}
 			var a=0;
-			if(((tea[2][6]+tea[2][7])/2)<((tea[5][6]+tea[5][7])/2))a=2;else a=5;
+			if(((tea[2][6]+tea[2][7])/2)<((tea[5][6]+tea[5][7])/2))a=2;else a=5;//ktory P słabszy na boisku
 			if((tea[maxj][6]+tea[maxj][7])/2>((tea[a][6]+tea[a][7])/2+1))
 			{
 if(adr==1){if(possible_change(1,tea[maxj][3],tea[a][3])<6){change1(maxj,a);}}else {if(possible_change(2,tea[maxj][3],tea[a][3])<6){change2(maxj,a);}}
@@ -2616,8 +2679,8 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
 			  }
 			}
 			var a=0;
-			if((tea[3][6]+tea[3][9])/2<(tea[6][6]+tea[6][9])/2)a=3;else a=6;
-			if((tea[maxj][6]+tea[maxj][9])/2>((tea[a][6]+tea[a][9])/2+1))
+			if((tea[3][6]+tea[3][9])/2<(tea[6][6]+tea[6][9])/2)a=3;else a=6;//który S słabysz na boisku
+			if((tea[maxj][6]+tea[maxj][9])/2>((tea[a][6]+tea[a][9])/2+1))//czy na lawce jest lepszy
 			{
 if(adr==1){if(possible_change(1,tea[maxj][3],tea[a][3])<6){change1(maxj,a);}}else {if(possible_change(2,tea[maxj][3],tea[a][3])<6){change2(maxj,a);}}	
                             //2021-01-12: rozdzielono na 2 screeny

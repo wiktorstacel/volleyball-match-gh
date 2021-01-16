@@ -485,7 +485,7 @@
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	border-bottom: 1px solid black;
-	font-size: 12px;
+	font-size: 0.1px;
 }
 #screen4{
 	width: 498px;
@@ -516,7 +516,7 @@
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	border-bottom: 1px solid black;
-	font-size: 12px;
+	font-size: 0.1px;
 }
 #screen7{
 	width: 420px;
