@@ -11,7 +11,6 @@ var flag_wyr2=0;
 var flag_star=0;
 var flag_zm_zag1=0;
 var flag_zm_zag2=0;
-var changesind=0; //ilość wpisów w changes[], nieważne jak drużyna bo wpisuje array [1, 10, 12] lub [2, 4, 11]
 var changes = [];//array do zmiany, w którą wpisywane są wpisy array [druzyna, nr zaw out, nr zaw in]
 
 function wyrownacz_give(par)
@@ -399,8 +398,8 @@ document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr:
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za "+team1[do_zejscia][5];
-change1(flag_zm_zag1,do_zejscia);
-//if(possible_change(1,team1[flag_zm_zag1][3],team1[do_zejscia][3])<6){change1(flag_zm_zag1,do_zejscia);}
+//change1(flag_zm_zag1,do_zejscia);//(out,in)
+if(possible_change(1,team1[do_zejscia][3],team1[flag_zm_zag1][3])<6){change1(do_zejscia, flag_zm_zag1);}
 
 flag_zm_zag1*=(-1);//change1(zz1,zz2);//(wchodzi,schodzi)
 var fffv = document.getElementById("screen3").innerHTML;
@@ -438,7 +437,7 @@ document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr:
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[flag_zm_zag2][5]+" za "+team2[do_zejscia][5];
 change2(flag_zm_zag2,do_zejscia);
-//if(possible_change(2,team2[flag_zm_zag2][3],team2[do_zejscia][3])<6){change2(flag_zm_zag2,do_zejscia);}
+//if(possible_change(2,team2[do_zejscia][3],team2[flag_zm_zag2][3])<6){change2(do_zejscia, flag_zm_zag2);}
 
 flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
@@ -545,17 +544,14 @@ function find_leaders()
 	//		document.write(team1,team2);
 }
 
-function change1(zmj,j)
+function change1(zmj,j)//operuje na indeks główny! dalej dopiero wstawia numery
 {
 	//alert(team1[zmj][3]);alert(team1[j][3]);
-        item = [1, team1[zmj][3], team1[j][3]];
+        item = [1, parseInt(team1[zmj][3]), parseInt(team1[j][3])];
         changes.push(item);
-        changesind++;
         //changes[changesind] = new Array(1, team1[zmj][3], team1[j][3]);
         //changes[changesind] = [];
-        //changes[changesind][0] = 1; 
-        //changes[changesind][1] = team1[zmj][3];
-        //changes[changesind][2] = team1[j][3];
+        //changes[changesind][0] = 1; changes[changesind][1] = team1[zmj][3]; changes[changesind][2] = team1[j][3];
         //changes[changesind] = new Array('1', 'team1[zmj][3]', 'team1[j][3])');
         //changes[changesind] = (1, team1[zmj][3], team1[j][3]);
         /*item = {}
@@ -573,9 +569,12 @@ function change1(zmj,j)
 	temp = team1[zmj];
 	team1[zmj] = team1[j];
 	team1[j] = temp;
+        
+        ustawienie();
+        banch_ins();
 }
 
-function chan1(zmj,j)
+function chan1(zmj,j)//operuje na indeks główny nie numery zaw!
 {
 	out = team1[zmj].shift(); //Usuwa pierwszy element z tablicy i zwraca go. Metoda ta zmienia długość tablicy.
 	ins = team1[j].shift();	  
@@ -614,29 +613,41 @@ function zamamiana_zmiana(id)
 	}
 }
 
+//OPERUJE NA NR ZAWODNIKOW!!!
 function possible_change(par,z1,z2)//pomiedzy zaw//jesli sa obok siebie w tabeli i r<6 to ok
 {
 if(par==1)
 {
-    var r=0;
+    var r=0; var ile_razy_para = 0;
     for(var u=0;u<changes.length;u++)
     {
         if(changes[u][0]==1)
         {
             r++;
+            //sprawdzanie czy w jakiejś parze są już te numery - ale nie razem - zmiana zawsze niedozwolona
             if(changes[u][1]==z1||changes[u][1]==z2||changes[u][2]==z1||changes[u][2]==z2)
             {
-                /*if((changes[u][1]!=z1||changes[u][2]==z2)||(changes[u][1]==z1||changes[u][2]!=z2)||(changes[u][1]!=z2||changes[u][2]==z1)||(changes[u][1]==z2||changes[u][2]!=z1))
+                if((changes[u][1]!=z1 && changes[u][2]==z2) || (changes[u][1]==z1 && changes[u][2]!=z2) || (changes[u][1]!=z2 && changes[u][2]==z1) || (changes[u][1]==z2 && changes[u][2]!=z1))
                 {
-                    alert("jestem-return 6");return 6;
-                }*/
-                //zmiana niemożliwa bo zawodnik już brał udział w zmianie
-                return 6;alert("1- jestem-return 6 - już uczesniczył w zmianie.");
+                    alert("1- jestem-return 6 - już uczesniczył w zmianie.");
+                    alert("changes[u][1]: "+changes[u][1]);
+                    alert("changes[u][2]: "+changes[u][2]);
+                    alert("z1: "+z1);
+                    alert("z2: "+z2);                       
+                    return 7;//zmiana niedozwolona - już uczestniczył w innej parze na wymianę
+                }
+            }
+            //ile razy podane nr są w parze - raz mogą być - trzeba dozolić jak raz są w parze - na zm powr
+            if((changes[u][1]==z1&&changes[u][2]==z2)||(changes[u][1]==z2&&changes[u][2]==z1))
+            {
+                ile_razy_para++;
             }
         }
     }
-    alert("return possible change1: "+r);
-    return r;//zm dozwolona 0,1,2,3,4,5,6
+    alert("ile razy para: "+ile_razy_para);
+    if(ile_razy_para>1){return 7;}//zmiana niedozwolona - mogą się raz zmnienić i 1 raz powrotnie
+    alert("return ilość change1: "+r);
+    return r;//zm dozwolona 0,1,2,3,4,5
 }
 else if(par==2)
 {
@@ -656,14 +667,14 @@ else if(par==2)
             }
         }
     }
-    alert("return possible change2: "+r);
+    alert("return ilość change2: "+r);
     return r;//zm dozwolona 0,1,2,3,4,5,6
 }
 }
 
 function zmia_1_nex()
 {
-   //sprawdzenie czy pola wypełnione
+   //sprawdzenie czy pola wypełnione - !! jeszcze kwadnazw11
     if(typeof window_zm1 != "undefined") 
     {
         if(document.getElementById("window_zm1").value == "")
@@ -675,25 +686,24 @@ function zmia_1_nex()
     {
             document.getElementById("screen1").innerHTML="wybierz zawodników do zmiany";return 0;
     }
-    
+    //zczytanie pól, jeśli wcześniej returny nie wywaliły z błędem pól
+    var z1 = parseInt(document.getElementById("window_zm1").value);//zchodzi z boiska
+    var z2 = parseInt(document.getElementById("kwadnazw11").innerHTML);//wchodzi - pojawiaj się po kl na ławke rez 
+    for(var i=1;i<=12;i++)//przepisanie nr zawodników na index główny
+    {
+            if(team1[i][3]==z1)
+            {
+                    var zz1 = i;
+            }
+            if(team1[i][3]==z2)
+            {
+                    var zz2 = i;
+            }
+    }
     
     if(pkt1 == 0 && pkt2 == 0)//document.getElementById("kwadnazw11").innerText
     {
-        var z1 = parseInt(document.getElementById("window_zm1").value);//wchodzi
-	var z2 = parseInt(document.getElementById("kwadnazw11").innerHTML);//zchodzi
-        for(var i=1;i<=12;i++)//przepisanie nr zawodników na index główny
-	{
-		if(team1[i][3]==z1)
-		{
-			var zz1 = i;
-		}
-		if(team1[i][3]==z2)
-		{
-			var zz2 = i;
-		}
-	}
-        chan1(zz1,zz2);//(wchodzi,schodzi)
-
+        chan1(zz1,zz2);//(out,in)
         //2021-01-14: dodano div w celu wyśw info o zmianach na gemafield
         var fffv = document.getElementById("change_info1").innerHTML;
         document.getElementById("change_info1").innerHTML=fffv+"<br>"+team1[zz1][5]+" za "+team1[zz2][5]+""; 
@@ -704,36 +714,34 @@ function zmia_1_nex()
     }
     else
     {
-	if(possible_change(1)>=6)
+        var pos_cz = possible_change(1,z1,z2);
+	if(pos_cz==6)
 	{
-		document.getElementById("screen1").innerHTML=" wykorzystano limit zmian";
-		document.getElementById("kwadrat11").innerHTML="";
-		document.getElementById("kwadnazw11").innerHTML="";
-		return 0;
+            document.getElementById("screen1").innerHTML=" wykorzystano limit zmian";
+            document.getElementById("kwadrat11").innerHTML="";
+            document.getElementById("kwadnazw11").innerHTML="";
+            return 0;
 	}
-	var z1 = parseInt(document.getElementById("window_zm1").value);//wchodzi
-	var z2 = parseInt(document.getElementById("kwadnazw11").innerHTML);//zchodzi
-	for(var i=1;i<=12;i++)
+        if(pos_cz==7)
 	{
-		if(team1[i][3]==z1)
-		{
-			var zz1 = i; //znajduje nr i zapamietuje index
-		}
-		if(team1[i][3]==z2)
-		{
-			var zz2 = i;
-		}
+            document.getElementById("screen1").innerHTML=" zmiana niedozwolona";
+            document.getElementById("kwadrat11").innerHTML="";
+            document.getElementById("kwadnazw11").innerHTML="";
+            return 0;
 	}
-	change1(zz1,zz2);//(wchodzi,schodzi) //operuje na indeks glowny
-	document.getElementById("screen1").innerHTML="zmiana: "+team1[zz1][5]+" za "+team1[zz2][5];
-        //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
-        var fffv = document.getElementById("change_info1").innerHTML;
-        document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[zz1][5]+" za "+team1[zz2][5]+"";        
-	//document.getElementById("l"+zz1).innerHTML = "<div onclick=banch_go1("+team1[zz1][3]+") class='zaw'>"+team1[zz1][5]+"</div>";
-	ustawienie();
-	banch_ins();
-	document.getElementById("kwadrat11").innerHTML="";
-	document.getElementById("kwadnazw11").innerHTML="";
+        else (pos_cz < 6)
+        {
+            change1(zz1,zz2);//(out,in) //operuje na indeks glowny ||tylko possible_change operuje na nr
+            document.getElementById("screen1").innerHTML="zmiana: "+team1[zz1][5]+" za "+team1[zz2][5];
+            //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
+            var fffv = document.getElementById("change_info1").innerHTML;
+            document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[zz1][5]+" za "+team1[zz2][5]+"";        
+            //document.getElementById("l"+zz1).innerHTML = "<div onclick=banch_go1("+team1[zz1][3]+") class='zaw'>"+team1[zz1][5]+"</div>";
+            //ustawienie();change1&change2 ma to wbudowane
+            //banch_ins();
+            document.getElementById("kwadrat11").innerHTML="";
+            document.getElementById("kwadnazw11").innerHTML="";
+        }
     }
 }
 function zmia_2_nex()
@@ -753,8 +761,8 @@ function zmia_2_nex()
     
     if(pkt1 == 0 && pkt2 == 0)
     {
-        var z1 = parseInt(document.getElementById("window_zm2").value);//wchodzi
-	var z2 = parseInt(document.getElementById("kwadnazw22").innerHTML);//zchodzi
+        var z1 = parseInt(document.getElementById("window_zm2").value);//zchodzi z boiska
+	var z2 = parseInt(document.getElementById("kwadnazw22").innerHTML);//wchodzi
         for(var i=1;i<=12;i++)
 	{
 		if(team2[i][3]==z1)
@@ -785,8 +793,8 @@ function zmia_2_nex()
 		document.getElementById("kwadnazw22").innerHTML="";
 		return 0;
 	}
-	var z1 = parseInt(document.getElementById("window_zm2").value);//wchodzi
-	var z2 = parseInt(document.getElementById("kwadnazw22").innerHTML);//zchodzi
+	var z1 = parseInt(document.getElementById("window_zm2").value);//zchodzi z boiska
+	var z2 = parseInt(document.getElementById("kwadnazw22").innerHTML);//wchodzi
 	for(var i=1;i<=12;i++)
 	{
 		if(team2[i][3]==z1)
@@ -859,8 +867,12 @@ function zmiana1()
 
 function change2(zmj,j)
 {
-	changes[changesind] = Array(2, team2[zmj][3], team2[j][3]);
-	changesind++;
+	//var changesind = changes.length;
+        //changes[changesind] = Array(2, team2[zmj][3], team2[j][3]);
+        
+        item = [2, parseInt(team2[zmj][3]), parseInt(team2[j][3])];
+        changes.push(item);
+        
 	out = team2[zmj].shift(); 
 	ins = team2[j].shift();	
 	
@@ -870,6 +882,9 @@ function change2(zmj,j)
 	temp = team2[zmj];
 	team2[zmj] = team2[j];
 	team2[j] = temp;
+        
+        ustawienie();
+        banch_ins();
 }
 
 function chan2(zmj,j)
@@ -1849,7 +1864,7 @@ function banch_go1(nr)
 {
 	if(document.getElementById("window_zm1").className!="noch")
 	{
-		for(var u=0;u<changesind;u++)
+		for(var u=0;u<changes.lenght;u++)
 		{
                         if(changes[u][0]==1)
                         {
@@ -1868,7 +1883,7 @@ function banch_go2(nr)
 {
 	if(document.getElementById("window_zm2").className!="noch")
 	{
-		for(var u=0;u<changesind;u++)
+		for(var u=0;u<changes.lenght;u++)
 		{
                         if(changes[u][0]==2)
                         {
@@ -1888,7 +1903,7 @@ function banch_go_in1(nr)
 	document.getElementById("kwadnazw11").innerHTML = nr;
 	//poszukać czy ten zawodnik brał udział w jakijs zmianier 
 	var zmy=0;
-	for(var u=0;u<changesind;u++)
+	for(var u=0;u<changes.lenght;u++)
 	{
 		if(changes[u][0]==1)
 		{
@@ -1908,7 +1923,7 @@ function banch_go_in2(nr)
 {
 	document.getElementById("kwadnazw22").innerHTML = nr;
 	var zmy=0;
-	for(var u=0;u<changesind;u++)
+	for(var u=0;u<changes.lenght;u++)
 	{
 		if(changes[u][0]==2)
 		{
@@ -1940,7 +1955,7 @@ function banch_ins()
 }
 function zeruj_changes()
 {
-	/*for(var u=0;u<changesind;u++)
+	/*for(var u=0;u<changes.lenght;u++)
 		{
 			for(var y=0;y<=2;y++)
 			{
@@ -1948,7 +1963,6 @@ function zeruj_changes()
 			}
 		}*/
     changes = [];
-    changesind=0;
 }
 
 function interw(sel)
@@ -2568,7 +2582,7 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
   	tea = team2;//z tempo odczyt, a do tempz zapisuje;
   }
 //obliczyć perfo jeszcze raz
-console.log(changes);console.log("changesind: "+changesind);
+console.log(changes);
   for(var i=1;i<=12;i++)//mam gwaracje, że przejdzie przez każdego R na ławce, ale dalej zawsze wybierze najlepszego
   {	
           tea[0]=Array(0,0,0,0,0,0,0,0,0,0,0,0);

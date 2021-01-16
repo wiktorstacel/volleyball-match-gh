@@ -1467,8 +1467,7 @@ function init1_break()
 //	document.getElementById("show2").innerHTML = 0;
 //        document.getElementById("change_info1").innerHTML = "";
 //        document.getElementById("change_info2").innerHTML = "";
-	pkt1 = 0, pkt2 = 0;
-        zeruj_changes();        
+        pkt1 = 0, pkt2 = 0; 
 	host_give(1); flag_host=0; flag_zm_zag1=0; flag_zm_zag2=0;
         //2021-01-14 zakomentowano i funkcjonalość przeniesiono do action_break do 'slepej' akcji
 	/*if(document.getElementById("tres1").checked)//czy zaznaczony trener - przechodzi tu na pocz każdego seta
@@ -1512,8 +1511,7 @@ function init2_break()
 //	document.getElementById("show2").innerHTML = 0;
 //        document.getElementById("change_info1").innerHTML = "";
 //        document.getElementById("change_info2").innerHTML = "";
-	pkt1 = 0, pkt2 = 0;
-        zeruj_changes();
+        pkt1 = 0, pkt2 = 0; 
 	host_give(1);flag_host=0;flag_zm_zag1=0;flag_zm_zag2=0;
         //2021-01-14 zakomentowano i funkcjonalość przeniesiono do action_break do 'slepej' akcji
 	/*if(document.getElementById("tres1").checked)
@@ -1678,6 +1676,7 @@ function action_break()
             document.getElementById("show2").innerHTML = 0;
             document.getElementById("change_info1").innerHTML = "<br>Zmiany w ustawieniu:";
             document.getElementById("change_info2").innerHTML = "<br>Zmiany w ustawieniu:";
+            zeruj_changes();
             init_load_ustawienie(1);
             init_load_ustawienie(2);
             //dodać omijanie funkcji dla drużyny, która wygrała ostatniego seta
