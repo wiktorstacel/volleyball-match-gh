@@ -7,6 +7,7 @@ var mm1 = 0, mm2 = 0;
 var mm_prev = 0; //info, kto wygrał poprzedni set
 var serv_first = 0; //info o tym, kto wylosował serwowanie w 1 secie(i w tie-break);
 var serv = 0; //info o tym kto ostatnio serwował
+var set_finished_break = 0; //info, że jest przerwa między setami - działają tylko zmiany w ustawieniu
 var a =0;
 var middle = 0; //1 jesli atak byl ze srodka
 var m_res = "";
@@ -1688,6 +1689,7 @@ function action_break()
             {
                 optimal_compos_zm_begin(2);//alert("robie op_begin_2");
             }
+            set_finished_break = 0;
             slepa=0;
             time=1;
         }
@@ -1745,6 +1747,7 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                         }
                         //alert("Tie-break:"+pkt1+":"+pkt2+" KONIEC MECZU: "+mm1+" : "+mm2);
                         time=1;
+                        set_finished_break = 1;
                         document.getElementById("tablica_wyn_sety").innerHTML = m_res;
 			m_res="";
 			pkt1=0;pkt2=0;time=1;push=0;
@@ -1782,6 +1785,7 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                             if(pkt1>pkt2)mm_prev = 1;else mm_prev = 2;//alert("mm_prev:"+mm_prev);//do użycia z optimal_compos_zm_begin
                             time=1;
                             slepa=1;
+                            set_finished_break = 1;
                             document.getElementById("tablica_wyn_sety").innerHTML = m_res;
                         }
 			//clearTimeout(atime);
@@ -1800,6 +1804,7 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrownacz_give(2);transpa();flag_wyr2=0;}
 						//alert(" KONIEC MECZU: "+m_res);
                                                 time=1;
+                                                set_finished_break = 1;
                                                 document.getElementById("tablica_wyn_sety").innerHTML = m_res;
 						flag_star=0;
                                                 //2021-01-13 - omijamy dla 1 mecz

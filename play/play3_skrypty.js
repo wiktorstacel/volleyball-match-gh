@@ -216,10 +216,10 @@ function wyniki_czy_set_skonczony(wyn)
 }
 
 function wyniki(wyn)
-{		
-	
-    var set_ended = wyniki_czy_set_skonczony(wyn);//0 to skończony set
-    if(set_ended == 0)alert("skonczony set set_ended:"+set_ended);
+{			
+    //var set_ended = wyniki_czy_set_skonczony(wyn);//0 to skończony set
+    var set_ended = set_finished_break;//1 to skonczony - trwa przerwa
+    if(set_ended == 1)alert("skonczony set set_ended:"+set_ended+"pkt 1 i 2:"+pkt1+", "+pkt2);
         var res1, res2;
 	if(wyn==1)
   	{
@@ -339,13 +339,13 @@ function wyniki(wyn)
 	
 	var r1=pkt1-pkt2;
 	var r2=pkt2-pkt1;
-	if((r1)>7&&flag_wyr1==0&&set_ended!=0)
+	if((r1)>7&&flag_wyr1==0&&set_ended==0)
 	{
 		wyrownacz_take(1);
 		if(mm1==1&&mm1==2)optim_zm_set_pod(2);
 		flag_wyr1=1;
 	}
-	if((r2)>7&&flag_wyr2==0&&set_ended!=0)
+	if((r2)>7&&flag_wyr2==0&&set_ended==0)
 	{
 		wyrownacz_take(2);
 		if(mm1==2&&mm2==1)optim_zm_set_pod(1);
@@ -362,30 +362,30 @@ function wyniki(wyn)
 		flag_wyr2=0;
 	}
 	
-	if((r1)>5&&flag_wyr1==0&&set_ended!=0)//!!! przy jakiej różnicy robi duże zmiany
+	if((r1)>5&&flag_wyr1==0&&set_ended==0)//!!! przy jakiej różnicy robi duże zmiany
 	{
 		if(flag_star==0)optimal_compos_zm(2);
 		else if(flag_star==1&&document.getElementById("tres2").checked){optimal_compos_zm(2);}
-                if(set_ended == 0)alert("Wszedłem r1>5, set_ended:"+set_ended);
+                if(set_ended == 1)alert("Wszedłem r1>5, set_ended:"+set_ended);
 	}
-	if((r2)>5&&flag_wyr2==0&&set_ended!=0)//!!! przy jakiej różnicy robi duże zmiany
+	if((r2)>5&&flag_wyr2==0&&set_ended==0)//!!! przy jakiej różnicy robi duże zmiany
 	{
 		if(flag_star==0){optimal_compos_zm(1);}
 		else if(flag_star==1&&document.getElementById("tres1").checked){optimal_compos_zm(1);}
-                if(set_ended == 0)alert("Wszedłem r2>5, set_ended:"+set_ended);
+                if(set_ended == 1)alert("Wszedłem r2>5, set_ended:"+set_ended);
 	}
 	//Zmiana na zagrywkę team1
         //possible change <= 4, bo nie będzie miał jak wrócić, tu to nie jest sprawdzane więc wykona 7 zmianę
         //user może zrobić zmiany jak gracz jest na zagrywce, trzeba uniemożliwić powrót jak zmian będzie 6
-	if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4&&set_ended!=0)
+	if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4&&set_ended==0)
 	{
 		if(flag_star==0)optimal_zm_zagr1();
 		else if(flag_star==1&&document.getElementById("tres1").checked)
 		optimal_zm_zagr1();
-                if(set_ended == 0)alert("Wszedłem zagr1, set_ended:"+set_ended);
+                if(set_ended == 1)alert("Wszedłem zagr1, set_ended:"+set_ended);
 	}
         //Zmiana powrotna z zagrywki - flag_zm_zag1 pamięta nr zawodnika
-	if(flag_zm_zag1>0&&przejscie==1&&set_ended!=0)
+	if(flag_zm_zag1>0&&przejscie==1&&set_ended==0)
 	{
 	var do_zejscia=0;// z zagrywki; w funckacja opt_comp_zagryw1 odpowienidk g12, który tam wszedł z ławki
 	for(var i=1;i<=6;i++)
@@ -414,16 +414,16 @@ document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+f
 		}
 	}*/
 	
-	//Zmiana na zagrywkę team1
-	if(pkt2>=19&&przejscie==1&&flag_zm_zag2==0&&r2<4&&set_ended!=0)//dop r1
+	//Zmiana na zagrywkę team2
+	if(pkt2>=19&&przejscie==1&&flag_zm_zag2==0&&r2<4&&set_ended==0)//dop r1
 	{
 		if(flag_star==0)optimal_zm_zagr2();
 		else if(flag_star==1&&document.getElementById("tres2").checked)
 		optimal_zm_zagr2();
-                if(set_ended == 0)alert("Wszedłem zagr2, set_ended:"+set_ended);
+                if(set_ended == 1)alert("Wszedłem zagr2, set_ended:"+set_ended);
 	}
         //zmiana powrotna z zagrywki
-	if(flag_zm_zag2>0&&przejscie==2&&set_ended!=0)
+	if(flag_zm_zag2>0&&przejscie==2&&set_ended==0)
 	{
 	var do_zejscia=0;
 	for(var i=1;i<=6;i++)
@@ -436,8 +436,8 @@ document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr:
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[flag_zm_zag2][5]+" za "+team2[do_zejscia][5];
-change2(flag_zm_zag2,do_zejscia);
-//if(possible_change(2,team2[do_zejscia][3],team2[flag_zm_zag2][3])<6){change2(do_zejscia, flag_zm_zag2);}
+//change2(flag_zm_zag2,do_zejscia);
+if(possible_change(2,team2[do_zejscia][3],team2[flag_zm_zag2][3])<6){change2(do_zejscia, flag_zm_zag2);}
 
 flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
@@ -616,6 +616,7 @@ function zamamiana_zmiana(id)
 //OPERUJE NA NR ZAWODNIKOW!!!
 function possible_change(par,z1,z2)//pomiedzy zaw//jesli sa obok siebie w tabeli i r<6 to ok
 {
+    console.log("Prop zmiany: "+par+" out: "+z1+" in: "+z2);
 if(par==1)
 {
     var r=0; var ile_razy_para = 0;
@@ -644,29 +645,41 @@ if(par==1)
             }
         }
     }
-    alert("ile razy para: "+ile_razy_para);
+    alert("ile razy para1: "+ile_razy_para);
     if(ile_razy_para>1){return 7;}//zmiana niedozwolona - mogą się raz zmnienić i 1 raz powrotnie
     alert("return ilość change1: "+r);
     return r;//zm dozwolona 0,1,2,3,4,5
 }
 else if(par==2)
 {
-    var r=0;
+    var r=0; var ile_razy_para = 0;
     for(var u=0;u<changes.length;u++)
     {
         if(changes[u][0]==2)
         {
             r++;
+            //sprawdzanie czy w jakiejś parze są już te numery - ale nie razem - zmiana zawsze niedozwolona
             if(changes[u][1]==z1||changes[u][1]==z2||changes[u][2]==z1||changes[u][2]==z2)
             {
-                /*if((changes[u][1]!=z1||changes[u][2]==z2)||(changes[u][1]==z1||changes[u][2]!=z2)||(changes[u][1]!=z2||changes[u][2]==z1)||(changes[u][1]==z2||changes[u][2]!=z1))
+                if((changes[u][1]!=z1 && changes[u][2]==z2) || (changes[u][1]==z1 && changes[u][2]!=z2) || (changes[u][1]!=z2 && changes[u][2]==z1) || (changes[u][1]==z2 && changes[u][2]!=z1))
                 {
-                    alert("jestem-return 6");return 6;
-                }*/
-                return 6;alert("2- jestem-return 6 - już uczesniczył w zmianie.");
+                    alert("2- jestem-return 6 - już uczesniczył w zmianie.");
+                    alert("changes[u][1]: "+changes[u][1]);
+                    alert("changes[u][2]: "+changes[u][2]);
+                    alert("z1: "+z1);
+                    alert("z2: "+z2);                       
+                    return 7;//zmiana niedozwolona - już uczestniczył w innej parze na wymianę
+                }
+            }
+            //ile razy podane nr są w parze - raz mogą być - trzeba dozolić jak raz są w parze - na zm powr
+            if((changes[u][1]==z1&&changes[u][2]==z2)||(changes[u][1]==z2&&changes[u][2]==z1))
+            {
+                ile_razy_para++;
             }
         }
     }
+    alert("ile razy para2: "+ile_razy_para);
+    if(ile_razy_para>1){return 7;}//zmiana niedozwolona - mogą się raz zmnienić i 1 raz powrotnie
     alert("return ilość change2: "+r);
     return r;//zm dozwolona 0,1,2,3,4,5,6
 }
@@ -700,17 +713,25 @@ function zmia_1_nex()
                     var zz2 = i;
             }
     }
-    
     if(pkt1 == 0 && pkt2 == 0)//document.getElementById("kwadnazw11").innerText
     {
-        chan1(zz1,zz2);//(out,in)
-        //2021-01-14: dodano div w celu wyśw info o zmianach na gemafield
-        var fffv = document.getElementById("change_info1").innerHTML;
-        document.getElementById("change_info1").innerHTML=fffv+"<br>"+team1[zz1][5]+" za "+team1[zz2][5]+""; 
-        ustawienie();
-	banch_ins();
-	document.getElementById("kwadrat11").innerHTML="";
-	document.getElementById("kwadnazw11").innerHTML="";
+        if(slepa == 0)//zmiana ustawienia nie moze być możliwa na końcu seta, przed skasowaniem wyniku na nowy
+        {
+            chan1(zz1,zz2);//(out,in)
+            //2021-01-14: dodano div w celu wyśw info o zmianach na gemafield
+            var fffv = document.getElementById("change_info1").innerHTML;
+            document.getElementById("change_info1").innerHTML=fffv+"<br>"+team1[zz1][5]+" za "+team1[zz2][5]+""; 
+            ustawienie();
+            banch_ins();
+            document.getElementById("kwadrat11").innerHTML="";
+            document.getElementById("kwadnazw11").innerHTML="";
+        }
+        else
+        {
+            document.getElementById("screen1").innerHTML=" set zakończony";
+            document.getElementById("kwadrat11").innerHTML="";
+            document.getElementById("kwadnazw11").innerHTML="";
+        }
     }
     else
     {
@@ -758,22 +779,25 @@ function zmia_2_nex()
     {
             document.getElementById("screen2").innerHTML="wybierz zawodników do zmiany";return 0;
     }
+    //zczytanie pól, jeśli wcześniej returny nie wywaliły z błędem pól
+    var z1 = parseInt(document.getElementById("window_zm2").value);//zchodzi z boiska
+    var z2 = parseInt(document.getElementById("kwadnazw22").innerHTML);//wchodzi
+    for(var i=1;i<=12;i++)
+    {
+            if(team2[i][3]==z1)
+            {
+                    var zz1 = i;
+            }
+            if(team2[i][3]==z2)
+            {
+                    var zz2 = i;
+            }
+    }
     
     if(pkt1 == 0 && pkt2 == 0)
     {
-        var z1 = parseInt(document.getElementById("window_zm2").value);//zchodzi z boiska
-	var z2 = parseInt(document.getElementById("kwadnazw22").innerHTML);//wchodzi
-        for(var i=1;i<=12;i++)
-	{
-		if(team2[i][3]==z1)
-		{
-			var zz1 = i;
-		}
-		if(team2[i][3]==z2)
-		{
-			var zz2 = i;
-		}
-	}
+        if(slepa == 0)//zmiana ustawienia nie moze być możliwa na końcu seta, przed skasowaniem wyniku na nowy
+        {
         chan2(zz1,zz2);//(wchodzi,schodzi)
 
         //2021-01-14: dodano div w celu wyśw info o zmianach na gemafield
@@ -783,38 +807,43 @@ function zmia_2_nex()
 	banch_ins();
 	document.getElementById("kwadrat22").innerHTML="";
 	document.getElementById("kwadnazw22").innerHTML="";
+        }
+        else
+        {
+            document.getElementById("screen2").innerHTML=" set zakończony";
+            document.getElementById("kwadrat22").innerHTML="";
+            document.getElementById("kwadnazw22").innerHTML="";
+        }
     }
     else
     {
-	if(possible_change(2)>=6)//!!!
+        var pos_cz = possible_change(2,z1,z2);
+	if(pos_cz==6)
 	{
-		document.getElementById("screen2").innerHTML=" wykorzystano limit zmian";
-		document.getElementById("kwadrat22").innerHTML="";
-		document.getElementById("kwadnazw22").innerHTML="";
-		return 0;
+            document.getElementById("screen2").innerHTML=" wykorzystano limit zmian";
+            document.getElementById("kwadrat22").innerHTML="";
+            document.getElementById("kwadnazw22").innerHTML="";
+            return 0;
 	}
-	var z1 = parseInt(document.getElementById("window_zm2").value);//zchodzi z boiska
-	var z2 = parseInt(document.getElementById("kwadnazw22").innerHTML);//wchodzi
-	for(var i=1;i<=12;i++)
+        if(pos_cz==7)
 	{
-		if(team2[i][3]==z1)
-		{
-			var zz1 = i;
-		}
-		if(team2[i][3]==z2)
-		{
-			var zz2 = i;
-		}
+            document.getElementById("screen2").innerHTML=" zmiana niedozwolona";
+            document.getElementById("kwadrat22").innerHTML="";
+            document.getElementById("kwadnazw22").innerHTML="";
+            return 0;
 	}
+        else (pos_cz < 6)
+        {
 	change2(zz1,zz2);
 	document.getElementById("screen2").innerHTML="zmiana: "+team2[zz1][5]+" za "+team2[zz2][5];
         //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
         var fffv = document.getElementById("change_info2").innerHTML;
         document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[zz1][5]+" za "+team2[zz2][5]+"";
-	ustawienie();
-	banch_ins();
+	//ustawienie();
+	//banch_ins();
 	document.getElementById("kwadrat22").innerHTML="";
 	document.getElementById("kwadnazw22").innerHTML="";
+        }
     }
 }
 
@@ -2582,7 +2611,7 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
   	tea = team2;//z tempo odczyt, a do tempz zapisuje;
   }
 //obliczyć perfo jeszcze raz
-console.log(changes);
+//console.log(changes);
   for(var i=1;i<=12;i++)//mam gwaracje, że przejdzie przez każdego R na ławce, ale dalej zawsze wybierze najlepszego
   {	
           tea[0]=Array(0,0,0,0,0,0,0,0,0,0,0,0);
@@ -2774,7 +2803,7 @@ function optimal_zm_zagr1()
             flag_zm_zag1=g12;//to jest tylko nr pozycji a nie nr zaw
             change1(g6,g12);
         }
-    }console.log(changes);
+    }//console.log(changes);
 }
 
 function optimal_zm_zagr2()
@@ -2805,7 +2834,7 @@ function optimal_zm_zagr2()
             flag_zm_zag2=g12;//to jest tylko nr pozycji kurwa a nie nr zaw
             change2(g6,g12);
         }
-    }console.log(changes);
+    }//console.log(changes);
 }
 
 function optim_zm_ogr_young(adr)
