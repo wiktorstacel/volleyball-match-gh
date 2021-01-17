@@ -1271,7 +1271,7 @@ function cpuflow()
 //		if(loophelp()==1)
 //		{
                         if(action_break()==0){return 0;}
-			var atime = setTimeout(help_cpuflow, 200); //ważne: funkcja bez nawiasów !!!
+			var atime = setTimeout(help_cpuflow, 50); //ważne: funkcja bez nawiasów !!!
                         if(_1akcja)
                         {
                             time = 1;
@@ -1680,6 +1680,7 @@ function action_break()
             zeruj_changes();
             init_load_ustawienie(1);
             init_load_ustawienie(2);
+            suma1 = 0;suma2 = 0;
             //dodać omijanie funkcji dla drużyny, która wygrała ostatniego seta
             if(document.getElementById("tres1").checked && mm_prev == 2)// //czy zaznaczony trener - przechodzi tu na pocz każdego seta
             {
