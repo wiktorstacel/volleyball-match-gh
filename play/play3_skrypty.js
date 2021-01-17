@@ -217,6 +217,7 @@ function wyniki_czy_set_skonczony(wyn)
 
 function wyniki(wyn)
 {			
+        var indicator_zm1 = 0;var indicator_zm2 = 0;
         var res1, res2;
 	if(wyn==1)
   	{
@@ -374,11 +375,11 @@ function wyniki(wyn)
 		else if(flag_star==1&&document.getElementById("tres1").checked){optimal_compos_zm(1);}
                 if(set_ended == 1)alert("Wszedłem r2>5, set_ended:"+set_ended);
 	}
-	//Zmiana na zagrywkę team1
-        //possible change <= 4, bo nie będzie miał jak wrócić, tu to nie jest sprawdzane więc wykona 7 zmianę
+        
+	//ZMIANA NA ZAGRYKE TEAM1
         //user może zrobić zmiany jak gracz jest na zagrywce, trzeba uniemożliwić powrót jak zmian będzie 6
 	if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4&&set_ended==0)
-	{
+	{//indicator_zm1++; alert("indicator_zm1: "+indicator_zm1);
 		if(flag_star==0)optimal_zm_zagr1();
 		else if(flag_star==1&&document.getElementById("tres1").checked)
 		optimal_zm_zagr1();
@@ -386,21 +387,25 @@ function wyniki(wyn)
 	}
         //Zmiana powrotna z zagrywki - flag_zm_zag1 pamięta nr zawodnika
 	if(flag_zm_zag1>0&&przejscie==1&&set_ended==0)
-	{
+	{//alert("indicator_zm1: "+indicator_zm1);
 	var do_zejscia=0;// z zagrywki; w funckacja opt_comp_zagryw1 odpowienidk g12, który tam wszedł z ławki
 	for(var i=1;i<=6;i++)
 	{		
 if(team1[i][0]==1){do_zejscia=i;}//przy indeksie 0 jesr aktualna pozycja, więc na 0 jest zawsze ostanio serwujący
 	}
+            if(possible_change(1,team1[do_zejscia][3],team1[flag_zm_zag1][3])<6)
+            {        
 //2021-01-12 Zmiana na screen3 dla team1
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team1[flag_zm_zag1][5]+" za: "+team1[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" do_zejscia: "+do_zejscia;
+document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana powrotna: "+team1[flag_zm_zag1][5]+" za: "+team1[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" do_zejscia: "+do_zejscia;
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za "+team1[do_zejscia][5];
 //change1(flag_zm_zag1,do_zejscia);//(out,in)
-if(possible_change(1,team1[do_zejscia][3],team1[flag_zm_zag1][3])<6){change1(do_zejscia, flag_zm_zag1);}
+                change1(do_zejscia, flag_zm_zag1);
+            }
 
+//DO USUNIECIA!
 flag_zm_zag1*=(-1);//change1(zz1,zz2);//(wchodzi,schodzi)
 var fffv = document.getElementById("screen3").innerHTML;
 document.getElementById("screen3").innerHTML=fffv+"<br>Powrotna flag_zm_zag1: "+flag_zm_zag1+"przejście: "+przejscie+" team1[do_zejscia][0]: "+team1[do_zejscia][0]+"<br/>";
@@ -414,9 +419,9 @@ document.getElementById("screen3").innerHTML=fffv+"<br>Powrotna flag_zm_zag1: "+
 		}
 	}*/
 	
-	//Zmiana na zagrywkę team2
+	//ZMIANA NA ZAGRYKE TEAM2
 	if(pkt2>=19&&przejscie==1&&flag_zm_zag2==0&&r2<4&&set_ended==0)//dop r1
-	{
+	{//indicator_zm2++; alert("indicator_zm2: "+indicator_zm2);
 		if(flag_star==0)optimal_zm_zagr2();
 		else if(flag_star==1&&document.getElementById("tres2").checked)
 		optimal_zm_zagr2();
@@ -424,21 +429,25 @@ document.getElementById("screen3").innerHTML=fffv+"<br>Powrotna flag_zm_zag1: "+
 	}
         //zmiana powrotna z zagrywki
 	if(flag_zm_zag2>0&&przejscie==2&&set_ended==0)
-	{
+	{//alert("indicator_zm2: "+indicator_zm2);
 	var do_zejscia=0;
 	for(var i=1;i<=6;i++)
 	{		
 if(team2[i][0]==1){do_zejscia=i;}
 	}
+            if(possible_change(2,team2[do_zejscia][3],team2[flag_zm_zag2][3])<6)
+            {
 //2021-01-12: Zmiana tekstów
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s]Zmiana powr: "+team2[flag_zm_zag2][5]+" za: "+team2[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag2+" do_zejscia: "+do_zejscia;
+document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana powrotna: "+team2[flag_zm_zag2][5]+" za: "+team2[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag2+" do_zejscia: "+do_zejscia;
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[flag_zm_zag2][5]+" za "+team2[do_zejscia][5];
 //change2(flag_zm_zag2,do_zejscia);
-if(possible_change(2,team2[do_zejscia][3],team2[flag_zm_zag2][3])<6){change2(do_zejscia, flag_zm_zag2);}
+                change2(do_zejscia, flag_zm_zag2);
+            }
 
+//DO USUNIECIA!
 flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
 document.getElementById("screen6").innerHTML=fffv+"<br>Powrotna flag_zm_zag2: "+flag_zm_zag2+"przejście: "+przejscie+" team2[do_zejscia][0]: "+team2[do_zejscia][0]+"<br/>";
@@ -616,7 +625,7 @@ function zamamiana_zmiana(id)
 //OPERUJE NA NR ZAWODNIKOW!!!
 function possible_change(par,z1,z2)//pomiedzy zaw//jesli sa obok siebie w tabeli i r<6 to ok
 {
-    console.log("Prop zmiany: "+par+" out: "+z1+" in: "+z2);
+    //console.log("Prop zmiany: "+par+" out: "+z1+" in: "+z2);
 if(par==1)
 {
     var r=0; var ile_razy_para = 0;
@@ -631,10 +640,8 @@ if(par==1)
                 if((changes[u][1]!=z1 && changes[u][2]==z2) || (changes[u][1]==z1 && changes[u][2]!=z2) || (changes[u][1]!=z2 && changes[u][2]==z1) || (changes[u][1]==z2 && changes[u][2]!=z1))
                 {
                     alert("1- jestem-return 6 - już uczesniczył w zmianie.");
-                    alert("changes[u][1]: "+changes[u][1]);
-                    alert("changes[u][2]: "+changes[u][2]);
-                    alert("z1: "+z1);
-                    alert("z2: "+z2);                       
+                    //alert("changes[u][1]: "+changes[u][1]);alert("changes[u][2]: "+changes[u][2]);
+                    //alert("z1: "+z1);alert("z2: "+z2);                       
                     return 7;//zmiana niedozwolona - już uczestniczył w innej parze na wymianę
                 }
             }
@@ -664,10 +671,8 @@ else if(par==2)
                 if((changes[u][1]!=z1 && changes[u][2]==z2) || (changes[u][1]==z1 && changes[u][2]!=z2) || (changes[u][1]!=z2 && changes[u][2]==z1) || (changes[u][1]==z2 && changes[u][2]!=z1))
                 {
                     alert("2- jestem-return 6 - już uczesniczył w zmianie.");
-                    alert("changes[u][1]: "+changes[u][1]);
-                    alert("changes[u][2]: "+changes[u][2]);
-                    alert("z1: "+z1);
-                    alert("z2: "+z2);                       
+                    //alert("changes[u][1]: "+changes[u][1]);alert("changes[u][2]: "+changes[u][2]);
+                    //alert("z1: "+z1);alert("z2: "+z2);                       
                     return 7;//zmiana niedozwolona - już uczestniczył w innej parze na wymianę
                 }
             }
@@ -2625,8 +2630,8 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
 			{
 			  if(tea[j][4]=="R")//Jak 2óch R na ławce, to jest info, że 2 razy próbuje - OK; ale tylko jednego	
 			  {
-			  	if(tea[j][11] > tea[maxj][11]){maxj=j;var test = rozgryw_lawka.unshift(j);}//na początek array
-                                else {var test = rozgryw_lawka.push(j);}//na koniec array
+			  	if(tea[j][11] > tea[maxj][11]){maxj=j;rozgryw_lawka.unshift(j);}//na początek array
+                                else {rozgryw_lawka.push(j);}//na koniec array
 			  }
 			}//console.log(rozgryw_lawka);
                         //array z zawodnikami R i tutaj probuje po kolei forem ich wpuszczać
@@ -2634,28 +2639,35 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
                         {
                           maxj = rozgryw_lawka[p];
 			  if(tea[maxj][11] > (tea[1][11]+1))
-			  {
+			  {console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[1][5]);
 //R i A: potrzeba ponowić próbę wpuszcz kolejnych gorszych, bo poprz próby mogły być blokowane zm powrotnymi
 //Jak 2óch R na ławce, to jest info, że 2 razy próbuje - OK; ale tylko jednego
 //jakby było 5 R na ławce to ma spróbować każdego wpóścić, jak jednego wpósci, np3 może iść dalej. Zm powr nie powinny
-//ani zrobić, ani pokazać tych zmian.//                    change1(zz1,zz2);//(wchodzi,schodzi) //numery zawodników
-if(adr==1){if(possible_change(1,tea[maxj][3],tea[1][3])<6){change1(maxj,1);}}else {if(possible_change(2,tea[maxj][3],tea[1][3])<6){change2(maxj,1);}}
+//ani zrobić, ani pokazać tych zmian.//                    change1(zz1,zz2);//(out,in) //indeksy
                             //2021-01-12: rozdzielono na 2 screeny
                             if(adr == 1)//wyświetlam zmiany, które zaproponowała funckja ale nie doszły do skutku
                             {
+                                if(possible_change(1,tea[1][3],tea[maxj][3])<6)
+                                {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[1][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
-document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[1][5]+" za "+tea[maxj][5];
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[1][5];
+                                    change1(1,maxj);
+                                }
                             }
                             else
                             {
+                                if(possible_change(2,tea[1][3],tea[maxj][3])<6)
+                                {
  var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[1][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
-document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[1][5]+" za "+tea[maxj][5];
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[1][5];
+                                    change2(1,maxj);
+                                }
                             }
 			  }
                         }//end of for with p paramentr
@@ -2663,103 +2675,149 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
 		  if(i==4)
 		  {
 		  	var maxj=0;
+                        var atakujacy_lawka = [];
 			for(var j=8;j<=12;j++)//szuka max//moze jest 2 lub wiecej na lawce
 			{
 			  if(tea[j][4]=="A")	
-			  {
-			  	if(tea[j][6]>tea[maxj][6])maxj=j;
+			  {                              
+                                if(tea[j][6] > tea[maxj][6]){maxj=j;atakujacy_lawka.unshift(j);}//na początek array
+                                else {atakujacy_lawka.push(j);}//na koniec array
 			  }
 			}
-			if(tea[maxj][6]>(tea[4][6]+1))
-			{
-if(adr==1){if(possible_change(1,tea[maxj][3],tea[4][3])<6){change1(maxj,4);}}else {if(possible_change(2,tea[maxj][3],tea[4][3])<6){change2(maxj,4);}}
+                        //array z zawodnikami A i tutaj probuje po kolei forem ich wpuszczać
+                        for(p=0; p<atakujacy_lawka.length; p++)
+                        {
+                          maxj = atakujacy_lawka[p];
+			  if(tea[maxj][6]>(tea[4][6]+1))//Dochodzi do zmiany
+			  {console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[4][5]);
                             //2021-01-12: rozdzielono na 2 screeny
                             if(adr == 1)
                             {
+                                if(possible_change(1,tea[4][3],tea[maxj][3])<6)
+                                {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[4][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
-document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[4][5]+" za "+tea[maxj][5];
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[4][5];
+                                    change1(4,maxj);
+                                }
                             }
                             else
                             {
+                                if(possible_change(2,tea[4][3],tea[maxj][3])<6)
+                                {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[4][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
-document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[4][5]+" za "+tea[maxj][5];
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[4][5];
+                                    change2(4,maxj);
+                                }
                             }
 			}
+                    }//end of for with p parameter
 		  }	
 		  if(i==2||i==5)
 		  {
 		  	var maxj=0;
+                        var przyjmuj_lawka = [];
 			for(var j=8;j<=12;j++)//szuka max//moze jest 2 lub wiecej na lawce
 			{
 			  if(tea[j][4]=="P")	
 			  {
-			  	if((tea[j][6]+tea[j][7])/2>(tea[maxj][6]+tea[maxj][7])/2)maxj=j;
+			  	//if((tea[j][6]+tea[j][7])/2>(tea[maxj][6]+tea[maxj][7])/2)maxj=j;
+                                
+                                if((tea[j][6]+tea[j][7])/2>(tea[maxj][6]+tea[maxj][7])/2){maxj=j;przyjmuj_lawka.unshift(j);}//na początek array
+                                else {przyjmuj_lawka.push(j);}//na koniec array
 			  }
 			}
-			var a=0;
-			if(((tea[2][6]+tea[2][7])/2)<((tea[5][6]+tea[5][7])/2))a=2;else a=5;//ktory P słabszy na boisku
-			if((tea[maxj][6]+tea[maxj][7])/2>((tea[a][6]+tea[a][7])/2+1))
-			{
-if(adr==1){if(possible_change(1,tea[maxj][3],tea[a][3])<6){change1(maxj,a);}}else {if(possible_change(2,tea[maxj][3],tea[a][3])<6){change2(maxj,a);}}
+                        //array z zawodnikami P i tutaj probuje po kolei forem ich wpuszczać
+                        for(p=0; p<przyjmuj_lawka.length; p++)
+                        {
+                          maxj = przyjmuj_lawka[p];
+			  var a=0;
+			  if(((tea[2][6]+tea[2][7])/2)<((tea[5][6]+tea[5][7])/2))a=2;else a=5;//ktory P słabszy na boisku
+			  if((tea[maxj][6]+tea[maxj][7])/2>((tea[a][6]+tea[a][7])/2+1))
+			{console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[a][5]);
                             //2021-01-12: rozdzielono na 2 screeny
                             if(adr == 1)
                             {
+                                if(possible_change(1,tea[a][3],tea[maxj][3])<6)
+                                {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2;
+document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2;
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
-document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
+                                    change1(a,maxj);
+                                }
                             }
                             else
                             {
+                                if(possible_change(2,tea[a][3],tea[maxj][3])<6)
+                                {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2; 
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
-document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
+                                    change2(a,maxj);
+                                }
                             }
 			}
+                    }//end for with p parameter
 		  } 
 		  if(i==3||i==6)
 		  {
 		  	var maxj=0;
+                        var srodkowi_lawka = [];
 			for(var j=8;j<=12;j++)//szuka max//moze jest 2 lub wiecej na lawce
 			{
 			  if(tea[j][4]=="S")	
 			  {
-			  	if((tea[j][6]+tea[j][9])/2>(tea[maxj][6]+tea[maxj][9])/2)maxj=j;
+			  	//if((tea[j][6]+tea[j][9])/2>(tea[maxj][6]+tea[maxj][9])/2)maxj=j;
+                                
+                                if((tea[j][6]+tea[j][9])/2>(tea[maxj][6]+tea[maxj][9])/2){maxj=j;srodkowi_lawka.unshift(j);}//na początek array
+                                else {srodkowi_lawka.push(j);}//na koniec array
 			  }
 			}
-			var a=0;
-			if((tea[3][6]+tea[3][9])/2<(tea[6][6]+tea[6][9])/2)a=3;else a=6;//który S słabysz na boisku
-			if((tea[maxj][6]+tea[maxj][9])/2>((tea[a][6]+tea[a][9])/2+1))//czy na lawce jest lepszy
-			{
-if(adr==1){if(possible_change(1,tea[maxj][3],tea[a][3])<6){change1(maxj,a);}}else {if(possible_change(2,tea[maxj][3],tea[a][3])<6){change2(maxj,a);}}	
+                                                //array z zawodnikami P i tutaj probuje po kolei forem ich wpuszczać
+                        for(p=0; p<srodkowi_lawka.length; p++)
+                        {
+                          maxj = srodkowi_lawka[p];
+			  var a=0;
+			  if((tea[3][6]+tea[3][9])/2<(tea[6][6]+tea[6][9])/2)a=3;else a=6;//który S słabysz na boisku
+			  if((tea[maxj][6]+tea[maxj][9])/2>((tea[a][6]+tea[a][9])/2+1))//czy na lawce jest lepszy
+			  {	console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[a][5]);
                             //2021-01-12: rozdzielono na 2 screeny
                             if(adr == 1)
                             {
+                                if(possible_change(1,tea[a][3],tea[maxj][3])<6)
+                                {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
-document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
+                                    change1(a,maxj);
+                                }
                             }
                             else
                             {
+                                if(possible_change(2,tea[a][3],tea[maxj][3])<6)
+                                {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
-document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
+                                    change2(a,maxj);
+                                }
                             }
 			}
-		  }  
+		  }  //end of for with p parameter
+              }
   }
    
   	  if(adr==1)
