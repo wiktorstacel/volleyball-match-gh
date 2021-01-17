@@ -1689,7 +1689,7 @@ function action_break()
             {
                 optimal_compos_zm_begin(2);//alert("robie op_begin_2");
             }
-            set_finished_break = 0;
+            set_finished_break = 0;//to jest jednak akcja póxniej niż zakończony set, pkt są  już skasowane
             slepa=0;
             time=1;
         }

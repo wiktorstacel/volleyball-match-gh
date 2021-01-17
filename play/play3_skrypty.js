@@ -181,17 +181,17 @@ function wyniki_czy_set_skonczony(wyn)
     {
         if(pkt1 < 15 && pkt2 < 15)
         {
-            return 1;
+            return 0;
         }
         else
         {
             if(pkt1 >= pkt2)
             {
-                if((pkt1 - pkt2) > 1){return 0;}else{return 1;}
+                if((pkt1 - pkt2) > 1){return 1;}else{return 0;}
             }
             else
             {
-                if((pkt2 - pkt1) > 1){return 0;}else{return 1;}
+                if((pkt2 - pkt1) > 1){return 1;}else{return 0;}
             }
         }
     }
@@ -199,17 +199,17 @@ function wyniki_czy_set_skonczony(wyn)
     {
         if(pkt1 < 25 && pkt2 < 25)
         {
-            return 1;
+            return 0;
         }
         else //pkt1 lub pkt2 co najmiej równe 25
         {
             if(pkt1 >= pkt2)
             {
-                if((pkt1 - pkt2) > 1){return 0;}else{return 1;}
+                if((pkt1 - pkt2) > 1){return 1;}else{return 0;}
             }
             else
             {
-                if((pkt2 - pkt1) > 1){return 0;}else{return 1;}
+                if((pkt2 - pkt1) > 1){return 1;}else{return 0;}
             }
         }
     }
@@ -217,9 +217,6 @@ function wyniki_czy_set_skonczony(wyn)
 
 function wyniki(wyn)
 {			
-    //var set_ended = wyniki_czy_set_skonczony(wyn);//0 to skończony set
-    var set_ended = set_finished_break;//1 to skonczony - trwa przerwa
-    if(set_ended == 1)alert("skonczony set set_ended:"+set_ended+"pkt 1 i 2:"+pkt1+", "+pkt2);
         var res1, res2;
 	if(wyn==1)
   	{
@@ -272,10 +269,13 @@ function wyniki(wyn)
 	 act_stat();
 	 //console.timeEnd("stat") ;
 	 transpa();
-	 }
-	 
-	
+         }	
   	}
+        
+        var set_ended = wyniki_czy_set_skonczony(wyn);//1 to skończony set
+        //var set_ended = set_finished_break;//1 to skonczony - trwa przerwa
+        if(set_ended == 1)alert("skonczony set set_ended:"+set_ended+"pkt 1 i 2: "+pkt1+", "+pkt2);
+        
         //POZA IF
 	if(pkt1==20 && flag_dosw1==0)
 	{
@@ -403,7 +403,7 @@ if(possible_change(1,team1[do_zejscia][3],team1[flag_zm_zag1][3])<6){change1(do_
 
 flag_zm_zag1*=(-1);//change1(zz1,zz2);//(wchodzi,schodzi)
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+flag_zm_zag1+"<br/>";
+document.getElementById("screen3").innerHTML=fffv+"<br>Powrotna flag_zm_zag1: "+flag_zm_zag1+"przejście: "+przejscie+" team1[do_zejscia][0]: "+team1[do_zejscia][0]+"<br/>";
 	}	
 	/*if(pkt1>=19&&przejscie==2&&flag_zm_zag1<0)
 	{
@@ -441,7 +441,7 @@ if(possible_change(2,team2[do_zejscia][3],team2[flag_zm_zag2][3])<6){change2(do_
 
 flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>wyniki()[p3s] fla*-1: "+flag_zm_zag2+"<br/>";
+document.getElementById("screen6").innerHTML=fffv+"<br>Powrotna flag_zm_zag2: "+flag_zm_zag2+"przejście: "+przejscie+" team2[do_zejscia][0]: "+team2[do_zejscia][0]+"<br/>";
 	}
 
 
