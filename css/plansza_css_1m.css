@@ -339,6 +339,20 @@
         line-height: normal;
         font-family: Arial;
 }
+#wskaznik_zagrywki1{
+	font-size:13px;
+	position:absolute;
+	left: 157px;
+	bottom: 151px;
+        color:black;
+}
+#wskaznik_zagrywki2{
+	font-size:13px;
+	position:absolute;
+	right: 154px;
+	top: 79px;
+        color:black;
+}
 #liberofield1{
 	font-size:11px;
 	position:absolute;
@@ -455,6 +469,9 @@
 #r5{
 	float:right;
 	text-align:right;
+}
+.serve_squere{
+        text-decoration: underline;
 }
 #screen1{
 	width: 347px;

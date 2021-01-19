@@ -17,6 +17,7 @@ var wyk2 = 50;
 var slepa = 0;
 var init_ustawienie1 = new Array(0);
 var init_ustawienie2 = new Array(0);
+var po_akcji = 0;
 
 
 function minus_dosw_licz(d)
@@ -1271,7 +1272,7 @@ function cpuflow()
 //		if(loophelp()==1)
 //		{
                         if(action_break()==0){return 0;}
-			var atime = setTimeout(help_cpuflow, 50); //ważne: funkcja bez nawiasów !!!
+			var atime = setTimeout(help_cpuflow, 100); //ważne: funkcja bez nawiasów !!!
                         if(_1akcja)
                         {
                             time = 1;
@@ -1449,11 +1450,13 @@ function init_break(par)
 	{
 		init1_break();   //zainicjowanie//seruje dr po lewej
                 serv_first = 1;
+                var element = document.getElementById("l1"); element.classList.add("serve_squere");
 	}
 	else
 	{
 		init2_break();   //zainicjowanie//seruje dr po prawej
                 serv_first = 2;
+                var element = document.getElementById("r1"); element.classList.add("serve_squere");
 	}
         
         if(par == 1)
@@ -1677,6 +1680,8 @@ function action_break()
             document.getElementById("show2").innerHTML = 0;
             document.getElementById("screen1").innerHTML = "";
             document.getElementById("screen2").innerHTML = "";
+            element1 = document.getElementById("l1"); element1.classList.remove("serve_squere");
+            element2 = document.getElementById("r1"); element2.classList.remove("serve_squere");
             document.getElementById("change_info1").innerHTML = "<br>Zmiany w ustawieniu:";
             document.getElementById("change_info2").innerHTML = "<br>Zmiany w ustawieniu:";
             zeruj_changes();
@@ -1697,14 +1702,14 @@ function action_break()
             slepa=0;
             time=1;
         }
-        else
+        else if(po_akcji == 0)
         {
 		if(a == 1) //punkt po lewej
 		{
 			a = akcja1();		//wynik akcji zaczetej po lewej - jesli kolejny punkt - a=1 to nie ma przejscia
 			if(a == 2)
 			{					//jesli druzyna po prawej zdobyla punkt to robi przejscie
-				przejscie2();
+				po_akcji = 1; //przejscie2();
 			}
 		}
 		else if(a == 2)
@@ -1712,7 +1717,7 @@ function action_break()
 			a = akcja2();		//wynik akcji zaczetej po prawej - jesli kolejny punkt - a=1 to nie ma przejscia
 			if(a == 1)
 			{
-				przejscie1();
+				po_akcji = 1; //przejscie1();
 			}
 		}
 		if(mm1 == 2 && mm2 == 2)//tie-break
@@ -1848,7 +1853,25 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                     }//koniec IF koniec seta
 		} //koniec ELSE nie tie-break
 		//cpuflow();
-        }   //koniec slepa    
+        }   //koniec slepa 
+        else if(po_akcji == 1)
+        {
+            if(a == 2)
+            {					
+                    przejscie2();
+                    var element = document.getElementById("r1"); element.classList.add("serve_squere");
+                    var element = document.getElementById("l1"); element.classList.remove("serve_squere");
+            }
+            if(a == 1)
+            {
+                    przejscie1();
+                    var element = document.getElementById("l1"); element.classList.add("serve_squere");
+                    var element = document.getElementById("r1"); element.classList.remove("serve_squere");
+            }
+            document.getElementById("screen1").innerHTML = "";
+            document.getElementById("screen2").innerHTML = "";
+            po_akcji = 0;
+        }
         if((pkt1+pkt2)==1)
         {
             document.getElementById("change_info1").innerHTML = "";
