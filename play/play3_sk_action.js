@@ -1675,12 +1675,15 @@ function action_break()
         {
             document.getElementById("show1").innerHTML = 0;
             document.getElementById("show2").innerHTML = 0;
+            document.getElementById("screen1").innerHTML = "";
+            document.getElementById("screen2").innerHTML = "";
             document.getElementById("change_info1").innerHTML = "<br>Zmiany w ustawieniu:";
             document.getElementById("change_info2").innerHTML = "<br>Zmiany w ustawieniu:";
             zeruj_changes();
             init_load_ustawienie(1);
             init_load_ustawienie(2);
             suma1 = 0;suma2 = 0;
+            flag_golden1 = 0; flag_golden2 = 0;
             //dodać omijanie funkcji dla drużyny, która wygrała ostatniego seta
             if(document.getElementById("tres1").checked && mm_prev == 2)// //czy zaznaczony trener - przechodzi tu na pocz każdego seta
             {

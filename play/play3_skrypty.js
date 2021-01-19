@@ -11,6 +11,8 @@ var flag_wyr2=0;
 var flag_star=0;
 var flag_zm_zag1=0;
 var flag_zm_zag2=0;
+var flag_golden1 = 0;
+var flag_golden2 = 0;
 var changes = [];//array do zmiany, w którą wpisywane są wpisy array [druzyna, nr zaw out, nr zaw in]
 var inceremtor = 0;
 var suma1 = 0;
@@ -368,7 +370,18 @@ function wyniki(wyn)
 		wyrownacz_give(2);
 		flag_wyr2=0;
 	}
-	
+        //GOLDEN
+        if((r1)>2&&flag_golden2==0&&(mm1+mm2)>2&&pkt2>12&&set_ended==0)//!!! przy jakiej różnicy robi duże zmiany
+	{
+		if(flag_star==0)optimal_compos_golden(2);
+		else if(flag_star==1&&document.getElementById("tres2").checked){optimal_compos_golden(2);}
+	}
+	if((r2)>2&&flag_golden1==0&&(mm1+mm2)>2&&pkt1>12&&set_ended==0)//!!! przy jakiej różnicy robi duże zmiany
+	{
+		if(flag_star==0){optimal_compos_golden(1);}
+		else if(flag_star==1&&document.getElementById("tres1").checked){optimal_compos_golden(1);}
+	}
+	//R > 5
 	if((r1)>5&&flag_wyr1==0&&set_ended==0)//!!! przy jakiej różnicy robi duże zmiany
 	{
 		if(flag_star==0)optimal_compos_zm(2);
@@ -658,7 +671,7 @@ if(par==1)
     }
     //alert("ile razy para1: "+ile_razy_para);
     if(ile_razy_para>1){return 7;}//zmiana niedozwolona - mogą się raz zmnienić i 1 raz powrotnie
-    alert("return ilość change1: "+r);
+    //alert("return ilość change1: "+r);
     return r;//zm dozwolona 0,1,2,3,4,5
 }
 else if(par==2)
@@ -689,7 +702,7 @@ else if(par==2)
     }
     //alert("ile razy para2: "+ile_razy_para);
     if(ile_razy_para>1){return 7;}//zmiana niedozwolona - mogą się raz zmnienić i 1 raz powrotnie
-    alert("return ilość change2: "+r);
+    //alert("return ilość change2: "+r);
     return r;//zm dozwolona 0,1,2,3,4,5,6
 }
 }
@@ -2848,6 +2861,131 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
    
 banch_ins();
    return 1;
+}
+//prawo do 1 zmiany w 3 i 4 secie
+function optimal_compos_golden(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaje//szukanie lepszego perfo-nie roz problem
+{
+  if(adr==1)
+  {
+  	tea = team1;//z tempo odczyt, a do tempz zapisuje;
+  }
+  else 
+  {
+  	tea = team2;//z tempo odczyt, a do tempz zapisuje;
+  }
+//console.log(changes);
+  var all_lawka = [];
+  var item1 = [];
+  var item2 = [];
+  var item3 = [];
+  var item4 = [];
+  for(var i=1;i<=6;i++)//mam gwaracje, że przejdzie przez każdego R na ławce, ale dalej zawsze wybierze najlepszego
+  {	
+          tea[0]=Array(0,0,0,0,0,0,0,0,0,0,0,0);
+          item1 = [];item2 = [];item3 = [];item4 = [];
+			for(var j=8;j<=12;j++)
+			{
+			  //item = [];
+                          if(tea[j][4]=="R" && i == 1)// i = 1 - sprawdzam każdego z ławki konkretnie za R
+			  {
+			  	if(tea[j][11] > (tea[i][11]+1))
+                                {
+                                    nadwyzka = tea[j][11] - tea[i][11];nadwyzka = zaokr(nadwyzka);                                   
+                                    item1 = [j, i, nadwyzka];
+                                    all_lawka.unshift(item1);//                                    
+                                }
+			  }
+                          if(tea[j][4]=="A" && i == 4)// i = 4	
+			  {
+			  	if(tea[j][6] > (tea[i][6]+1))
+                                {
+                                    nadwyzka = tea[j][6] - tea[i][6];nadwyzka = zaokr(nadwyzka);
+                                    item2 = [j, i, nadwyzka];
+                                    all_lawka.unshift(item2);//                                   
+                                }
+			  }
+                          item3 =[];
+                          if(tea[j][4]=="P" && (i == 2 || i == 5))// i = 2; i =5;
+			  {
+			  	if( (tea[j][6]+tea[j][7])/2 > ((tea[i][6]+tea[i][7])/2)+1)
+                                {
+                                    nadwyzka = (tea[j][6]+tea[j][7])/2 - ((tea[i][6]+tea[i][7])/2);nadwyzka = zaokr(nadwyzka);
+                                    item3=[];
+                                    item3 = [j, i, nadwyzka];
+                                    test = all_lawka.unshift(item3);//
+                                    //alert("test-length: "+test+" item: "+item3);
+                                }
+			  }
+                          if(tea[j][4]=="S" && (i == 3 || i == 6))// i = 3; i =6;
+			  {
+			  	if( (tea[j][6]+tea[j][9])/2 > ((tea[i][6]+tea[i][9])/2)+1)
+                                {
+                                    nadwyzka = (tea[j][6]+tea[j][9])/2 - ((tea[i][6]+tea[i][9])/2);nadwyzka = zaokr(nadwyzka);
+                                    item4 = [j, i, nadwyzka];
+                                    all_lawka.unshift(item4);//                                    
+                                }
+			  }
+                      } //end of for j=8..12
+                      console.log(all_lawka);
+    }//end of for i=1..6
+    //sortowanie
+    for(u=0; u<all_lawka.length; u++)
+    {
+        for(w=1; w<all_lawka.length; w++)
+        {
+            if(all_lawka[w][2] > all_lawka[w-1][2])
+            {
+                temp = all_lawka[w-1];
+                all_lawka[w-1] = all_lawka[w];
+                all_lawka[w] = temp;
+            }
+        }
+    }
+    //próba wykoanania zmiany
+    for(u=0; u<all_lawka.length; u++)
+    {
+            out_id = all_lawka[u][1];
+            in_id = all_lawka[u][0];
+            out_nr = tea[out_id][3]; //na indeksie 1 mam wyznaczonego do zejścia - nr dla funkcji possible_change
+            in_nr = tea[in_id][3]; //
+            if(adr == 1)
+            {
+                if(possible_change(adr, out_nr, in_nr) < 6)
+                {
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>[golden]Zmiana: "+tea[in_id][5]+" za: "+tea[out_id][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[in_id][5]+" za "+tea[out_id][5];
+                    change1(out_id,in_id); flag_golden1 = 1; return 0;
+                }
+            }
+            else
+            {
+                if(possible_change(adr, out_nr, in_nr) < 6)
+                {
+var fffv = document.getElementById("screen6").innerHTML;
+document.getElementById("screen6").innerHTML=fffv+"<br>[golden]Zmiana: "+tea[in_id][5]+" za: "+tea[out_id][5]+" (stan: "+mm1+" : "+mm2+") ";
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info2").innerHTML;
+document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[in_id][5]+" za "+tea[out_id][5];
+                    change2(out_id,in_id); flag_golden2 = 1; return 0;
+                }
+            }
+    }
+
+
+    if(adr==1)
+    {
+          team1 = tea;
+    }
+    else 
+    {
+          team2 = tea;
+    }
+
+    banch_ins();
+    return 1;
 }
 
 function optimal_zm_zagr1()

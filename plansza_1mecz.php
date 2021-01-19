@@ -121,6 +121,7 @@ class strona_plansza_1mecz extends Strona1
 	
 	echo '<div id="banch_1">';
             echo '<button style="margin: 0 20px 0 0;" onclick="zmia_1_nex()" id="button_zmiana1">Zmiana</button>';
+            echo '<button style="margin: 0 20px 0 0;" onclick="optimal_compos_golden(1)">G1</button>';
             //echo '<button style="margin: 0 90px 0 0;" onclick="chan1(1,8)">Chan1</button>';
 	echo '</div>';			//end banch1
 	echo '<div id="liberofield1">991';
@@ -138,6 +139,8 @@ class strona_plansza_1mecz extends Strona1
             echo '<button style="margin: 0 0 0 21px;" onclick="zmia_2_nex()" id="button_zmiana2">Zmiana</button>';
             //echo '<button style="margin: 0 0 0 91px;" onclick="chan2()">Chan2</button>';
                  echo '<button id="button_1action" onclick="console.log(changes)">changes</button>';
+
+                 
 	echo '</div>';			//end banch2
 	echo '<div id="liberofield2">992';
 	echo '</div>';			//end liberofield2
