@@ -282,10 +282,11 @@ function wyniki(wyn)
          }	
   	}
         var suma = pkt1+pkt2;
+        if((mm1+mm2) > 4) wyn = 3; else wyn = 9;
         var set_ended = wyniki_czy_set_skonczony(wyn);//1 to skończony set
         //if(set_ended == 1)alert("skonczony set set_ended:"+set_ended+"pkt 1 i 2: "+pkt1+", "+pkt2);
         
-        //POZA IF
+        //poza IF
 	if(pkt1==20 && flag_dosw1==0)
 	{
 		//console.time("minusdosw1");
@@ -394,39 +395,9 @@ function wyniki(wyn)
 	}
         
 	//ZMIANA NA ZAGRYKE TEAM1
-        //user może zrobić zmiany jak gracz jest na zagrywce, trzeba uniemożliwić powrót jak zmian będzie 6
-	if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4&&set_ended==0)
-	{
-		if(flag_star==0){if(optimal_zm_zagr1()){suma1=pkt1+pkt2;}}
-		else if(flag_star==1&&document.getElementById("tres1").checked)
-		{if(optimal_zm_zagr1()){suma1=pkt1+pkt2;}}
-                indicator_zm1++; console.log("t1zagr: "+indicator_zm1+" przejsc: "+przejscie+" incemetor: "+inceremtor+" pkt_sum: "+suma+" sum1: "+suma1);
-	}
-        //Zmiana powrotna z zagrywki - flag_zm_zag1 pamięta nr zawodnika
-	if(flag_zm_zag1>0&&przejscie==1&&set_ended==0&&suma1<suma)
-	{console.log("t1zagr-powrot: "+indicator_zm1+" flag_zm_zag1: "+flag_zm_zag1+" przejsc: "+przejscie+" incemetor: "+inceremtor+" pkt_sum: "+suma+" sum1: "+suma1);
-	var do_zejscia=0;// z zagrywki; w funckacja opt_comp_zagryw1 odpowienidk g12, który tam wszedł z ławki
-	for(var i=1;i<=6;i++)
-	{		
-if(team1[i][0]==1){do_zejscia=i;}//przy indeksie 0 jesr aktualna pozycja, więc na 0 jest zawsze ostanio serwujący
-	}
-            if(possible_change(1,team1[do_zejscia][3],team1[flag_zm_zag1][3])<6)
-            {        
-//2021-01-12 Zmiana na screen3 dla team1
-var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana powrotna: "+team1[flag_zm_zag1][5]+" za: "+team1[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" do_zejscia: "+do_zejscia;
-//2021-01-13: nowy screen do zapisu zmian na czas seta
-var fffv = document.getElementById("change_info1").innerHTML;
-document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za "+team1[do_zejscia][5];
-//change1(flag_zm_zag1,do_zejscia);//(out,in)
-                change1(do_zejscia, flag_zm_zag1);
-            }
 
-//DO USUNIECIA!
-flag_zm_zag1*=(-1);//change1(zz1,zz2);//(wchodzi,schodzi)
-var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>Powrotna flag_zm_zag1: "+flag_zm_zag1+"przejście: "+przejscie+" team1[do_zejscia][0]: "+team1[do_zejscia][0]+"<br/>";
-	}	
+
+	
 	/*if(pkt1>=19&&przejscie==2&&flag_zm_zag1<0)
 	{
 		var zawi=flag_zm_zag1*(-1);		
@@ -437,16 +408,105 @@ document.getElementById("screen3").innerHTML=fffv+"<br>Powrotna flag_zm_zag1: "+
 	}*/
 	
 	//ZMIANA NA ZAGRYKE TEAM2
-	if(pkt2>=19&&przejscie==1&&flag_zm_zag2==0&&r2<4&&set_ended==0)//dop r1
+
+
+
+
+//KONIEC poza IFami    
+        //2021-01-20: po tym jak wyniki(wyn) przechodzą tylko raz przy jednym rezultacie, przerobiono:
+	if((mm1+mm2) > 4)//tie-break
 	{
-		if(flag_star==0){if(optimal_zm_zagr2()){suma2=pkt1+pkt2;}}
-		else if(flag_star==1&&document.getElementById("tres2").checked)
-		{if(optimal_zm_zagr2()){suma2=pkt1+pkt2;}}
-                indicator_zm2++; console.log("t2zagr: "+indicator_zm2+" przejsc: "+przejscie+" incemetor: "+inceremtor+" pkt_sum: "+suma+" sum2: "+suma2);
+            if(pkt1 < 15 && pkt2 < 15)
+            {
+                return 1;
+            }
+            else
+            {
+                if(pkt1 >= pkt2)
+                {
+                    if((pkt1 - pkt2) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
+                }
+                else
+                {
+                    if((pkt2 - pkt1) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
+                }
+            }
 	}
-        //zmiana powrotna z zagrywki
-	if(flag_zm_zag2>0&&przejscie==2&&set_ended==0&&suma2<suma)
-	{console.log("t2zagr-powrot: "+indicator_zm2+" flag_zm_zag1: "+flag_zm_zag1+" przejsc: "+przejscie+" incemetor: "+inceremtor+" pkt_sum: "+suma+" sum2: "+suma2);
+        else
+        {
+            if(pkt1 < 25 && pkt2 < 25)
+            {
+                return 1;
+            }
+            else //pkt1 lub pkt2 co najmiej równe 25
+            {
+                if(pkt1 >= pkt2)
+                {
+                    if((pkt1 - pkt2) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
+                }
+                else
+                {
+                    if((pkt2 - pkt1) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
+                }
+            }
+        }
+}
+
+function wyniki_po_przejsciu()
+{
+    var r1=pkt1-pkt2;
+    var r2=pkt2-pkt1;
+    if((mm1+mm2) > 4) wyn = 3; else wyn = 9;
+    var set_ended = wyniki_czy_set_skonczony(wyn);
+    
+    //ZMIANA NA ZAGRYKE TEAM1
+    if(pkt1>=19&&przejscie==2&&flag_zm_zag1==0&&r1<4&&set_ended==0)
+    {
+            if(flag_star==0){if(optimal_zm_zagr1()){suma1=pkt1+pkt2;}}
+            else if(flag_star==1&&document.getElementById("tres1").checked)
+            {if(optimal_zm_zagr1()){suma1=pkt1+pkt2;}}
+            //indicator_zm1++; console.log("t1zagr: "+indicator_zm1+" przejsc: "+przejscie+" incemetor: "+inceremtor+" pkt_sum: "+suma+" sum1: "+suma1);
+    }
+    
+    //Zmiana POWROTNA1 z zagrywki - flag_zm_zag1 pamięta nr zawodnika
+	if(flag_zm_zag1>0&&przejscie==1&&set_ended==0)//&&suma1<suma
+	{//console.log("t1zagr-powrot: "+indicator_zm1+" flag_zm_zag1: "+flag_zm_zag1+" przejsc: "+przejscie+" incemetor: "+inceremtor+" pkt_sum: "+suma+" sum1: "+suma1);
+	var do_zejscia=0;// z zagrywki; w funckacja opt_comp_zagryw1 odpowienidk g12, który tam wszedł z ławki
+	for(var i=1;i<=6;i++)
+	{		
+if(team1[i][0]==1){do_zejscia=i;}//przy indeksie 0 jesr aktualna pozycja, więc na 0 jest zawsze ostanio serwujący
+	}
+        if(possible_change(1,team1[do_zejscia][3],team1[flag_zm_zag1][3])<6)
+        {        
+//2021-01-12 Zmiana na screen3 dla team1
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana powrotna: "+team1[flag_zm_zag1][5]+" za: "+team1[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" do_zejscia: "+do_zejscia;
+//2021-01-13: nowy screen do zapisu zmian na czas seta
+var fffv = document.getElementById("change_info1").innerHTML;
+document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za "+team1[do_zejscia][5];
+//change1(flag_zm_zag1,do_zejscia);//(out,in)
+                change1(do_zejscia, flag_zm_zag1);
+        }
+
+//DO USUNIECIA!
+flag_zm_zag1*=(-1);//change1(zz1,zz2);//(wchodzi,schodzi)
+var fffv = document.getElementById("screen3").innerHTML;
+document.getElementById("screen3").innerHTML=fffv+"<br>Powrotna flag_zm_zag1: "+flag_zm_zag1+"przejście: "+przejscie+" team1[do_zejscia][0]: "+team1[do_zejscia][0]+"<br/>";
+	}//end of powrot z zagrywki1
+        
+        
+    //ZMIANA NA ZAGRYKE TEAM2
+    if(pkt2>=19&&przejscie==1&&flag_zm_zag2==0&&r2<4&&set_ended==0)//dop r1
+    {
+            if(flag_star==0){if(optimal_zm_zagr2()){suma2=pkt1+pkt2;}}
+            else if(flag_star==1&&document.getElementById("tres2").checked)
+            {if(optimal_zm_zagr2()){suma2=pkt1+pkt2;}}
+            //indicator_zm2++; console.log("t2zagr: "+indicator_zm2+" przejsc: "+przejscie+" incemetor: "+inceremtor+" pkt_sum: "+suma+" sum2: "+suma2);
+    }
+
+    //zmiana POWROTNA2 z zagrywki
+	if(flag_zm_zag2>0&&przejscie==2&&set_ended==0)//&&suma2<suma
+	{//console.log("t2zagr-powrot: "+indicator_zm2+" flag_zm_zag1: "+flag_zm_zag1+" przejsc: "+przejscie+" incemetor: "+inceremtor+" pkt_sum: "+suma+" sum2: "+suma2);
 	var do_zejscia=0;
 	for(var i=1;i<=6;i++)
 	{		
@@ -469,43 +529,7 @@ flag_zm_zag2*=(-1);
 var fffv = document.getElementById("screen6").innerHTML;
 document.getElementById("screen6").innerHTML=fffv+"<br>Powrotna flag_zm_zag2: "+flag_zm_zag2+"przejście: "+przejscie+" team2[do_zejscia][0]: "+team2[do_zejscia][0]+"<br/>";
 	}
-
-
-//KONIEC poza IFami    
     
-	if(wyn==3)//tie-break
-	{
-		if(pkt1 < 15 && pkt2 < 15)
-		{
-		return 1;
-		}
-		else
-		{
-		if(pkt1 >= pkt2)
-		{
-			if((pkt1 - pkt2) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
-		}
-		else
-		{
-			if((pkt2 - pkt1) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
-		}
-		}
-	}
-		if(pkt1 < 25 && pkt2 < 25)
-		{
-		return 1;
-		}
-		else //pkt1 lub pkt2 co najmiej równe 25
-		{
-		if(pkt1 >= pkt2)
-		{
-			if((pkt1 - pkt2) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
-		}
-		else
-		{
-			if((pkt2 - pkt1) > 1){minus_dosw1(0);minus_dosw2(0);return 0;}else{return 1;}
-		}
-		}
 }
 
 function find_leaders()
@@ -3005,7 +3029,10 @@ function optimal_zm_zagr1()
                     if(team1[i][8]>temp){temp=team1[i][8];g12=i;}//max
             }
     }
-    if(g1==g6&&temp>tem6)//najslabszy zagr to ten na zagr
+    //if(team1[i][0]==1)team1[g6][0]==1
+    //g1==g6
+    alert(team1[g6]);
+    if(g1==g6 && temp>tem6)//najslabszy zagrywający jest na pozycji 1
     {
         if(possible_change(1,team1[g6][3],team1[g12][3])<=4)
         {
