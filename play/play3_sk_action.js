@@ -1681,7 +1681,7 @@ function action_break()
             document.getElementById("screen2").innerHTML = "";
             element1 = document.getElementById("l1"); element1.classList.remove("serve_squere");
             element2 = document.getElementById("r1"); element2.classList.remove("serve_squere");
-            //oznaczenie zagrywającego podkreśleniem nazwiska
+            //oznaczenie zagrywającego podkreśleniem nazwiska przy stanie "Zmiany w ustawieniu"
             if(serv_first == 1)
             {
                 if((mm1+mm2)%2 == 0){element1.classList.add("serve_squere");}else{element2.classList.add("serve_squere");}
@@ -1716,7 +1716,7 @@ function action_break()
 			a = akcja1();		//wynik akcji zaczetej po lewej - jesli kolejny punkt - a=1 to nie ma przejscia
 			if(a == 2)
 			{					//jesli druzyna po prawej zdobyla punkt to robi przejscie
-				po_akcji = 1; //przejscie2();
+				po_akcji = 1; przejs2_mem = 1;//przejscie2();
 			}
 		}
 		else if(a == 2)
@@ -1724,7 +1724,7 @@ function action_break()
 			a = akcja2();		//wynik akcji zaczetej po prawej - jesli kolejny punkt - a=1 to nie ma przejscia
 			if(a == 1)
 			{
-				po_akcji = 1; //przejscie1();
+				po_akcji = 1; przejs1_mem = 1;//przejscie1();
 			}
 		}
 		if(mm1 == 2 && mm2 == 2)//tie-break
@@ -1798,8 +1798,8 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                         {
                             //alert(" KONIEC SETA: "+m_res);
                             //przejście na koniec seta, po ostatniej akcji
-                            if(a == 2){przejscie2();po_akcji = 0;var element = document.getElementById("l1"); element.classList.remove("serve_squere");}
-                            if(a == 1){przejscie1();po_akcji = 0;var element = document.getElementById("r1"); element.classList.remove("serve_squere");}
+                            if(przejs2_mem == 1){przejscie2();po_akcji = 0;/*var element = document.getElementById("r1"); element.classList.remove("serve_squere");*/}
+                            if(przejs1_mem == 1){przejscie1();po_akcji = 0;/*var element = document.getElementById("l1"); element.classList.remove("serve_squere");*/}
 
                             if(pkt1>pkt2)mm_prev = 1;else mm_prev = 2;//alert("mm_prev:"+mm_prev);//do użycia z optimal_compos_zm_begin
                             time=1;
@@ -1850,11 +1850,41 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 				}*/
                                 if(serv_first == 1)
                                 {
-                                    if((mm1+mm2)%2 == 0){init1_break();return 0;}else{init2_break();return 0;}
+                                    if((mm1+mm2)%2 == 0)
+                                    {
+                                        //przejscie = 2;
+                                        document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                                        ustawienie();
+                                        init1_break();
+                                        return 0;
+                                    }
+                                    else
+                                    {
+                                        //przejscie = 1;
+                                        document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                                        ustawienie();
+                                        init2_break();
+                                        return 0;
+                                    }
                                 }
                                 else if(serv_first == 2)
                                 {
-                                    if((mm1+mm2)%2 == 0){init2_break();return 0;}else{init1_break();return 0;}
+                                    if((mm1+mm2)%2 == 0)
+                                    {
+                                        //przejscie = 1;
+                                        document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                                        ustawienie();
+                                        init2_break();
+                                        return 0;
+                                    }
+                                    else
+                                    {
+                                        //przejscie = 2;
+                                        document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                                        ustawienie();
+                                        init1_break();
+                                        return 0;
+                                    }
                                 }
 				//pkt1 = 0, pkt2 = 0;
     			//a = akcja1();

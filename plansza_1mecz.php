@@ -68,6 +68,7 @@ class strona_plansza_1mecz extends Strona1
 	<div><span id="tktzz1.2">o</span><input type="radio" name="tkt2" id="tktz2.2" onclick="" /></div>
 	<div><span id="tktzz1.3">o</span><input type="radio" name="tkt2" id="tktz2.3" onclick="" /></div>
 	<div><span id="tktzz1.4">o</span><input type="radio" name="tkt2" id="tktz2.4" onclick="" /></div>
+        <div id="set_ended"></div>
 	</div>';
 	
 	
@@ -121,7 +122,7 @@ class strona_plansza_1mecz extends Strona1
 	
 	echo '<div id="banch_1">';
             echo '<button style="margin: 0 20px 0 0;" onclick="zmia_1_nex()" id="button_zmiana1">Zmiana</button>';
-            echo '<button style="margin: 0 20px 0 0;" onclick="optimal_compos_golden(1)">G1</button>';
+            //echo '<button style="margin: 0 20px 0 0;" onclick="alert(wyniki_czy_set_skonczony(9))">9</button>';
             //echo '<button style="margin: 0 90px 0 0;" onclick="chan1(1,8)">Chan1</button>';                   
 	echo '</div>';			//end banch1
 

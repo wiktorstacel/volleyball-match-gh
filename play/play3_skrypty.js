@@ -182,22 +182,21 @@ function punktuj2(pkt_par)//par - numer absolutny rce//pomimo zmian pozostaje st
 //dla uniknięcia sytuacji, gdy robi zmiany przy wyniku seta np 25:19
 function wyniki_czy_set_skonczony(wyn)
 {
-    console.log("pkt1, pkt2:"+pkt1+", "+pkt2);
     if(wyn==3)//tie-break
     {
         if(pkt1 < 15 && pkt2 < 15)
         {
-            console.log("0");return 0;
+            return 0;
         }
         else
         {
             if(pkt1 >= pkt2)
             {
-                if((pkt1 - pkt2) > 1){console.log("1");return 1;}else{console.log("0");return 0;}
+                if((pkt1 - pkt2) > 1){return 1;}else{return 0;}
             }
             else
             {
-                if((pkt2 - pkt1) > 1){console.log("1");return 1;}else{console.log("0");return 0;}
+                if((pkt2 - pkt1) > 1){return 1;}else{return 0;}
             }
         }
     }
@@ -205,17 +204,17 @@ function wyniki_czy_set_skonczony(wyn)
     {
         if(pkt1 < 25 && pkt2 < 25)
         {
-            console.log("0");return 0;
+            return 0;
         }
         else //pkt1 lub pkt2 co najmiej równe 25
         {
             if(pkt1 >= pkt2)
             {
-                if((pkt1 - pkt2) > 1){console.log("1");return 1;}else{console.log("0");return 0;}
+                if((pkt1 - pkt2) > 1){return 1;}else{return 0;}
             }
             else
             {
-                if((pkt2 - pkt1) > 1){console.log("1");return 1;}else{console.log("0");return 0;}
+                if((pkt2 - pkt1) > 1){return 1;}else{return 0;}
             }
         }
     }
@@ -282,8 +281,9 @@ function wyniki(wyn)
          }	
   	}
         var suma = pkt1+pkt2;
-        if((mm1+mm2) > 4) wyn = 3; else wyn = 9;
+        if(mm1+mm2 >= 4){wyn = 3;}else{wyn = 9;}
         var set_ended = wyniki_czy_set_skonczony(wyn);//1 to skończony set
+        document.getElementById("set_ended").innerHTML = "set_ended: "+set_ended;
         //if(set_ended == 1)alert("skonczony set set_ended:"+set_ended+"pkt 1 i 2: "+pkt1+", "+pkt2);
         
         //poza IF
@@ -414,7 +414,7 @@ function wyniki(wyn)
 
 //KONIEC poza IFami    
         //2021-01-20: po tym jak wyniki(wyn) przechodzą tylko raz przy jednym rezultacie, przerobiono:
-	if((mm1+mm2) > 4)//tie-break
+	if((mm1+mm2) >= 4)//tie-break
 	{
             if(pkt1 < 15 && pkt2 < 15)
             {
@@ -456,7 +456,7 @@ function wyniki_po_przejsciu()
 {
     var r1=pkt1-pkt2;
     var r2=pkt2-pkt1;
-    if((mm1+mm2) > 4) wyn = 3; else wyn = 9;
+    if((mm1+mm2) >= 4) wyn = 3; else wyn = 9;
     var set_ended = wyniki_czy_set_skonczony(wyn);
     
     //ZMIANA NA ZAGRYKE TEAM1
@@ -3030,8 +3030,6 @@ function optimal_zm_zagr1()
             }
     }
     //if(team1[i][0]==1)team1[g6][0]==1
-    //g1==g6
-    alert(team1[g6]);
     if(g1==g6 && temp>tem6)//najslabszy zagrywający jest na pozycji 1
     {
         if(possible_change(1,team1[g6][3],team1[g12][3])<=4)
