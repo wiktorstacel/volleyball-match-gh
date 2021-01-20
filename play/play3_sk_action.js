@@ -7,7 +7,6 @@ var mm1 = 0, mm2 = 0;
 var mm_prev = 0; //info, kto wygrał poprzedni set
 var serv_first = 0; //info o tym, kto wylosował serwowanie w 1 secie(i w tie-break);
 var serv = 0; //info o tym kto ostatnio serwował
-var set_finished_break = 0; //info, że jest przerwa między setami - działają tylko zmiany w ustawieniu
 var a =0;
 var middle = 0; //1 jesli atak byl ze srodka
 var m_res = "";
@@ -450,7 +449,7 @@ function act_stat()
 		}
 	}
 	document.getElementById("stat_przy1").innerHTML = scr_przyj + scr_as;
-        document.getElementById("asy_serw1").innerHTML = scr_as;//test
+        //document.getElementById("asy_serw1").innerHTML = scr_as;//test
 	
 	scr_obro = "Obrony:<br/>";
 	var bl_23=0;
@@ -1272,7 +1271,7 @@ function cpuflow()
 //		if(loophelp()==1)
 //		{
                         if(action_break()==0){return 0;}
-			var atime = setTimeout(help_cpuflow, 100); //ważne: funkcja bez nawiasów !!!
+			var atime = setTimeout(help_cpuflow, 20); //ważne: funkcja bez nawiasów !!!
                         if(_1akcja)
                         {
                             time = 1;
@@ -1682,6 +1681,15 @@ function action_break()
             document.getElementById("screen2").innerHTML = "";
             element1 = document.getElementById("l1"); element1.classList.remove("serve_squere");
             element2 = document.getElementById("r1"); element2.classList.remove("serve_squere");
+            //oznaczenie zagrywającego podkreśleniem nazwiska
+            if(serv_first == 1)
+            {
+                if((mm1+mm2)%2 == 0){element1.classList.add("serve_squere");}else{element2.classList.add("serve_squere");}
+            }
+            else if(serv_first == 2)
+            {
+                if((mm1+mm2)%2 == 0){element2.classList.add("serve_squere");}else{element1.classList.add("serve_squere");}
+            }
             document.getElementById("change_info1").innerHTML = "<br>Zmiany w ustawieniu:";
             document.getElementById("change_info2").innerHTML = "<br>Zmiany w ustawieniu:";
             zeruj_changes();
@@ -1698,7 +1706,6 @@ function action_break()
             {
                 optimal_compos_zm_begin(2);//alert("robie op_begin_2");
             }
-            set_finished_break = 0;//to jest jednak akcja póxniej niż zakończony set, pkt są  już skasowane
             slepa=0;
             time=1;
         }
@@ -1722,7 +1729,7 @@ function action_break()
 		}
 		if(mm1 == 2 && mm2 == 2)//tie-break
 		{
-			if(wyniki(3) == 0)//koniec seta
+			if(wyniki_czy_set_skonczony(3) == 1)//koniec seta
 			{
 			if(pkt1 > pkt2)
 			{
@@ -1756,7 +1763,6 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                         }
                         //alert("Tie-break:"+pkt1+":"+pkt2+" KONIEC MECZU: "+mm1+" : "+mm2);
                         time=1;
-                        set_finished_break = 1;
                         document.getElementById("tablica_wyn_sety").innerHTML = m_res;
 			m_res="";
 			pkt1=0;pkt2=0;time=1;push=0;
@@ -1766,7 +1772,7 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 		}
 		else //wynik liczony do 25 - NIE tie-break
 		{
-                    if(wyniki(9) == 0)//koniec seta
+                    if(wyniki_czy_set_skonczony(9) == 1)//koniec seta
                     {
                         if(pkt1 > pkt2)
                         {
@@ -1791,10 +1797,13 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 			if(mm1 < 3 & mm2 < 3)
                         {
                             //alert(" KONIEC SETA: "+m_res);
+                            //przejście na koniec seta, po ostatniej akcji
+                            if(a == 2){przejscie2();po_akcji = 0;var element = document.getElementById("l1"); element.classList.remove("serve_squere");}
+                            if(a == 1){przejscie1();po_akcji = 0;var element = document.getElementById("r1"); element.classList.remove("serve_squere");}
+
                             if(pkt1>pkt2)mm_prev = 1;else mm_prev = 2;//alert("mm_prev:"+mm_prev);//do użycia z optimal_compos_zm_begin
                             time=1;
                             slepa=1;
-                            set_finished_break = 1;
                             document.getElementById("tablica_wyn_sety").innerHTML = m_res;
                         }
 			//clearTimeout(atime);
@@ -1813,7 +1822,6 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrownacz_give(2);transpa();flag_wyr2=0;}
 						//alert(" KONIEC MECZU: "+m_res);
                                                 time=1;
-                                                set_finished_break = 1;
                                                 document.getElementById("tablica_wyn_sety").innerHTML = m_res;
 						flag_star=0;
                                                 //2021-01-13 - omijamy dla 1 mecz

@@ -182,21 +182,22 @@ function punktuj2(pkt_par)//par - numer absolutny rce//pomimo zmian pozostaje st
 //dla uniknięcia sytuacji, gdy robi zmiany przy wyniku seta np 25:19
 function wyniki_czy_set_skonczony(wyn)
 {
+    console.log("pkt1, pkt2:"+pkt1+", "+pkt2);
     if(wyn==3)//tie-break
     {
         if(pkt1 < 15 && pkt2 < 15)
         {
-            return 0;
+            console.log("0");return 0;
         }
         else
         {
             if(pkt1 >= pkt2)
             {
-                if((pkt1 - pkt2) > 1){return 1;}else{return 0;}
+                if((pkt1 - pkt2) > 1){console.log("1");return 1;}else{console.log("0");return 0;}
             }
             else
             {
-                if((pkt2 - pkt1) > 1){return 1;}else{return 0;}
+                if((pkt2 - pkt1) > 1){console.log("1");return 1;}else{console.log("0");return 0;}
             }
         }
     }
@@ -204,17 +205,17 @@ function wyniki_czy_set_skonczony(wyn)
     {
         if(pkt1 < 25 && pkt2 < 25)
         {
-            return 0;
+            console.log("0");return 0;
         }
         else //pkt1 lub pkt2 co najmiej równe 25
         {
             if(pkt1 >= pkt2)
             {
-                if((pkt1 - pkt2) > 1){return 1;}else{return 0;}
+                if((pkt1 - pkt2) > 1){console.log("1");return 1;}else{console.log("0");return 0;}
             }
             else
             {
-                if((pkt2 - pkt1) > 1){return 1;}else{return 0;}
+                if((pkt2 - pkt1) > 1){console.log("1");return 1;}else{console.log("0");return 0;}
             }
         }
     }
@@ -282,8 +283,7 @@ function wyniki(wyn)
   	}
         var suma = pkt1+pkt2;
         var set_ended = wyniki_czy_set_skonczony(wyn);//1 to skończony set
-        //var set_ended = set_finished_break;//1 to skonczony - trwa przerwa
-        if(set_ended == 1)alert("skonczony set set_ended:"+set_ended+"pkt 1 i 2: "+pkt1+", "+pkt2);
+        //if(set_ended == 1)alert("skonczony set set_ended:"+set_ended+"pkt 1 i 2: "+pkt1+", "+pkt2);
         
         //POZA IF
 	if(pkt1==20 && flag_dosw1==0)
@@ -1239,6 +1239,7 @@ function przejscie1()
 		team1[1][0] = temp;
 		//setTimeout(ustawienie, 2000);
 		przejscie = 2;
+                document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
 		ustawienie();
 	}
         //var sumapkt = pkt1+pkt2;
@@ -1259,6 +1260,7 @@ function przejscie2()
 		team2[1][0] = temp;
 		//setTimeout(ustawienie, 2000);
 		przejscie = 1;
+                document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
 		ustawienie();
 	}
         var aaa = 2;
