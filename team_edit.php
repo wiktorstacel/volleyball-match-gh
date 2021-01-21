@@ -57,7 +57,11 @@ foreach ($row as $col => $val)
 echo '<br>';
 //VALUES
 $result = mysqli_query($conn,
-        sprintf("(SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' AND z.7>0 ORDER BY z.7 DESC, z.12 DESC) UNION ALL (SELECT * FROM zawodnik z WHERE z.id_druzyna='%d' AND z.7=0 ORDER BY z.7 DESC, z.12 DESC)",
+        sprintf("SELECT * FROM (
+                    SELECT *, 1 sortby FROM zawodnik z WHERE z.id_druzyna='%d' AND z.7>0 
+                    UNION ALL 
+                    SELECT *, 2 sortby FROM zawodnik z WHERE z.id_druzyna='%d' AND z.7=0) AS i
+                ORDER BY sortby, i.7 ASC, i.12 DESC",
         mysqli_real_escape_string($conn, $id_druzyna),
         mysqli_real_escape_string($conn, $id_druzyna)
         ));
@@ -79,9 +83,15 @@ while($row = mysqli_fetch_array($result, MYSQLI_NUM))
 $j = 0;
 while($row = mysqli_fetch_assoc($result))
 {
+    $val_length = count($row);
+    $counter = 0;
     foreach ($row as $col => $val) 
     {
-        echo '<input id="'.$col.'_'.$j.'" type="text" class="'.$col.'" name="zaw" value="'.$val.'" />';
+        if($counter < ($val_length-1))
+        {
+            echo '<input id="'.$col.'_'.$j.'" type="text" class="'.$col.'" name="zaw" value="'.$val.'" />';
+        }
+        $counter++;
     }
     echo '<br>';
     $j++;
@@ -91,7 +101,31 @@ while($row = mysqli_fetch_assoc($result))
 echo'<br /><button id="team_loader_submit" type="submit" onclick="" value="" />Zapisz</button>';
 
 echo'<br /><p id="team_loader_message"></p>';
-    
+
+
+//EXAMPLE:
+//https://stackoverflow.com/questions/15470191/how-to-use-order-by-with-union-all-in-sql
+/*
+SELECT  * 
+FROM 
+        (
+            SELECT * FROM TABLE_A 
+            UNION ALL 
+            SELECT * FROM TABLE_B
+        ) dum
+-- ORDER BY .....*/
+//but if you want to have all records from Table_A on the top of the result list, 
+//the you can add user define value which you can use for ordering,
+/*
+SELECT  * 
+FROM 
+        (
+            SELECT *, 1 sortby FROM TABLE_A 
+            UNION ALL 
+            SELECT *, 2 sortby FROM TABLE_B //UWAGA: dodanie 1 i 2 robi dodatkową kolumnę w wynikach *
+        ) dum
+ORDER   BY sortby
+*/    
         
     
 
