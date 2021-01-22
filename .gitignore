@@ -8,6 +8,7 @@ config_db.php
 config_smtp.php
 
 add_done/
+css/images/
 operacje/
 panel_show/
 wklad_pole/

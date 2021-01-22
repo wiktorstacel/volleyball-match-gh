@@ -1395,7 +1395,7 @@ function init_load_ustawienie(adr)
             scr = scr + team1[i][5]+",";
         }
         //alert(scr);
-        
+        if(document.getElementById("tres1").checked)przejscie1_rotuj();
         ustawienie();
 	banch_ins();
     }
@@ -1420,7 +1420,7 @@ function init_load_ustawienie(adr)
             scr = scr + team2[i][5]+",";
         }
         //alert(scr);
-        
+        if(document.getElementById("tres2").checked)przejscie2_rotuj();
         ustawienie();
 	banch_ins();
     }
@@ -1447,12 +1447,14 @@ function init_break(par)
 	var los = Math.floor(Math.random() * 100 + 1);//losowanie kto pierwszy serwuje
 	if(los<50)
 	{
+
                 init1_break();   //zainicjowanie//seruje dr po lewej
                 serv_first = 1;
                 var element = document.getElementById("l1"); element.classList.add("serve_squere");
 	}
 	else
 	{
+
                 init2_break();   //zainicjowanie//seruje dr po prawej
                 serv_first = 2;
                 var element = document.getElementById("r1"); element.classList.add("serve_squere");
@@ -1690,6 +1692,8 @@ function action_break()
             {
                 if((mm1+mm2)%2 == 0){element2.classList.add("serve_squere");}else{element1.classList.add("serve_squere");}
             }*/
+            init_load_ustawienie(1);
+            init_load_ustawienie(2);
             if(serv_first == 1)
             {
                 if((mm1+mm2)%2 == 0)
@@ -1735,8 +1739,6 @@ function action_break()
             document.getElementById("change_info1").innerHTML = "<br>Zmiany w ustawieniu:";
             document.getElementById("change_info2").innerHTML = "<br>Zmiany w ustawieniu:";
             zeruj_changes();
-            init_load_ustawienie(1);
-            init_load_ustawienie(2);
             suma1 = 0;suma2 = 0;
             flag_golden1 = 0; flag_golden2 = 0;
             //dodać omijanie funkcji dla drużyny, która wygrała ostatniego seta

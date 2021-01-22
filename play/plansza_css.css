@@ -357,7 +357,6 @@
 	width:60px;
 	height:60px;
 	font-size: 11px;
-
 }
 .polesr_p{
 	width:59px;
@@ -373,6 +372,17 @@
 	float:left;
 	border-right: 1px solid black;
 }
+#rotate1_holder{
+    	position:absolute;
+	right: 10px;
+	bottom: 12px;
+}
+/*.pole1_p{
+	width:60px;
+	height:60px;
+	font-size: 11px;
+        text-align: center;
+}*/
 .zaw_p{
 	margin-top:20px;
 }

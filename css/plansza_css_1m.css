@@ -424,6 +424,22 @@
 	float:left;
 	border-right: 1px solid black;
 }
+.polesl_p{
+        position:relative;
+}
+#rotate1_button{
+    	position:absolute;
+	right: 5px;
+	bottom: 11px;
+}
+.polesr_p{
+        position:relative;
+}
+#rotate2_button{
+    	position:absolute;
+	left: 5px;
+	bottom: 11px;
+}
 .zaw_p{
 	margin-top:20px;
 }

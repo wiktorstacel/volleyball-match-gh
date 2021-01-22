@@ -1301,7 +1301,7 @@ function przejscie1_rotuj()
 			team1[i][0] = team1[i-1][0];
 		}
 		team1[1][0] = temp;
-		przejscie = 2;
+		//przejscie = 2;
                 document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
 		ustawienie();
 }
@@ -1314,7 +1314,7 @@ function przejscie2_rotuj()
 			team2[i][0] = team2[i-1][0];
 		}
 		team2[1][0] = temp;
-		przejscie = 1;
+		//przejscie = 1;
                 document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
 		ustawienie();
 }
