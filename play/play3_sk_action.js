@@ -17,6 +17,7 @@ var slepa = 0;
 var init_ustawienie1 = new Array(0);
 var init_ustawienie2 = new Array(0);
 var po_akcji = 0;
+var tempo_meczu = 1000;
 
 
 function minus_dosw_licz(d)
@@ -373,6 +374,24 @@ function ask_zm2(i)
 {
 	document.getElementById("ekranik2").innerHTML="Perfo:<br/>"+Math.round((team2[i][28]/team2[i][27])*100)+"%";
 }
+/*function ask_zm_team1()
+{
+        var suma = 0;
+	for(i=1; i<=7; i++)
+        {
+            suma += team1[i][28]/team1[i][27];
+        }
+        document.getElementById("ekranik1").innerHTML="Perfo:<br/>"+Math.round((suma/7)*100)+"%";
+}
+function ask_zm_team2()
+{
+        var suma = 0;
+	for(i=1; i<=7; i++)
+        {
+            suma += team2[i][28]/team2[i][27];
+        }
+        document.getElementById("ekranik2").innerHTML="Perfo:<br/>"+Math.round((suma/7)*100)+"%";
+}*/
 
 function act_stat()
 {
@@ -1271,7 +1290,7 @@ function cpuflow()
 //		if(loophelp()==1)
 //		{
                         if(action_break()==0){return 0;}
-			var atime = setTimeout(help_cpuflow, 20); //ważne: funkcja bez nawiasów !!!
+			var atime = setTimeout(help_cpuflow, tempo_meczu); //ważne: funkcja bez nawiasów !!!
                         if(_1akcja)
                         {
                             time = 1;
@@ -1664,6 +1683,9 @@ function action_break()
 	document.getElementById("kwadnazw11").innerHTML="";
         document.getElementById("kwadrat22").innerHTML="";
 	document.getElementById("kwadnazw22").innerHTML="";
+        document.getElementById("ekranik1").innerHTML = "";
+        document.getElementById("ekranik2").innerHTML = "";
+        //console.log(tempo_meczu);
         //disable dla przycisków zmiana
         /*if(time == 1)
         {
@@ -1699,7 +1721,7 @@ function action_break()
                 if((mm1+mm2)%2 == 0)
                 {
                     przejscie = 2;
-                    document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                    //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
                     ustawienie();
                     element1.classList.add("serve_squere");element2.classList.remove("serve_squere");                  
                     //init1_break();
@@ -1708,7 +1730,7 @@ function action_break()
                 else
                 {
                     przejscie = 1;
-                    document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                    //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
                     ustawienie();
                     element2.classList.add("serve_squere");element1.classList.remove("serve_squere");
                     //init2_break();
@@ -1720,7 +1742,7 @@ function action_break()
                 if((mm1+mm2)%2 == 0)
                 {
                     przejscie = 1;
-                    document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                    //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
                     ustawienie();
                     element2.classList.add("serve_squere");element1.classList.remove("serve_squere");
                     //init2_break();
@@ -1729,7 +1751,7 @@ function action_break()
                 else
                 {
                     przejscie = 2;
-                    document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                    //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
                     ustawienie();
                     element1.classList.add("serve_squere");element2.classList.remove("serve_squere");
                     //init1_break();
@@ -1738,6 +1760,8 @@ function action_break()
             }
             document.getElementById("change_info1").innerHTML = "<br>Zmiany w ustawieniu:";
             document.getElementById("change_info2").innerHTML = "<br>Zmiany w ustawieniu:";
+            document.getElementById("rotate1_button").style.visibility = "";
+            document.getElementById("rotate2_button").style.visibility = "";
             zeruj_changes();
             suma1 = 0;suma2 = 0;
             flag_golden1 = 0; flag_golden2 = 0;
@@ -1809,6 +1833,8 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                         time=1;
                         document.getElementById("tablica_wyn_sety").innerHTML = m_res;
 			m_res="";
+                        document.getElementById("button_zmiana1").style.visibility = "hidden";
+                        document.getElementById("button_zmiana2").style.visibility = "hidden";
 			pkt1=0;pkt2=0;time=1;push=0;
 			//clearTimeout(atime);
 			return 0;
@@ -1867,6 +1893,8 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
 						//alert(" KONIEC MECZU: "+m_res);
                                                 time=1;
                                                 document.getElementById("tablica_wyn_sety").innerHTML = m_res;
+                                                document.getElementById("button_zmiana1").style.visibility = "hidden";
+                                                document.getElementById("button_zmiana2").style.visibility = "hidden";
 						flag_star=0;
                                                 //2021-01-13 - omijamy dla 1 mecz
                                                 if(!play_1mecz)
@@ -1959,6 +1987,8 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
         {
             document.getElementById("change_info1").innerHTML = "";
             document.getElementById("change_info2").innerHTML = "";
+            document.getElementById("rotate1_button").style.visibility = "hidden";
+            document.getElementById("rotate2_button").style.visibility = "hidden";
             init_save_ustawienie(1);
             init_save_ustawienie(2);
         }

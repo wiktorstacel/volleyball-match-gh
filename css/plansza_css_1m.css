@@ -577,13 +577,56 @@
 	margin:auto;
 }
 #tablica_wyn_sety{
-	width:140px;
-	height:20px;
+	width:200px;
+	height:12px;
 	margin:auto;
         margin-top:2px;
         text-align:center;
         font-size: 11px;
 }
+#slider_tempo{
+	width:360px;
+	/*height:20px;*/
+	margin:auto;
+        margin-top:0px;
+        text-align:center;
+        font-size: 10px;
+}
+.formtext {
+  overflow: visible;
+  margin: 10px 0;
+  text-align: center;
+}
+input:focus{ 
+  outline-color: transparent;
+}
+ input[type="range"]{ 
+  -webkit-appearance:none; 
+  -moz-apperance:none; 
+    width: 360px;
+  height: 4px; 
+  background-color: #b6b6b6;
+  outline-color: transparent;
+}
+input::-webkit-slider-thumb{
+  -webkit-appearance:none; 
+  -moz-apperance:none; 
+  width:10px; 
+  height:10px;
+-webkit-border-radius:10px; 
+  -moz-border-radius:10px; 
+  -ms-border-radius:10px; 
+  -o-border-radius:10px; 
+  border-radius:2px;
+background-color: #20b373;
+  overflow: visible;
+}
+/*input[type=range] {
+    
+    width: 360px;
+    color: green;
+
+}*/
 #set1{
 	height:20px; 
 	width:20px; 

@@ -33,17 +33,29 @@ class strona_plansza_1mecz extends Strona1
 	echo '<div id="kolumna_left">';
 	
 	echo '<div id="taktyki1">
-	<div>Taktyka zagrywki</div>
-	<div><input type="radio" name="tkt1" id="tktz1.1" onclick="" checked="checked" />brak</div>
-	<div><input type="radio" name="tkt1" id="tktz1.2" onclick="" /><span id="tktzz2.2">o</span></div>
-	<div><input type="radio" name="tkt1" id="tktz1.3" onclick="" /><span id="tktzz2.3">o</span></div>
-	<div><input type="radio" name="tkt1" id="tktz1.4" onclick="" /><span id="tktzz2.4">o</span></div>
-        <div id="asy_serw1"></div>
-	</div>';
+	<div>Taktyka zagrywki</div>';
+        if($_GET['opcja_gry'] == 'tres2' ||$_GET['opcja_gry'] == 'neutral')
+        {
+            echo'<div><label><input type="radio" disabled name="tkt1" id="tktz1.1" onclick="" checked="checked" />brak</label></div>
+            <div><label><input type="radio" disabled name="tkt1" id="tktz1.2" onclick="" /><span id="tktzz2.2">o</span></label></div>
+            <div><label><input type="radio" disabled name="tkt1" id="tktz1.3" onclick="" /><span id="tktzz2.3">o</span></label></div>
+            <div><label><input type="radio" disabled name="tkt1" id="tktz1.4" onclick="" /><span id="tktzz2.4">o</span></label></div>
+            <div id="asy_serw1"></div>
+            </div>';
+        }
+        else
+        {
+            echo'<div><label><input type="radio" name="tkt1" id="tktz1.1" onclick="" checked="checked" />brak</label></div>
+            <div><label><input type="radio" name="tkt1" id="tktz1.2" onclick="" /><span id="tktzz2.2">o</span></label></div>
+            <div><label><input type="radio" name="tkt1" id="tktz1.3" onclick="" /><span id="tktzz2.3">o</span></label></div>
+            <div><label><input type="radio" name="tkt1" id="tktz1.4" onclick="" /><span id="tktzz2.4">o</span></label></div>
+            <div id="asy_serw1"></div>
+            </div>';            
+        }
 	
 	echo'
-	<div id="stat_team1"></div><div id="ekranik1"></div>
-	<div id="zmeczenie1">
+	<div id="stat_team1"></div><div id="ekranik1" style="text-align: center;"></div>
+	<div id="zmeczenie1" onmouseover="">
 	
 <div id="opis_y"><div id="opis_y_top">100</div><div id="opis_y_m">85</div><div id="opis_y_bot"></div></div>
 <div id="wykres1" class="wykres">Wydajność&nbsp</div>
@@ -63,19 +75,31 @@ class strona_plansza_1mecz extends Strona1
 	echo '<div id="kolumna_right">';
 	
 	echo '<div id="taktyki2">
-	<div>Taktyka zagrywki</div>
-	<div>brak<input type="radio" name="tkt2" id="tktz2.1" onclick="" checked="checked" /></div>
-	<div><span id="tktzz1.2">o</span><input type="radio" name="tkt2" id="tktz2.2" onclick="" /></div>
-	<div><span id="tktzz1.3">o</span><input type="radio" name="tkt2" id="tktz2.3" onclick="" /></div>
-	<div><span id="tktzz1.4">o</span><input type="radio" name="tkt2" id="tktz2.4" onclick="" /></div>
-        <div id="set_ended"></div>
-	</div>';
+	<div>Taktyka zagrywki</div>';
+        if($_GET['opcja_gry'] == 'tres1' ||$_GET['opcja_gry'] == 'neutral')
+        {
+            echo '<div><label>brak<input type="radio" disabled name="tkt2" id="tktz2.1" onclick="" checked="checked" /></label></div>
+            <div><label><span id="tktzz1.2">o</span><input type="radio" disabled name="tkt2" id="tktz2.2" onclick="" /></label></div>
+            <div><label><span id="tktzz1.3">o</span><input type="radio" disabled name="tkt2" id="tktz2.3" onclick="" /></label></div>
+            <div><label><span id="tktzz1.4">o</span><input type="radio" disabled name="tkt2" id="tktz2.4" onclick="" /></label></div>
+            <div id="set_ended"></div>
+            </div>';
+        }
+        else
+        {
+            echo '<div><label>brak<input type="radio" name="tkt2" id="tktz2.1" onclick="" checked="checked" /></label></div>
+            <div><label><span id="tktzz1.2">o</span><input type="radio" name="tkt2" id="tktz2.2" onclick="" /></label></div>
+            <div><label><span id="tktzz1.3">o</span><input type="radio" name="tkt2" id="tktz2.3" onclick="" /></label></div>
+            <div><label><span id="tktzz1.4">o</span><input type="radio" name="tkt2" id="tktz2.4" onclick="" /></label></div>
+            <div id="set_ended"></div>
+            </div>';            
+        }
 	
 	
 	
 	echo '
-	<div id="ekranik2"></div><div id="stat_team2"></div>
-	<div id="zmeczenie2">
+	<div id="ekranik2" style="text-align: center;"></div><div id="stat_team2"></div>
+	<div id="zmeczenie2" onmouseover="">
 	
 <div id="opis_y"><div id="opis_y_top">100</div><div id="opis_y_m">85</div><div id="opis_y_bot"></div></div>
 <div id="wykres2" class="wykres">Wydajność&nbsp</div>
@@ -103,25 +127,69 @@ class strona_plansza_1mecz extends Strona1
         echo '<div id="tablica_wyn_sety">';
             //echo '0:0';
 	echo '</div>';
+        
+        echo '<div id="slider_tempo"><form>
+            <input type="range" id="tempo_m" name="tempo_m" list="tickmarks">
+            <label for="tempo_m"></label>
+            <datalist id="tickmarks">
+            <option value="0"></option>
+            <option value="10"></option>
+            <option value="20"></option>
+            <option value="30"></option>
+            <option value="40"></option>
+            <option value="50"></option>
+            <option value="60"></option>
+            <option value="70"></option>
+            <option value="80"></option>
+            <option value="90"></option>
+            <option value="100"></option>
+            </datalist>
+        </form></div>';
 	
 	echo '<div id="boisko_p">';
 	
-	echo '<div id="half_left_p">';
-	echo '<div id="l5" class="pole_p"></div><div class="polesl_p"></div><div id="l4" class="pole_p"></div>
+	echo '<div id="half_left_p">';//HALF OF THE FIELD - LEFT
+        if($_GET['opcja_gry'] == 'tres2' ||$_GET['opcja_gry'] == 'neutral')
+        {
+            echo '<div id="l5" class="pole_p"></div><div class="polesl_p"></div><div id="l4" class="pole_p"></div>
+		  <div id="l6" class="pole_p"></div><div class="polesl_p"><button id="rotate1_button" disabled onclick="przejscie1_rotuj()"><img src="css\images\arrow-right-512.png" width="32" height="32" alt="alt"/></button></div><div id="l3" class="pole_p"></div>
+		  <div id="l1" class="pole_p"></div><div class="polesl_p"></div><div id="l2" class="pole_p"></div>';
+        }
+        else
+        {
+            echo '<div id="l5" class="pole_p"></div><div class="polesl_p"></div><div id="l4" class="pole_p"></div>
 		  <div id="l6" class="pole_p"></div><div class="polesl_p"><button id="rotate1_button" onclick="przejscie1_rotuj()"><img src="css\images\arrow-right-512.png" width="32" height="32" alt="alt"/></button></div><div id="l3" class="pole_p"></div>
-		  <div id="l1" class="pole_p"></div><div class="polesl_p"></div><div id="l2" class="pole_p"></div>';//<div class="rotate1_holder"></div>
+		  <div id="l1" class="pole_p"></div><div class="polesl_p"></div><div id="l2" class="pole_p"></div>';            
+        }
 	echo '</div>';			//end left_site
 	
-	echo '<div id="half_right_p">';
-	echo '<div id="r2" class="pole_p"></div><div class="polesr_p"></div><div id="r1" class="pole_p"></div>
+	echo '<div id="half_right_p">';//HALF OF THE FIELD - RIGHT
+        if($_GET['opcja_gry'] == 'tres1' ||$_GET['opcja_gry'] == 'neutral')
+        {
+            echo '<div id="r2" class="pole_p"></div><div class="polesr_p"></div><div id="r1" class="pole_p"></div>
+		  <div id="r3" class="pole_p"></div><div class="polesr_p"><button id="rotate2_button" disabled onclick="przejscie2_rotuj()"><img src="css\images\arrow-right-512.png" width="32" height="32" alt="alt"/></button></button></div><div id="r6" class="pole_p"></div>
+		  <div id="r4" class="pole_p"></div><div class="polesr_p"></div><div id="r5" class="pole_p"></div>';
+        }
+        else
+        {
+            echo '<div id="r2" class="pole_p"></div><div class="polesr_p"></div><div id="r1" class="pole_p"></div>
 		  <div id="r3" class="pole_p"></div><div class="polesr_p"><button id="rotate2_button" onclick="przejscie2_rotuj()"><img src="css\images\arrow-right-512.png" width="32" height="32" alt="alt"/></button></button></div><div id="r6" class="pole_p"></div>
 		  <div id="r4" class="pole_p"></div><div class="polesr_p"></div><div id="r5" class="pole_p"></div>';
+           
+        }
 	echo '</div>';			//end right_site
 	
 	echo '</div>';			//end boisko
 	
 	echo '<div id="banch_1">';
-            echo '<button style="margin: 0 20px 0 0;" onclick="zmia_1_nex()" id="button_zmiana1">Zmiana</button>';
+            if($_GET['opcja_gry'] == 'tres2' ||$_GET['opcja_gry'] == 'neutral')
+            {
+                echo '<button style="margin: 0px 32px 0 0;padding: 0px 0px 1px 0;" disabled onclick="zmia_1_nex()" id="button_zmiana1">&nbspZmiana&nbsp</button>';
+            }
+            else
+            {
+                echo '<button style="margin: 0px 32px 0 0;padding: 0px 0px 1px 0;" onclick="zmia_1_nex()" id="button_zmiana1">&nbspZmiana&nbsp</button>';
+            }
             //echo '<button style="margin: 0 20px 0 0;" onclick="alert(wyniki_czy_set_skonczony(9))">9</button>';
             //echo '<button style="margin: 0 90px 0 0;" onclick="chan1(1,8)">Chan1</button>';                   
 	echo '</div>';			//end banch1
@@ -134,13 +202,31 @@ class strona_plansza_1mecz extends Strona1
 	echo '<div id="treserfield1">coach1';
 	echo '</div>';
 	echo '<div id="treserbut1">';
-            echo '<input checked="checked" type="checkbox" id="tres1" onclick=""/>';
+            if($_GET['opcja_gry'] == 'tres1')
+            {
+                echo '<input type="checkbox" id="tres1" onclick=""/>';
+            }
+            else if($_GET['opcja_gry'] == 'tres2')
+            {
+                 echo '<input checked="checked" disabled type="checkbox" id="tres1" onclick=""/>';               
+            }
+            else if($_GET['opcja_gry'] == 'neutral')
+            {
+                echo '<input checked="checked" type="checkbox" id="tres1" onclick=""/>';
+            }
         echo'</div>';
 	
 	echo '<div id="banch_2">';
-            echo '<button style="margin: 0 0 0 21px;" onclick="zmia_2_nex()" id="button_zmiana2">Zmiana</button>';
+            if($_GET['opcja_gry'] == 'tres1' ||$_GET['opcja_gry'] == 'neutral')
+            {
+                echo '<button style="margin: 0 0 0 31px;padding: 0px 0px 1px 0;" disabled onclick="zmia_2_nex()" id="button_zmiana2">&nbspZmiana&nbsp</button>';
+            }
+            else
+            {
+                echo '<button style="margin: 0 0 0 31px;padding: 0px 0px 1px 0;" onclick="zmia_2_nex()" id="button_zmiana2">&nbspZmiana&nbsp</button>';                
+            }
             //echo '<button style="margin: 0 0 0 91px;" onclick="chan2()">Chan2</button>';
-                 echo '<button id="button_1action" onclick="console.log(changes)">changes</button>';    
+            //echo '<button id="button_1action" onclick="console.log(changes)">changes</button>';    
 	echo '</div>';			//end banch2
 
 	echo '<div id="liberofield2">992';
@@ -150,7 +236,18 @@ class strona_plansza_1mecz extends Strona1
 	echo '<div id="treserfield2">coach2';
 	echo '</div>';
 	echo '<div id="treserbut2">';
-            echo '<input checked="checked" type="checkbox" id="tres2" onclick=""/>';
+            if($_GET['opcja_gry'] == 'tres2')
+            {
+                echo '<input type="checkbox" id="tres2" onclick=""/>';
+            }
+            else if($_GET['opcja_gry'] == 'tres1')
+            {
+                 echo '<input checked="checked" disabled type="checkbox" id="tres2" onclick=""/>';               
+            }
+            else if($_GET['opcja_gry'] == 'neutral')
+            {
+                echo '<input checked="checked" type="checkbox" id="tres2" onclick=""/>';
+            }
         echo '</div>';
 	
 	print ("<div id=\"kwadrat_1_1\" class=\"kwadrat\">11");
@@ -183,12 +280,12 @@ class strona_plansza_1mecz extends Strona1
 	
 	echo '<div id="buttony">';
 	
-	echo '<button id="button_start" onclick="init_break(0)">Start</button>';
-        echo '<button d="button_time_no" onclick="time_no()">Start</button>';
-	echo '<button id="button_time_take" onclick="time_take()">Stop</button>';
+	echo '<button id="button_start" onclick="init_break(0)">&nbspStart&nbsp</button>';
+        echo '<button d="button_time_no" onclick="time_no()">&nbspStart&nbsp</button>';
+	echo '<button id="button_time_take" onclick="time_take()">&nbspStop&nbsp</button>';
 
-        echo '<button id="button_1action_init" onclick="init_break(1)">Jedna Akcja</button>';
-        echo '<button id="button_1action" onclick="contin_1()">Jedna Akcja</button>';
+        echo '<button id="button_1action_init" onclick="init_break(1)">&nbspJedna Akcja&nbsp</button>';
+        echo '<button id="button_1action" onclick="contin_1()">&nbspJedna Akcja&nbsp</button>';
 	//echo '<button onclick="init()">init</button>';
 	//echo '<button onclick="goo()">GO</button>';
         //echo '<button onclick="play_meczyk_tlo('.$this->t1.','.$this->t2.',0,0,0,0)">LOAD</button>';//TEMP: insert teams id as 1st and 2nd parameter of play_meczyk_tlo()
@@ -335,6 +432,7 @@ class strona_plansza_1mecz extends Strona1
 	echo '</div>';			//end screen_8
 	
     echo '<div style="clear: both;"></div>';//CLEAR: BOTH
+    
 	
 	/*echo'<div id=idteam1 style="float:left;"></div>
 	<div id=idteam2 style="float:left;"></div>

@@ -283,7 +283,7 @@ function wyniki(wyn)
         var suma = pkt1+pkt2;
         if(mm1+mm2 >= 4){wyn = 3;}else{wyn = 9;}
         var set_ended = wyniki_czy_set_skonczony(wyn);//1 to skończony set
-        document.getElementById("set_ended").innerHTML = "set_ended: "+set_ended;
+        //document.getElementById("set_ended").innerHTML = "set_ended: "+set_ended;
         //if(set_ended == 1)alert("skonczony set set_ended:"+set_ended+"pkt 1 i 2: "+pkt1+", "+pkt2);
         
         //poza IF
@@ -1263,7 +1263,7 @@ function przejscie1()
 		team1[1][0] = temp;
 		//setTimeout(ustawienie, 2000);
 		przejscie = 2;
-                document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
 		ustawienie();
 	}
         //var sumapkt = pkt1+pkt2;
@@ -1284,7 +1284,7 @@ function przejscie2()
 		team2[1][0] = temp;
 		//setTimeout(ustawienie, 2000);
 		przejscie = 1;
-                document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
 		ustawienie();
 	}
         var aaa = 2;
@@ -1302,7 +1302,7 @@ function przejscie1_rotuj()
 		}
 		team1[1][0] = temp;
 		//przejscie = 2;
-                document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
 		ustawienie();
 }
 
@@ -1315,7 +1315,7 @@ function przejscie2_rotuj()
 		}
 		team2[1][0] = temp;
 		//przejscie = 1;
-                document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
 		ustawienie();
 }
 
@@ -1999,7 +1999,8 @@ function banch_go2(nr)
 }
 function banch_go_in1(nr)
 {
-	document.getElementById("kwadnazw11").innerHTML = nr;
+    if(document.getElementById("tres1").checked) return 0;
+        document.getElementById("kwadnazw11").innerHTML = nr;
 	//poszukać czy ten zawodnik brał udział w jakijs zmianier 
 	var zmy=0;
 	for(var u=0;u<changes.length;u++)
@@ -2028,6 +2029,7 @@ document.getElementById("kwadrat11").innerHTML = "<input class=\"noch\" type=\"t
 }
 function banch_go_in2(nr)
 {
+    if(document.getElementById("tres2").checked) return 0;
 	document.getElementById("kwadnazw22").innerHTML = nr;
 	var zmy=0;
 	for(var u=0;u<changes.length;u++)

@@ -39,7 +39,13 @@ class index extends Strona1
     echo '</tr>';
     
     echo '</table>';
+    //print("<label>Trener1<input type=\"checkbox\" name=\"trener1\" value=\"\" onclick=\"this.form.elements['obserwator'].disabled = this.checked, this.form.elements['trener2'].disabled = this.checked\"/></label>");
+    //print("<label>Obserwator<input type=\"checkbox\" name=\"obserwator\" value=\"\" onclick=\"this.form.elements['trener1'].disabled = this.checked, this.form.elements['trener2'].disabled = this.checked\"/></label>");
+   // print("<label>Trener2<input type=\"checkbox\" name=\"trener2\" value=\"\" onclick=\"this.form.elements['trener1'].disabled = this.checked, this.form.elements['obserwator'].disabled = this.checked\"/></label>");
 	//print("<td class=\"ekran\"><input name=\"ekran\" id=\"ekran\"/></td>");
+    echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="tres1">trener1</label>'; 
+    echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="neutral">obserwator</label>';
+    echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="tres2">trener2</label>';
     echo '<button type="submit">Zagraj 1 mecz</button>';
     
 	

@@ -34,12 +34,22 @@ function Set_non_hidden2(){
     }  
 }
 
-//uzależnienie disable zmiana od checkboxa trener_on
+//slider
+$(document).ready(function(){
+    
+    $(document).on("change", "#tempo_m", function(){
+        var value = $(this).val();
+        tempo_meczu = value*20;
+    });
+});
+
+//uzależnienie disable zmiana od checkboxa trener1_on
 $(document).ready(function(){
     
     $(document).on("change", "#tres1", function(){
         var value_1 = $(this).prop('checked');
         $("#button_zmiana1").prop( "disabled", value_1);
+        $("#rotate1_button").prop( "disabled", value_1);
         //$("#button_zmiana1").hide();
         //$("#button_zmiana1").css("display", "none");
         if(value_1 == true)
@@ -55,6 +65,33 @@ $(document).ready(function(){
             document.getElementById("tktz1.2").disabled = "";
             document.getElementById("tktz1.3").disabled = "";
             document.getElementById("tktz1.4").disabled = "";           
+        }
+    });
+    
+});
+
+//uzależnienie disable zmiana od checkboxa trener1_on
+$(document).ready(function(){
+    
+    $(document).on("change", "#tres2", function(){
+        var value_1 = $(this).prop('checked');
+        $("#button_zmiana2").prop( "disabled", value_1);
+        $("#rotate2_button").prop( "disabled", value_1);
+        //$("#button_zmiana1").hide();
+        //$("#button_zmiana1").css("display", "none");
+        if(value_1 == true)
+        {
+            document.getElementById("tktz2.1").disabled = "disabled";
+            document.getElementById("tktz2.2").disabled = "disabled";
+            document.getElementById("tktz2.3").disabled = "disabled";
+            document.getElementById("tktz2.4").disabled = "disabled";
+        }
+        else
+        {
+            document.getElementById("tktz2.1").disabled = "";
+            document.getElementById("tktz2.2").disabled = "";
+            document.getElementById("tktz2.3").disabled = "";
+            document.getElementById("tktz2.4").disabled = "";           
         }
     });
     
