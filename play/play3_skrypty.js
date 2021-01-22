@@ -1293,6 +1293,32 @@ function przejscie2()
         //console.log("Robie przejsc2 - inceremntor: "+inceremtor+"sumapkt: "+sumapkt)
 }
 
+function przejscie1_rotuj()
+{
+		temp = team1[6][0];
+		for(i=6;i>=2;i--)
+		{
+			team1[i][0] = team1[i-1][0];
+		}
+		team1[1][0] = temp;
+		przejscie = 2;
+                document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+		ustawienie();
+}
+
+function przejscie2_rotuj()
+{
+		temp = team2[6][0];
+		for(i=6;i>=2;i--)
+		{
+			team2[i][0] = team2[i-1][0];
+		}
+		team2[1][0] = temp;
+		przejscie = 1;
+                document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+		ustawienie();
+}
+
 
 function make_teams()
 {

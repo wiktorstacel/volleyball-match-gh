@@ -1447,13 +1447,13 @@ function init_break(par)
 	var los = Math.floor(Math.random() * 100 + 1);//losowanie kto pierwszy serwuje
 	if(los<50)
 	{
-		init1_break();   //zainicjowanie//seruje dr po lewej
+                init1_break();   //zainicjowanie//seruje dr po lewej
                 serv_first = 1;
                 var element = document.getElementById("l1"); element.classList.add("serve_squere");
 	}
 	else
 	{
-		init2_break();   //zainicjowanie//seruje dr po prawej
+                init2_break();   //zainicjowanie//seruje dr po prawej
                 serv_first = 2;
                 var element = document.getElementById("r1"); element.classList.add("serve_squere");
 	}
@@ -1505,7 +1505,7 @@ function init1_break()
 		wyrownacz_give(2);
 		flag_wyr2=0;
 	}
-    a = 1;
+    a = 1;przejscie = 2;ustawienie();
 	cpuflow();
 }
 function init2_break()
@@ -1549,7 +1549,7 @@ function init2_break()
 		wyrownacz_give(2);
 		flag_wyr2=0;
 	}
-    a = 2;
+    a = 2;przejscie = 1;ustawienie();
 	cpuflow();
 }
 
@@ -1682,13 +1682,55 @@ function action_break()
             element1 = document.getElementById("l1"); element1.classList.remove("serve_squere");
             element2 = document.getElementById("r1"); element2.classList.remove("serve_squere");
             //oznaczenie zagrywającego podkreśleniem nazwiska przy stanie "Zmiany w ustawieniu"
-            if(serv_first == 1)
+            /*if(serv_first == 1)
             {
                 if((mm1+mm2)%2 == 0){element1.classList.add("serve_squere");}else{element2.classList.add("serve_squere");}
             }
             else if(serv_first == 2)
             {
                 if((mm1+mm2)%2 == 0){element2.classList.add("serve_squere");}else{element1.classList.add("serve_squere");}
+            }*/
+            if(serv_first == 1)
+            {
+                if((mm1+mm2)%2 == 0)
+                {
+                    przejscie = 2;
+                    document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                    ustawienie();
+                    element1.classList.add("serve_squere");element2.classList.remove("serve_squere");                  
+                    //init1_break();
+                    //return 0;
+                }
+                else
+                {
+                    przejscie = 1;
+                    document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                    ustawienie();
+                    element2.classList.add("serve_squere");element1.classList.remove("serve_squere");
+                    //init2_break();
+                    //return 0;
+                }
+            }
+            else if(serv_first == 2)
+            {
+                if((mm1+mm2)%2 == 0)
+                {
+                    przejscie = 1;
+                    document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                    ustawienie();
+                    element2.classList.add("serve_squere");element1.classList.remove("serve_squere");
+                    //init2_break();
+                    //return 0;
+                }
+                else
+                {
+                    przejscie = 2;
+                    document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                    ustawienie();
+                    element1.classList.add("serve_squere");element2.classList.remove("serve_squere");
+                    //init1_break();
+                    //return 0;
+                }
             }
             document.getElementById("change_info1").innerHTML = "<br>Zmiany w ustawieniu:";
             document.getElementById("change_info2").innerHTML = "<br>Zmiany w ustawieniu:";
@@ -1716,7 +1758,7 @@ function action_break()
 			a = akcja1();		//wynik akcji zaczetej po lewej - jesli kolejny punkt - a=1 to nie ma przejscia
 			if(a == 2)
 			{					//jesli druzyna po prawej zdobyla punkt to robi przejscie
-				po_akcji = 1; przejs2_mem = 1;//przejscie2();
+				po_akcji = 1; //przejs2_mem = 1;//przejscie2();
 			}
 		}
 		else if(a == 2)
@@ -1724,7 +1766,7 @@ function action_break()
 			a = akcja2();		//wynik akcji zaczetej po prawej - jesli kolejny punkt - a=1 to nie ma przejscia
 			if(a == 1)
 			{
-				po_akcji = 1; przejs1_mem = 1;//przejscie1();
+				po_akcji = 1; //przejs1_mem = 1;//przejscie1();
 			}
 		}
 		if(mm1 == 2 && mm2 == 2)//tie-break
@@ -1798,9 +1840,9 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                         {
                             //alert(" KONIEC SETA: "+m_res);
                             //przejście na koniec seta, po ostatniej akcji
-                            if(przejs2_mem == 1){przejscie2();po_akcji = 0;/*var element = document.getElementById("r1"); element.classList.remove("serve_squere");*/}
-                            if(przejs1_mem == 1){przejscie1();po_akcji = 0;/*var element = document.getElementById("l1"); element.classList.remove("serve_squere");*/}
-
+                            //if(przejs2_mem == 1){przejscie2();po_akcji = 0;/*var element = document.getElementById("r1"); element.classList.remove("serve_squere");*/}
+                            //if(przejs1_mem == 1){przejscie1();po_akcji = 0;/*var element = document.getElementById("l1"); element.classList.remove("serve_squere");*/}
+                            po_akcji = 0;
                             if(pkt1>pkt2)mm_prev = 1;else mm_prev = 2;//alert("mm_prev:"+mm_prev);//do użycia z optimal_compos_zm_begin
                             time=1;
                             slepa=1;
@@ -1853,16 +1895,16 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                                     if((mm1+mm2)%2 == 0)
                                     {
                                         //przejscie = 2;
-                                        document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
-                                        ustawienie();
+                                        //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                                        //ustawienie();
                                         init1_break();
                                         return 0;
                                     }
                                     else
                                     {
                                         //przejscie = 1;
-                                        document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
-                                        ustawienie();
+                                        //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                                        //ustawienie();
                                         init2_break();
                                         return 0;
                                     }
@@ -1872,16 +1914,16 @@ if(flag_wyr1==1){wyrownacz_give(1);transpa();flag_wyr1=0;}if(flag_wyr2==1){wyrow
                                     if((mm1+mm2)%2 == 0)
                                     {
                                         //przejscie = 1;
-                                        document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
-                                        ustawienie();
+                                        //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                                        //ustawienie();
                                         init2_break();
                                         return 0;
                                     }
                                     else
                                     {
                                         //przejscie = 2;
-                                        document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
-                                        ustawienie();
+                                        //document.getElementById("asy_serw1").innerHTML = "Przejście: "+przejscie+" ,a: "+a;
+                                        //ustawienie();
                                         init1_break();
                                         return 0;
                                     }

@@ -113,7 +113,7 @@ FROM
             UNION ALL 
             SELECT * FROM TABLE_B
         ) dum
--- ORDER BY .....*/
+-- ORDER BY dum.nazwisko ASC */
 //but if you want to have all records from Table_A on the top of the result list, 
 //the you can add user define value which you can use for ordering,
 /*
@@ -124,7 +124,7 @@ FROM
             UNION ALL 
             SELECT *, 2 sortby FROM TABLE_B //UWAGA: dodanie 1 i 2 robi dodatkową kolumnę w wynikach *
         ) dum
-ORDER   BY sortby
+ORDER   BY sortby, dum.nazwisko ASC
 */    
         
     

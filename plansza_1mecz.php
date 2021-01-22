@@ -108,13 +108,13 @@ class strona_plansza_1mecz extends Strona1
 	
 	echo '<div id="half_left_p">';
 	echo '<div id="l5" class="pole_p"></div><div class="polesl_p"></div><div id="l4" class="pole_p"></div>
-		  <div id="l6" class="pole_p"></div><div class="polesl_p"></div><div id="l3" class="pole_p"></div>
+		  <div id="l6" class="pole_p"></div><div class="polesl_p"><button id="" onclick="przejscie1_rotuj()">Rotuj</button></div><div id="l3" class="pole_p"></div>
 		  <div id="l1" class="pole_p"></div><div class="polesl_p"></div><div id="l2" class="pole_p"></div>';
 	echo '</div>';			//end left_site
 	
 	echo '<div id="half_right_p">';
 	echo '<div id="r2" class="pole_p"></div><div class="polesr_p"></div><div id="r1" class="pole_p"></div>
-		  <div id="r3" class="pole_p"></div><div class="polesr_p"></div><div id="r6" class="pole_p"></div>
+		  <div id="r3" class="pole_p"></div><div class="polesr_p"><button id="" onclick="przejscie2_rotuj()">Rotuj</button></div><div id="r6" class="pole_p"></div>
 		  <div id="r4" class="pole_p"></div><div class="polesr_p"></div><div id="r5" class="pole_p"></div>';
 	echo '</div>';			//end right_site
 	
