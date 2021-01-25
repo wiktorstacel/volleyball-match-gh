@@ -2712,7 +2712,7 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
                         {
                           maxj = rozgryw_lawka[p];
 			  if(tea[maxj][11] > (tea[1][11]+1))
-			  {console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[1][5]);
+			  {//console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[1][5]);
 //R i A: potrzeba ponowić próbę wpuszcz kolejnych gorszych, bo poprz próby mogły być blokowane zm powrotnymi
 //Jak 2óch R na ławce, to jest info, że 2 razy próbuje - OK; ale tylko jednego
 //jakby było 5 R na ławce to ma spróbować każdego wpóścić, jak jednego wpósci, np3 może iść dalej. Zm powr nie powinny
@@ -2762,7 +2762,7 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                         {
                           maxj = atakujacy_lawka[p];
 			  if(tea[maxj][6]>(tea[4][6]+1))//Dochodzi do zmiany
-			  {console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[4][5]);
+			  {//console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[4][5]);
                             //2021-01-12: rozdzielono na 2 screeny
                             if(adr == 1)
                             {
@@ -2812,7 +2812,7 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
 			  var a=0;
 			  if(((tea[2][6]+tea[2][7])/2)<((tea[5][6]+tea[5][7])/2))a=2;else a=5;//ktory P słabszy na boisku
 			  if((tea[maxj][6]+tea[maxj][7])/2>((tea[a][6]+tea[a][7])/2+1))
-			{console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[a][5]);
+			  {
                             //2021-01-12: rozdzielono na 2 screeny
                             if(adr == 1)
                             {
@@ -2969,7 +2969,7 @@ function optimal_compos_golden(adr)//mam sklad 7, szukam czy ktos na lawce sie n
                                 }
 			  }
                       } //end of for j=8..12
-                      console.log(all_lawka);
+                      //console.log(all_lawka);
     }//end of for i=1..6
     //sortowanie
     for(u=0; u<all_lawka.length; u++)

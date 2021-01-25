@@ -519,6 +519,7 @@
 	border-right: 1px solid black;
 	border-bottom: 1px solid black;
 	font-size: 11px;
+        padding: 2px;
 }
 #screen4{
 	width: 498px;
@@ -550,6 +551,7 @@
 	border-right: 1px solid black;
 	border-bottom: 1px solid black;
 	font-size: 11px;
+        padding: 2px;
 }
 #screen7{
 	width: 420px;

@@ -449,42 +449,21 @@ class strona_plansza_1mecz extends Strona1
                 }
         
     //Check if exactly 2 team id come by GET and copy them to public variabl
-    public function SprawdzDaneGet() 
+    public function SprawdzDanePost() 
     {
-        $i = 1;
-        $count = 0;
-        
-        for($i=1; $i<=(int)$_GET["number_of_teams"]; $i++)
+        if(isset($_GET['team_choose1']) && isset($_GET['team_choose2']) && isset($_GET['opcja_gry']))
         {
-            if(isset($_GET["id".$i.""]))
-            {         
-                if($count == 0)
-                {
-                    $this->t1 = $_GET["id".$i.""];
-                }
-                else if($count == 1)
-                {
-                    $this->t2 = $_GET["id".$i.""];
-                }
-                $count++;
-                if($count>2)
-                {
-                    echo "Wybrano więcej niż 2 drużyny !";
-                    return 0;
-                }
-            }
+            $team_choose1 = htmlentities($_GET["team_choose1"], ENT_QUOTES, "UTF-8");
+            $team_choose2 = htmlentities($_GET["team_choose2"], ENT_QUOTES, "UTF-8");
+
+            $this->t1 = $team_choose1;
+            $this->t2 = $team_choose2;
+            return 1;
         }
-        if($count<=1)
+        else
         {
-            echo "Trzeba wybrać co najmniej 2 drużyny !";
             return 0;
-        }
-//    echo $this->t1;
-//    echo "<br />";
-//    echo $this->t2;
-//    echo "<br />";
-//    echo $count;
-    return 1;    
+        }    
     }
     
     public function Wyswietl()
@@ -497,7 +476,7 @@ class strona_plansza_1mecz extends Strona1
       $this -> WyswietlMeta();
       $this -> WyswietlStyle();
       $this -> WyswietlSkrypty();
-      $a = $this -> SprawdzDaneGet();
+      $a = $this -> SprawdzDanePost();
       //echo '</head><body onload="make_teams()">';
       echo '</head><body onload="Set_play_1mecz(), play_meczyk_tlo('.$this->t1.','.$this->t2.',0,0,0,0)">';
       
@@ -507,10 +486,8 @@ class strona_plansza_1mecz extends Strona1
 //      $this -> WyswietlSearch();
 //      $this -> WyswietlMenuPion($this->przyciski_pion);
 //      $this -> WyswietlInformacje();
-      if($a)
-      {
-          $this -> WyswietlTresc();
-      }
+      if($a) $this -> WyswietlTresc();
+      else header('location: index.php');
       
 //      echo $this->tresc;
       $this -> WyswietlStopke();

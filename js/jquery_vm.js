@@ -30,7 +30,7 @@ $(document).ready(function(){
                 data: {id_druzyna:id_druzyna},
                 dataType: "JSON",
                 success: function(data){                                  
-                    console.log(data);
+                    //console.log(data);
                     var j = 0;
                     //var i = 0;
                     //var arr_letters = ["aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "ar", "as", "at", "au", "aw", "ax", "ay", "az", "ba", "bb", "bc", "bd", "be", "bf", "bg", "ah", "ai"];
@@ -138,3 +138,26 @@ for (i = 0; i < elems.length; i += 1) {
 
     console.log(jsonObj);
 }*/
+
+//przyładowanie selectów po tym jak w drugim wybraną drużynę
+$(document).ready(function(){
+    
+    $(document).on("change", "#team_choose1", function(){       
+        var id_druzyna_not = $(this).val();
+        var id_druzyna_choose = $("#team_choose2").val();
+            $("#team_choose2").load("insert_teamsNot1.php", {
+            id_druzyna_not: id_druzyna_not,
+            id_druzyna_choose: id_druzyna_choose
+        });
+    }); 
+    
+    $(document).on("change", "#team_choose2", function(){       
+        var id_druzyna_not = $(this).val();
+        var id_druzyna_choose = $("#team_choose1").val();
+            $("#team_choose1").load("insert_teamsNot1.php", {
+            id_druzyna_not: id_druzyna_not,
+            id_druzyna_choose: id_druzyna_choose
+        });
+    });
+    
+});

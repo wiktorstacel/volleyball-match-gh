@@ -1,16 +1,14 @@
 body{
 	background-color:#a1ed72;/*#a1ed72 - zielone t�o*/
 }
-#TRESC{
-	width:1200px;
-	margin: auto;
-}
+
 #STOPKA{
 	width:1200px;
 	margin: auto;
-        font-size: 12px;
-        margin-top: 30px;
+        font-size: 13px;
+        margin-top: 80px;
         text-align: center;
+        font-family: calibri;
 }
 #1_linia{
 	
