@@ -322,7 +322,7 @@ class strona_plansza_1mecz extends Strona1
    
 
 	
-	echo '<div id="screen3" >scr3';//style="visibility: hidden"
+	echo '<div id="screen3" >';//style="visibility: hidden"
 	echo '</div>';			//end screen_3
 	
 	//echo '<div id="screen4">scr4: ';
@@ -331,12 +331,12 @@ class strona_plansza_1mecz extends Strona1
 	//echo '<div id="screen5">scr5: ';
 	//echo '</div><br />';			//end screen_3
 	
-	echo '<div id="screen6">scr6: ';
+	echo '<div id="screen6">';
 	echo '</div><br />';			//end screen_6
         
     echo '<div style="clear: both;"></div>'; //CLEAR: BOTH
 	
-	echo '<div id="screen7">';
+	/*echo '<div id="screen7">';
 	
             echo '<table>';
             echo '
@@ -382,9 +382,9 @@ class strona_plansza_1mecz extends Strona1
 
             echo '</table>';
 	
-	echo '</div>';			//end screen_7
+	echo '</div>';*/			//end screen_7
 	
-	echo '<div id="screen8">';
+	/*echo '<div id="screen8">';
 	
             echo '<table>';
             echo '
@@ -429,7 +429,7 @@ class strona_plansza_1mecz extends Strona1
             }
             echo '</table>';
 	
-	echo '</div>';			//end screen_8
+	echo '</div>';	*/		//end screen_8
 	
     echo '<div style="clear: both;"></div>';//CLEAR: BOTH
     
@@ -445,9 +445,9 @@ class strona_plansza_1mecz extends Strona1
         
         //echo'<input id="input-screen3" type="hidden" value="" />'; //zastąpić screen3 //p3a, przyjecie1,2013
                                                                     //p3a, przyjecie2, 2494
-	}
         
-    
+                }
+        
     //Check if exactly 2 team id come by GET and copy them to public variabl
     public function SprawdzDaneGet() 
     {
@@ -513,7 +513,7 @@ class strona_plansza_1mecz extends Strona1
       }
       
 //      echo $this->tresc;
-//      $this -> WyswietlStopke();
+      $this -> WyswietlStopke();
       echo '</div>'; //end of mother
       echo "</body>\n</html>\n";
 

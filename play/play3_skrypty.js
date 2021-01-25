@@ -235,12 +235,8 @@ function wyniki(wyn)
 	 pkt1++;
 	 punktuj1(pkt_par);
         //2021-01-12 omijanie dla funkcji 1mecz
-        if(!play_1mecz)
-        {
-            document.getElementById("screen3").innerHTML = pkt_par+" team1";
-        }
 	 pkt_par = 0;
-     document.getElementById("show1").innerHTML = res1;
+         document.getElementById("show1").innerHTML = res1;
 	 
 	 document.getElementById("pun1").innerHTML = "<<";
 	 document.getElementById("pun2").innerHTML = "";
@@ -261,11 +257,6 @@ function wyniki(wyn)
      res2++;
 	 pkt2++;
 	 punktuj2(pkt_par);
-        //2021-01-12 omijanie dla funkcji 1mecz
-        if(!play_1mecz)
-        {
-            document.getElementById("screen3").innerHTML = pkt_par+" team2";
-        }
 	 pkt_par = 0;
      document.getElementById("show2").innerHTML = res2;
 	 
@@ -480,18 +471,13 @@ if(team1[i][0]==1){do_zejscia=i;}//przy indeksie 0 jesr aktualna pozycja, więc 
         {        
 //2021-01-12 Zmiana na screen3 dla team1
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana powrotna: "+team1[flag_zm_zag1][5]+" za: "+team1[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag1+" do_zejscia: "+do_zejscia;
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za: "+team1[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+")";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[flag_zm_zag1][5]+" za "+team1[do_zejscia][5];
 //change1(flag_zm_zag1,do_zejscia);//(out,in)
                 change1(do_zejscia, flag_zm_zag1);
         }
-
-//DO USUNIECIA!
-flag_zm_zag1*=(-1);//change1(zz1,zz2);//(wchodzi,schodzi)
-var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>Powrotna flag_zm_zag1: "+flag_zm_zag1+"przejście: "+przejscie+" team1[do_zejscia][0]: "+team1[do_zejscia][0]+"<br/>";
 	}//end of powrot z zagrywki1
         
         
@@ -516,18 +502,13 @@ if(team2[i][0]==1){do_zejscia=i;}
             {
 //2021-01-12: Zmiana tekstów
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana powrotna: "+team2[flag_zm_zag2][5]+" za: "+team2[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6-fl: "+flag_zm_zag2+" do_zejscia: "+do_zejscia;
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[flag_zm_zag2][5]+" za: "+team2[do_zejscia][5]+" (stan: "+mm1+" : "+mm2+")";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[flag_zm_zag2][5]+" za "+team2[do_zejscia][5];
 //change2(flag_zm_zag2,do_zejscia);
                 change2(do_zejscia, flag_zm_zag2);
             }
-
-//DO USUNIECIA!
-flag_zm_zag2*=(-1);
-var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>Powrotna flag_zm_zag2: "+flag_zm_zag2+"przejście: "+przejscie+" team2[do_zejscia][0]: "+team2[do_zejscia][0]+"<br/>";
 	}
     
 }
@@ -648,7 +629,7 @@ function zamamiana_zmiana(id)
 			do_zm = parseInt(document.getElementById("kto"+i).value); //nr zawodnika, ktory ma byc zmieniony
 			na_zm = parseInt(document.getElementById("nr"+i).innerHTML);  //nr zwoadnika, ktory wejdzie
 			
-			document.getElementById("screen6").innerHTML="value: "+do_zm+"inner: "+na_zm;
+			//document.getElementById("screen6").innerHTML="value: "+do_zm+"inner: "+na_zm;
 			
 			adres = "operacje/pl_change.php?in="+na_zm+"&out="+do_zm+"&id="+id;
 			getData(adres, "monu");	
@@ -766,7 +747,9 @@ function zmia_1_nex()
             chan1(zz1,zz2);//(out,in)
             //2021-01-14: dodano div w celu wyśw info o zmianach na gemafield
             var fffv = document.getElementById("change_info1").innerHTML;
-            document.getElementById("change_info1").innerHTML=fffv+"<br>"+team1[zz1][5]+" za "+team1[zz2][5]+""; 
+            document.getElementById("change_info1").innerHTML=fffv+"<br>"+team1[zz1][5]+" za "+team1[zz2][5]+"";
+            var fffv = document.getElementById("screen3").innerHTML;
+            document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+team1[zz1][5]+" za: "+team1[zz2][5]+" (stan: "+mm1+" : "+mm2+") ";
             ustawienie();
             banch_ins();
             document.getElementById("kwadrat11").innerHTML="";
@@ -802,7 +785,9 @@ function zmia_1_nex()
             document.getElementById("screen1").innerHTML="zmiana: "+team1[zz1][5]+" za "+team1[zz2][5];
             //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
             var fffv = document.getElementById("change_info1").innerHTML;
-            document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[zz1][5]+" za "+team1[zz2][5]+"";        
+            document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[zz1][5]+" za "+team1[zz2][5]+"";
+            var fffv = document.getElementById("screen3").innerHTML;
+            document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[zz1][5]+" za: "+team1[zz2][5]+" (stan: "+mm1+" : "+mm2+") ";
             //document.getElementById("l"+zz1).innerHTML = "<div onclick=banch_go1("+team1[zz1][3]+") class='zaw'>"+team1[zz1][5]+"</div>";
             //ustawienie();change1&change2 ma to wbudowane
             //banch_ins();
@@ -849,6 +834,8 @@ function zmia_2_nex()
         //2021-01-14: dodano div w celu wyśw info o zmianach na gemafield
         var fffv = document.getElementById("change_info2").innerHTML;
         document.getElementById("change_info2").innerHTML=fffv+"<br>"+team2[zz1][5]+" za "+team2[zz2][5]+""; 
+        var fffv = document.getElementById("screen6").innerHTML;
+        document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+team2[zz1][5]+" za: "+team2[zz2][5]+" (stan: "+mm1+" : "+mm2+") "; 
         ustawienie();
 	banch_ins();
 	document.getElementById("kwadrat22").innerHTML="";
@@ -885,6 +872,8 @@ function zmia_2_nex()
         //2021-01-13: dodano div w celu wyśw info o zmianach na gemafield
         var fffv = document.getElementById("change_info2").innerHTML;
         document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[zz1][5]+" za "+team2[zz2][5]+"";
+        var fffv = document.getElementById("screen6").innerHTML;
+        document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[zz1][5]+" za: "+team2[zz2][5]+" (stan: "+mm1+" : "+mm2+") ";
 	//ustawienie();
 	//banch_ins();
 	document.getElementById("kwadrat22").innerHTML="";
@@ -1094,8 +1083,8 @@ ustawienie();
 function transpa()
 {
     //2021-01-17 - omijanie dla funkcji 1 mecz
-    //if(!play_1mecz)
-    //{
+    if(!play_1mecz)
+    {
         for(var i=1;i<=12;i++)
 		{
 			document.getElementById("nr1."+i).innerHTML = team1[i][3];
@@ -1128,7 +1117,7 @@ function transpa()
 			document.getElementById("for2."+i).innerHTML = team2[i][13];
 			document.getElementById("zm2."+i).innerHTML = team2[i][14];
 		}
-    //}
+    }
 }
 
 function make_tables(j,i,adr)
@@ -2543,7 +2532,7 @@ if(adr==1)chan1(maxj,1);else chan2(maxj,1);//alert(tea[1][5]+" za "+tea[maxj][5]
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>Nowy set: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[1][5]+" za "+tea[maxj][5];
@@ -2551,7 +2540,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[1][5]+" za "+t
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>Nowy set:: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+tea[1][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>"+tea[1][5]+" za "+tea[maxj][5];
@@ -2575,7 +2564,7 @@ if(adr==1)chan1(maxj,4);else chan2(maxj,4);//alert(tea[4][5]+" za "+tea[maxj][5]
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>Nowy set: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[4][5]+" za "+tea[maxj][5];
@@ -2583,7 +2572,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[4][5]+" za "+t
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>Nowy set:: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+tea[4][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>"+tea[4][5]+" za "+tea[maxj][5];
@@ -2609,7 +2598,7 @@ if(adr==1)chan1(maxj,a);else chan2(maxj,a);//alert(tea[a][5]+" za "+tea[maxj][5]
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>Nowy set: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[a][5]+" za "+tea[maxj][5];
@@ -2617,7 +2606,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[a][5]+" za "+t
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>Nowy set:: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>"+tea[a][5]+" za "+tea[maxj][5];
@@ -2657,7 +2646,7 @@ if(adr==1)chan1(maxj,a);else{chan2(maxj,a);}//alert(tea[a][5]+" za "+tea[maxj][5
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>Nowy set: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[a][5]+" za "+tea[maxj][5];
@@ -2665,7 +2654,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>"+tea[a][5]+" za "+t
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>Nowy set:: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
+document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana w ustawieniu: "+tea[a][5]+" za: "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>"+tea[a][5]+" za "+tea[maxj][5];
@@ -2734,7 +2723,7 @@ function optimal_compos_zm(adr)//mam sklad 7, szukam czy ktos na lawce sie nadaj
                                 if(possible_change(1,tea[1][3],tea[maxj][3])<6)
                                 {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[1][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za: "+tea[1][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[1][5];
@@ -2746,7 +2735,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                                 if(possible_change(2,tea[1][3],tea[maxj][3])<6)
                                 {
  var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[1][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za: "+tea[1][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[1][5];
@@ -2780,7 +2769,7 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                                 if(possible_change(1,tea[4][3],tea[maxj][3])<6)
                                 {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[4][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za: "+tea[4][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[4][5];
@@ -2792,7 +2781,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                                 if(possible_change(2,tea[4][3],tea[maxj][3])<6)
                                 {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[4][5]+" (stan: "+mm1+" : "+mm2+") "; 
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za: "+tea[4][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[4][5];
@@ -2830,7 +2819,7 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                                 if(possible_change(1,tea[a][3],tea[maxj][3])<6)
                                 {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2;
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
@@ -2842,7 +2831,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                                 if(possible_change(2,tea[a][3],tea[maxj][3])<6)
                                 {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2; 
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
@@ -2873,14 +2862,14 @@ document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
 			  var a=0;
 			  if((tea[3][6]+tea[3][9])/2<(tea[6][6]+tea[6][9])/2)a=3;else a=6;//który S słabysz na boisku
 			  if((tea[maxj][6]+tea[maxj][9])/2>((tea[a][6]+tea[a][9])/2+1))//czy na lawce jest lepszy
-			  {	console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[a][5]);
+			  {	//console.log("Prop zmiany: "+par+" in: "+tea[maxj][5]+" za: "+tea[a][5]);
                             //2021-01-12: rozdzielono na 2 screeny
                             if(adr == 1)
                             {
                                 if(possible_change(1,tea[a][3],tea[maxj][3])<6)
                                 {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
@@ -2892,7 +2881,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                                 if(possible_change(2,tea[a][3],tea[maxj][3])<6)
                                 {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>p3s[optimal_compos_zm]Zmiana: "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") "; 
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za: "+tea[a][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
@@ -3007,7 +2996,7 @@ function optimal_compos_golden(adr)//mam sklad 7, szukam czy ktos na lawce sie n
                 if(possible_change(adr, out_nr, in_nr) < 6)
                 {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>[golden]Zmiana: "+tea[in_id][5]+" za: "+tea[out_id][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[in_id][5]+" za: "+tea[out_id][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[in_id][5]+" za "+tea[out_id][5];
@@ -3019,7 +3008,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                 if(possible_change(adr, out_nr, in_nr) < 6)
                 {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>[golden]Zmiana: "+tea[in_id][5]+" za: "+tea[out_id][5]+" (stan: "+mm1+" : "+mm2+") ";
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[in_id][5]+" za: "+tea[out_id][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[in_id][5]+" za "+tea[out_id][5];
@@ -3064,7 +3053,7 @@ function optimal_zm_zagr1()
         {
             //2021-01-12: zmiana z screen6 na screen3
             var fffv = document.getElementById("screen3").innerHTML;
-            document.getElementById("screen3").innerHTML=fffv+"<br>Zmiana na zagrywkę: "+team1[g12][5]+" za: "+team1[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
+            document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[g12][5]+" za: "+team1[g6][5]+" (stan: "+mm1+" : "+mm2+") ";
             //2021-01-13: nowy screen do zapisu zmian na czas seta
             var fffv = document.getElementById("change_info1").innerHTML;
             document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team1[g12][5]+" za "+team1[g6][5];
@@ -3097,7 +3086,7 @@ function optimal_zm_zagr2()
         {
             //2021-01-12 - rozdzielanie na 2 ekrany
             var fffv = document.getElementById("screen6").innerHTML;
-            document.getElementById("screen6").innerHTML=fffv+"<br>Zmiana na zagrywkę: "+team2[g12][5]+" za: "+team2[g6][5]+" (stan: "+mm1+" : "+mm2+") wynik: "+pkt1+" : "+pkt2+" g6: "+g6+" g12-fl: "+g12;
+            document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[g12][5]+" za: "+team2[g6][5]+" (stan: "+mm1+" : "+mm2+") ";
             //2021-01-13: nowy screen do zapisu zmian na czas seta
             var fffv = document.getElementById("change_info2").innerHTML;
             document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+team2[g12][5]+" za "+team2[g6][5];
@@ -3143,7 +3132,7 @@ if(adr==1)
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>2517[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5];
@@ -3151,7 +3140,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2517[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |"; 
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5];
@@ -3178,7 +3167,7 @@ if(adr==1)chan1(maxj,i);else chan2(maxj,i);
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>2546[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |";
+document.getElementById("screen3").innerHTML=fffv+"<br>"+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5];
@@ -3186,7 +3175,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2546[p3s]YoungZamiana:"+tea[i][5]+" <>"+tea[maxj][5]+" |"; 
+document.getElementById("screen6").innerHTML=fffv+"<br>"+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[i][5]+" za "+tea[maxj][5];
@@ -3214,7 +3203,7 @@ if(parseInt(tea[2][31])>parseInt(tea[5][31]))a=2;else a=5;//a - wieksze dosw z t
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>2576[p3s]YoungZamiana:"+tea[a][5]+" <>"+tea[maxj][5]+" |";
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
@@ -3222,7 +3211,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2576[p3s]YoungZamiana:"+tea[a][5]+" <>"+tea[maxj][5]+" |"; 
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
@@ -3250,7 +3239,7 @@ if(parseInt(tea[3][31])>parseInt(tea[6][31]))a=3;else a=6;//a - mniejsze dosw z 
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>2606[p3s]YoungZamiana:"+tea[a][5]+" na<>"+tea[maxj][5]+" |";
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" na<>"+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
@@ -3258,7 +3247,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2606[p3s]YoungZamiana:"+tea[a][5]+" na<>"+tea[maxj][5]+" |";
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" na<>"+tea[maxj][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[a][5]+" za "+tea[maxj][5];
@@ -3313,7 +3302,7 @@ tea[0][31]=0;
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>2659[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" <>"+tea[i][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" za "+tea[i][5];
@@ -3321,7 +3310,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2659[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" <>"+tea[i][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" za "+tea[i][5];
@@ -3341,7 +3330,7 @@ if(adr==1)change1(j,i);else change2(j,i);break;
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>2681[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" <>"+tea[i][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" za "+tea[i][5];
@@ -3349,7 +3338,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2681[p3s]PoddajZamiana:"+tea[j][5]+" <>"+tea[i][5]+" |i:"+i;
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" <>"+tea[i][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[j][5]+" za "+tea[i][5];
@@ -3377,7 +3366,7 @@ if(parseInt(tea[2][31])>parseInt(tea[5][31]))a=2;else a=5;//a - wieksze dosw z t
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>2711[p3s]PoddajZamiana:"+tea[maxj][5]+" <>"+tea[a][5]+" |i+"+i;
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" <>"+tea[a][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
@@ -3385,7 +3374,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2711[p3s]PoddajZamiana:"+tea[maxj][5]+" <>"+tea[a][5]+" |i+"+i;  
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" <>"+tea[a][5]+" (stan: "+mm1+" : "+mm2+") ";  
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
@@ -3413,7 +3402,7 @@ if(parseInt(tea[3][31])>parseInt(tea[6][31]))a=3;else a=6;//a - mniejsze dosw z 
                             if(adr == 1)
                             {
 var fffv = document.getElementById("screen3").innerHTML;
-document.getElementById("screen3").innerHTML=fffv+"<br>2741[p3s]PoddajZamiana:"+tea[maxj][5]+" na<>"+tea[a][5]+" |i:"+i;
+document.getElementById("screen3").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" na<>"+tea[a][5]+" (stan: "+mm1+" : "+mm2+") ";
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info1").innerHTML;
 document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
@@ -3421,7 +3410,7 @@ document.getElementById("change_info1").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") 
                             else
                             {
 var fffv = document.getElementById("screen6").innerHTML;
-document.getElementById("screen6").innerHTML=fffv+"<br>2741[p3s]PoddajZamiana:"+tea[maxj][5]+" na<>"+tea[a][5]+" |i:"+i; 
+document.getElementById("screen6").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" na<>"+tea[a][5]+" (stan: "+mm1+" : "+mm2+") "; 
 //2021-01-13: nowy screen do zapisu zmian na czas seta
 var fffv = document.getElementById("change_info2").innerHTML;
 document.getElementById("change_info2").innerHTML=fffv+"<br>("+pkt1+":"+pkt2+") "+tea[maxj][5]+" za "+tea[a][5];
