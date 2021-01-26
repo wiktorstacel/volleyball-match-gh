@@ -493,13 +493,15 @@ class strona_plansza_1mecz extends Strona1
                     $num_row = mysqli_num_rows($result);
                     if($num_row < 1)
                     {
-                        $_SESSION["error_choose2"] = 'Wybierz drużynę@'; 
+                        $_SESSION["error_choose2"] = 'Wybierz drużynę'; 
                     }
                     else
                     {
                         if($team_choose1 == 0)$_SESSION["choose2"] = $team_choose2;
                     }
-                }   
+                }
+                // id takie same ale nie 0 - ktoś z grzebie w url
+                if($team_choose1 == $team_choose2 && $team_choose1>0 ) return 0;
                 //1 z 2 pole źle
                 if(!isset($_SESSION["error_choose1"]) && isset($_SESSION["error_choose2"]))$_SESSION["choose1"] = $team_choose1;
                 if(!isset($_SESSION["error_choose2"]) && isset($_SESSION["error_choose1"]))$_SESSION["choose2"] = $team_choose2;
@@ -556,9 +558,11 @@ class strona_plansza_1mecz extends Strona1
 
 $strona_plansza_1mecz = new strona_plansza_1mecz();
 
-$strona_plansza_1mecz -> tresc = '';
+$strona_plansza_1mecz -> title = 'Mecz siatkówki - Plusliga';
 
-$strona_plansza_1mecz -> title = 'Manager - pojedyńczy mecz';
+$strona_plansza_1mecz -> keywords = 'siatkówka, volleyball, gra, mecz, symulator';
+
+$strona_plansza_1mecz -> description = 'Gra - symulator meczu siatkówki';
 
 $strona_plansza_1mecz -> Wyswietl();
 

@@ -97,6 +97,8 @@ body{
 }
 #instruction{
         font-size: 12px;
+        line-height: 1.5;
+        /*color: #fafd1a;*/
 }
 .input1
 {

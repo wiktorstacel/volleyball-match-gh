@@ -17,7 +17,7 @@ class index extends Strona1
     //SELECT 1
     if(isset($_SESSION['choose1'])){$id_t1 = $_SESSION['choose1']; unset($_SESSION['choose1']);}
     else{$id_t1 = 0;}
-    echo '<div id="div_select1">Drużyna 1<br><br>';
+    echo '<div id="div_select1">Gospodarz<br><br>';
         echo'<select id="team_choose1" name="team_choose1">';
         $result = mysqli_query($conn, "SELECT id_druzyna, nazwa FROM druzyna ORDER BY nazwa ASC");
         if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
@@ -47,7 +47,7 @@ class index extends Strona1
     //SELECT 2
     if(isset($_SESSION['choose2'])){$id_t2 = $_SESSION['choose2']; unset($_SESSION['choose2']);}
     else{$id_t2 = 0;}
-    echo '<div id="div_select2">Drużyna 2<br><br>';
+    echo '<div id="div_select2">Gość<br><br>';
         echo'<select id="team_choose2" name="team_choose2">';
         $result = mysqli_query($conn, "SELECT id_druzyna, nazwa FROM druzyna ORDER BY nazwa ASC");
         if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
@@ -81,9 +81,9 @@ class index extends Strona1
         //print("<label>Obserwator<input type=\"checkbox\" name=\"obserwator\" value=\"\" onclick=\"this.form.elements['trener1'].disabled = this.checked, this.form.elements['trener2'].disabled = this.checked\"/></label>");
        // print("<label>Trener2<input type=\"checkbox\" name=\"trener2\" value=\"\" onclick=\"this.form.elements['trener1'].disabled = this.checked, this.form.elements['obserwator'].disabled = this.checked\"/></label>");
             //print("<td class=\"ekran\"><input name=\"ekran\" id=\"ekran\"/></td>");
-        echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="tres1">trener1</label>'; 
+        echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="tres1">trener</label>'; 
         echo '<label style="padding: 3px 4px 0 0;margin: 0 58px 0 58px;"><input id="" type="radio" name="opcja_gry" checked value="neutral">obserwator</label>';
-        echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="tres2">trener2</label>';
+        echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="tres2">trener</label>';
         echo '<br><br><br><button id="button_zagraj" type="submit">Zagraj</button>';
     echo '</div>';//end of div_checkboxes
     
