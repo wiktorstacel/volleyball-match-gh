@@ -2904,6 +2904,7 @@ function obrona2(blok, pra)
 		if(team2[13][11])reg=team2[13][11]/100;
 		obrona = zaokr(krzyw_o/pra*1000*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
 		if(obrona<1)obrona=1.1;
+                if(obrona>100)obrona=99;
 		var los = Math.floor(Math.random() * 100 + 1);
 		//scr = document.getElementById("screen3").innerHTML;
 		//document.getElementById("screen3").innerHTML = scr +","+ los;
@@ -3038,6 +3039,7 @@ function obrona1(blok, pra)
 		if(team1[13][11])reg=team1[13][11]/100;
 		obrona = zaokr(krzyw_o/pra*1000*reg);	//parametr do regulacji wartosci,skutecznosci obrony !!!
 		if(obrona<1)obrona=1.1;
+                if(obrona>100)obrona=99;
 		var los = Math.floor(Math.random() * 100 + 1);
 		//scr = document.getElementById("screen3").innerHTML;
 		//document.getElementById("screen3").innerHTML = scr +","+ los;
@@ -3137,6 +3139,7 @@ function blok2(pra)
 		if(team2[13][12])reg=team2[13][12]/100;
 		blok = zaokr(krzyw_b/pra*(1000*reg));	//parametr do regulacji wartosci bloku !!!
 		if(blok<1)blok=1.1;
+                if(blok>100)blok=99;//console.log("blok2:"+blok);
 		var los = Math.floor(Math.random() * 100 + 1);
 		//scr = document.getElementById("screen3").innerHTML;
 		//document.getElementById("screen3").innerHTML = scr +","+ los;
@@ -3309,7 +3312,7 @@ function blok1(pra)
 		if(team1[13][12])reg=team1[13][12]/100;
 		blok = zaokr(krzyw_b/pra*(1000*reg));	//parametr do regulacji wartosci bloku !!!
 		if(blok<1)blok=1.1;
-		
+		if(blok>100)blok=99;
 		var los = Math.floor(Math.random() * 100 + 1);
 		//scr = document.getElementById("screen3").innerHTML;
 		//document.getElementById("screen3").innerHTML = scr +","+ los;

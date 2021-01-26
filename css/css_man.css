@@ -95,6 +95,9 @@ body{
         cursor: pointer;
         float: right;
 }
+#instruction{
+        font-size: 12px;
+}
 .input1
 {
 	width:200px;
