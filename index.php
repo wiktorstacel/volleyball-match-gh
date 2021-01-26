@@ -51,7 +51,7 @@ class index extends Strona1
         echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="tres1">trener1</label>'; 
         echo '<label style="padding: 3px 4px 0 0;margin: 0 58px 0 58px;"><input id="" type="radio" name="opcja_gry" checked value="neutral">obserwator</label>';
         echo '<label style="padding: 3px 4px 0 0;"><input id="" type="radio" name="opcja_gry" value="tres2">trener2</label>';
-        echo '<br><br><br><button style="padding: 6px 10px 6px 10px;; font-family: Trebuchet MS;" type="submit">&nbsp&nbsp&nbsp&nbspZagraj&nbsp&nbsp&nbsp&nbsp</button>';
+        echo '<br><br><br><button id="button_zagraj" type="submit">Zagraj</button>';
     echo '</div>';//end of div_checkboxes
     
 	

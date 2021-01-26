@@ -284,8 +284,8 @@ class strona_plansza_1mecz extends Strona1
         echo '<button d="button_time_no" onclick="time_no()">&nbspStart&nbsp</button>';
 	echo '<button id="button_time_take" onclick="time_take()">&nbspStop&nbsp</button>';
 
-        echo '<button id="button_1action_init" onclick="init_break(1)">&nbspJedna Akcja&nbsp</button>';
-        echo '<button id="button_1action" onclick="contin_1()">&nbspJedna Akcja&nbsp</button>';
+        echo '<button id="button_1action_init" onclick="init_break(1)">Jedna Akcja</button>';
+        echo '<button id="button_1action" onclick="contin_1()">Jedna Akcja</button>';
 	//echo '<button onclick="init()">init</button>';
 	//echo '<button onclick="goo()">GO</button>';
         //echo '<button onclick="play_meczyk_tlo('.$this->t1.','.$this->t2.',0,0,0,0)">LOAD</button>';//TEMP: insert teams id as 1st and 2nd parameter of play_meczyk_tlo()

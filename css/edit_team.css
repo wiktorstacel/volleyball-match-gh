@@ -1,11 +1,13 @@
-
+body{
+    background:#ffffff;
+}
 #TRESC_EDIT_TEAM{
 	width:1200px;
 	margin: auto;
 }
 
 #screen_loader input{
-    width: 32px;
+    width: 38px;
 }
 
 input.col_name{

@@ -681,11 +681,11 @@ background-color: #20b373;
 }
 #buttony{
 	height:22px; 
-	width:198px; 
+	width:210px; 
 	border: 1px solid black;
 	background-color: #d1d1d1;
 	position:absolute;
-	left: 248px;
+	left: 244px;
 	bottom: 5px;
 }
 

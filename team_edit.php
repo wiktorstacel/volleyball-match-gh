@@ -10,6 +10,11 @@ require ('strona_man.inc');
 
 class edit_team extends Strona1
 {
+  public function WyswietlNaglowek()
+  {
+    //echo '<div id="NAGLOWEK"><p style="font-size: 36px;">Rozegraj mecz siatkówki - Plusliga</p></div>';
+  }  
+    
   public function WyswietlTresc()
   {
     echo '<div id="_EDIT_TEAM">';
