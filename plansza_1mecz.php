@@ -453,12 +453,69 @@ class strona_plansza_1mecz extends Strona1
     {
         if(isset($_GET['team_choose1']) && isset($_GET['team_choose2']) && isset($_GET['opcja_gry']))
         {
-            $team_choose1 = htmlentities($_GET["team_choose1"], ENT_QUOTES, "UTF-8");
-            $team_choose2 = htmlentities($_GET["team_choose2"], ENT_QUOTES, "UTF-8");
+            if($_GET['opcja_gry'] != "tres1" && $_GET['opcja_gry'] != "tres2" && $_GET['opcja_gry'] != "neutral")
+            {
+                return 0;
+            }
+            else
+            {
+                $team_choose1 = htmlentities($_GET["team_choose1"], ENT_QUOTES, "UTF-8");
+                $team_choose2 = htmlentities($_GET["team_choose2"], ENT_QUOTES, "UTF-8");
+                require 'config_db.php';
+                if($team_choose1 == 0)
+                {
+                    $_SESSION["error_choose1"] = 'Wybierz drużynę'; 
+                }
+                else
+                {
+                    $result = mysqli_query($conn,
+                    sprintf("SELECT id_druzyna, nazwa FROM druzyna WHERE id_druzyna = %d",
+                        mysqli_real_escape_string($conn, $team_choose1)
+                    ));
+                    if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
+                    $num_row = mysqli_num_rows($result);
+                    if($num_row < 1)
+                    {
+                        $_SESSION["error_choose1"] = 'Wybierz drużynę'; 
+                    }
+                }
+                if($team_choose2 == 0)
+                {
+                    $_SESSION["error_choose2"] = 'Wybierz drużynę';
+                }
+                else
+                {
+                    $result = mysqli_query($conn,
+                    sprintf("SELECT id_druzyna, nazwa FROM druzyna WHERE id_druzyna = %d",
+                        mysqli_real_escape_string($conn, $team_choose2)
+                    ));
+                    if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
+                    $num_row = mysqli_num_rows($result);
+                    if($num_row < 1)
+                    {
+                        $_SESSION["error_choose2"] = 'Wybierz drużynę@'; 
+                    }
+                    else
+                    {
+                        if($team_choose1 == 0)$_SESSION["choose2"] = $team_choose2;
+                    }
+                }   
+                //1 z 2 pole źle
+                if(!isset($_SESSION["error_choose1"]) && isset($_SESSION["error_choose2"]))$_SESSION["choose1"] = $team_choose1;
+                if(!isset($_SESSION["error_choose2"]) && isset($_SESSION["error_choose1"]))$_SESSION["choose2"] = $team_choose2;
+                //Wszystko OK               
+                if(!isset($_SESSION["error_choose1"]) && !isset($_SESSION["choose1"]) && !isset($_SESSION["error_choose2"]) && !isset($_SESSION["choose2"]))
+                {
+                    $this->t1 = $team_choose1;
+                    $this->t2 = $team_choose2;
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
 
-            $this->t1 = $team_choose1;
-            $this->t2 = $team_choose2;
-            return 1;
+            }
         }
         else
         {

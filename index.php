@@ -15,30 +15,63 @@ class index extends Strona1
  
     require 'config_db.php';
     //SELECT 1
+    if(isset($_SESSION['choose1'])){$id_t1 = $_SESSION['choose1']; unset($_SESSION['choose1']);}
+    else{$id_t1 = 0;}
     echo '<div id="div_select1">Drużyna 1<br><br>';
         echo'<select id="team_choose1" name="team_choose1">';
         $result = mysqli_query($conn, "SELECT id_druzyna, nazwa FROM druzyna ORDER BY nazwa ASC");
         if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
         while($row = mysqli_fetch_array($result, MYSQLI_NUM))
         {	
-            if(this.form.elements['team_choose2'].value != $row[0])
+            if($id_t1 == $row[0])
+            {
+                echo '<option selected="selected" value='.$row[0].'>'.$row[1].'</option>';               
+            }
+            else
             {
                 echo '<option value='.$row[0].'>'.$row[1].'</option>';
             }
         }
-        echo '<option value="0" selected="selected">-wybierz-</option></select>';
+        if($id_t1 == 0)
+        {
+            echo '<option value="0" selected="selected">-wybierz-</option></select>';
+        }
+        else
+        {
+            echo '<option value="0">-wybierz-</option></select>';
+        }        
+        if(isset($_SESSION['error_choose1']))
+        {echo '<br><span class="select-error">'.$_SESSION['error_choose1'].'</span>'; unset($_SESSION['error_choose1']);}
     echo '</div>';//end of select1
     
     //SELECT 2
+    if(isset($_SESSION['choose2'])){$id_t2 = $_SESSION['choose2']; unset($_SESSION['choose2']);}
+    else{$id_t2 = 0;}
     echo '<div id="div_select2">Drużyna 2<br><br>';
         echo'<select id="team_choose2" name="team_choose2">';
         $result = mysqli_query($conn, "SELECT id_druzyna, nazwa FROM druzyna ORDER BY nazwa ASC");
         if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
         while($row = mysqli_fetch_array($result, MYSQLI_NUM))
         {	
-            echo '<option value='.$row[0].'>'.$row[1].'</option>';
+            if($id_t2 == $row[0])
+            {
+                echo '<option selected="selected" value='.$row[0].'>'.$row[1].'</option>';               
+            }
+            else
+            {
+                echo '<option value='.$row[0].'>'.$row[1].'</option>';
+            }
         }
-        echo '<option value="0" selected="selected">-wybierz-</option></select>';
+        if($id_t2 == 0)
+        {
+            echo '<option value="0" selected="selected">-wybierz-</option></select>';
+        }
+        else
+        {
+            echo '<option value="0">-wybierz-</option></select>';
+        }
+        if(isset($_SESSION['error_choose2']))
+        {echo '<br><span class="select-error">'.$_SESSION['error_choose2'].'</span>'; unset($_SESSION['error_choose2']);}   
     echo '</div>';//end of select2
     
     echo '<div style="clear: both;"></div>'; //CLEAR: BOTH
@@ -68,7 +101,9 @@ class index extends Strona1
     //for testing
     //echo '<br><div id="screen_loader">';
     //echo '<button class="screen_loader_button" value=0 >LOAD FILE</button>';
+    
     echo '</div>'; // end of box
+       echo '<br><br><a href="instruction.php">Instrukcja gry</a>';
     echo '</div>'; //end of TRESC
   }
 }

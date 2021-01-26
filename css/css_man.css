@@ -1,0 +1,311 @@
+body{
+    background:#ffffff;/*#a1ed72;*/
+}
+#block{
+	width:1200px;
+	height:800px;
+	margin:auto;
+	position:relative;
+}
+#MAINBLOCK{
+	width:1200px;
+	margin: auto;
+}
+#NAGLOWEK{
+	width:600px;
+	margin: auto;
+        margin-top: 80px;
+        text-align: center;
+        font-family: Trebuchet MS;
+        /*background:#f5f6fa;*/
+        color:#2f3640;
+        font-size: 22px;
+}
+#TRESC{
+	width:600px;
+	margin: auto;
+}
+#STOPKA{
+	width:600px;
+	margin: auto;
+        font-size: 13px;
+        margin-top: 150px;
+        text-align: center;
+        font-family: calibri;
+}
+#box{
+	width:518px;
+	margin: auto;
+        border: 1px solid black;
+        padding: 40px;
+        font-family: Trebuchet MS;
+        border-radius: 8px;
+        /*background-color:#f3f5f2;*/
+        background: #2f3640;
+        color: /*#a1ed72;*/#f5f6fa;
+}
+#box select{
+        width: 220px;
+        font-family: Trebuchet MS;
+        background: #fafd1a;/*#f8a521;/*#2f3640;#ffcd02*/
+        color:#2f3640; /*#f5f6fa;#ffcd02;*/
+        font-size: 14px;
+}
+#div_select1{
+        float: left;
+        margin-bottom: 30px;
+        text-align: center;
+}
+#div_select2{
+        float: right;
+        margin-bottom: 30px;
+        text-align: center;
+}
+.select-error{
+        font-weight: bold;
+        font-size: 12px;
+        color: #e84118;
+}
+#div_checkboxes{
+        margin: auto;
+        margin-top: 10px;
+        text-align: center;
+}
+#div_checkboxes input{
+        /*background: /*#2f3640;#ffcd02;*/
+}
+#button_zagraj{
+        /*background: #e84118;
+        color: #f5f6fa;*/
+        background: #fafd1a;/*#f8a521;/**/
+        color: #2f3640;
+        border: 0;
+        padding: 12px 48px;
+        font-size: 16px;
+        margin: 4px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: Trebuchet MS;
+}
+#TRESC a{
+        text-decoration: none;
+        font-family: Trebuchet MS;
+        /*font-weight:bold;*/
+        color: #2f3640;
+        cursor: pointer;
+        float: right;
+}
+.input1
+{
+	width:200px;
+}
+
+.input2
+{
+	width:20px;
+}
+
+.input3
+{
+	width:30px;
+}
+.input4
+{
+	width:84px;
+}
+.input5
+{
+	width:42px;
+}
+
+#alert_nr{
+	color:red;
+	font-size:12px;
+}
+#calen_holder{
+	width:302px;
+	height:648px;
+	float:left;
+}
+#calendar{
+	width:298px;
+	height:548px;
+	background-color:transparent;/*yellow#ffffff*/
+	float:left;
+	border: 2px solid black;
+}
+#calen_navi{
+	float:left;
+	width:298px;
+	height:26px;
+}
+.cal_day{
+	width:298px;
+	height:48px;
+	border-bottom: 2px solid black;
+	font-size:12px;
+}
+.cal_day_cur{
+	width:298px;
+	height:48px;
+	border-bottom: 2px solid black;
+	background-color:#f8a521;
+	font-size:12px;
+}
+.cur_data{
+	float:left;
+	width:62px;
+	height:48px;
+}
+
+.motor{
+	width:698px;
+	min-height:300px;
+	background-color:transparent;/*yellow*#ffffff*/
+	float:left;
+	border: 2px solid black;
+	position: relative;
+}
+
+.motor2{
+	width:698px;
+	/*height:10px;*/
+	background-color:red;
+	display:none;
+	float:left;
+	border: 2px solid black;
+	position: relative;
+}
+
+#game_field{
+	width:1200px;
+}
+
+#monu{
+	width:400px;
+	height:100px;
+	background-color:transparent;/*yellow#ffffff*/
+	float:left;
+	border: 1px solid black;
+	font-size: 12px;
+}
+#team_view{
+	float:left;
+}
+#field_view{
+	float:left;
+}
+#half_field{
+	float:left;
+	width:180px;
+	height:180px;
+	color: #000;
+	background-color: #f8a521;
+	border: 1px solid black;
+	position: absolute; top:35px;right:35px;
+}
+#analiza_view{
+	float:left;
+	width:190px;
+	height:50px;
+	color: #000;
+	border: 1px solid black;
+	position: absolute; top:300px;left:460px;
+}
+.poles2{
+	width:60px;
+	height:29px;
+	font-size: 11px;
+	float:left;
+	border-bottom: 1px solid black;
+}
+.pole2{
+	width:60px;
+	height:60px;
+	font-size: 11px;
+	text-align:center;
+}
+
+#ll1{
+	float:left;
+}
+#ll6{
+	float:left;
+}
+#ll5{
+	float:left;
+}
+#ll4{
+	float:left;
+}
+#ll3{
+	float:left;
+}
+#ll2{
+	float:left;
+}
+#ll7{
+	height: 30px;
+	font-size: 11px;
+	text-align: center;
+}
+
+#rr2{
+	float:left;
+}
+#rr3{
+	float:left;
+}
+#rr4{
+	float:left;
+}
+#rr1{
+	float:right;
+	text-align:right;
+}
+#rr6{
+	float:right;
+	text-align:right;
+}
+#rr5{
+	float:right;
+	text-align:right;
+}
+.money{
+	text-align:right;
+}
+.wynu{
+	width:20px;
+	font-family:palatino linotype;
+	font-size:15px;
+	font-weight:bold;
+}
+.wynud{
+	font-family:palatino linotype;
+	font-size:12px;
+}
+.myteam{
+	color:red;
+}
+#table_sel{
+	width:100px;
+	height:20px;
+	position:absolute;
+	right: 20px;
+	top: 4px;
+}
+#data_term{
+	width:100px;
+	height:20px;
+	position:absolute;
+	right: 220px;
+	top: 2px;
+}
+#buttons_table{
+	width:110px;
+	height:300px;
+	position:absolute;
+	right: 20px;
+	top: 40px;
+	text-align:center;
+}
