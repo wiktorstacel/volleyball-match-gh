@@ -118,10 +118,26 @@ class strona_plansza_1mecz extends Strona1
 	echo '</div>';//END of kolumna right
 	
 	echo '<div id="plac_gry">';
+        
+    require 'config_db.php';
+    $result = mysqli_query($conn,
+            sprintf("SELECT nazwa FROM druzyna WHERE id_druzyna = %d ORDER BY nazwa ASC",
+            mysqli_real_escape_string($conn, $this->t1)
+            ));
+    if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);}
+    $nazwa_team1 = mysqli_fetch_array($result, MYSQLI_NUM);
+    
+        $result = mysqli_query($conn,
+            sprintf("SELECT nazwa FROM druzyna WHERE id_druzyna = %d ORDER BY nazwa ASC",
+            mysqli_real_escape_string($conn, $this->t2)
+            ));
+    if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);}
+    $nazwa_team2 = mysqli_fetch_array($result, MYSQLI_NUM);
+    
 	
-	echo '<div id="tablica_wyn">';
-	echo '<div id=\'set1\'>0</div><div id=\'pun1\'></div><div id=\'show1\'>0</div>';
-        echo '<div id=\'set2\'>0</div><div id=\'pun2\'></div><div id=\'show2\'>0</div>';
+	echo '<div style="width: 680px;" id="tablica_wyn">';
+	echo '<div id=\'nazwa_team1\'>'.$nazwa_team1[0].'</div><div id=\'set1\'>0</div><div id=\'pun1\'></div><div id=\'show1\'>0</div>';
+        echo '<div id=\'nazwa_team2\'>'.$nazwa_team2[0].'</div><div id=\'set2\'>0</div><div id=\'pun2\'></div><div id=\'show2\'>0</div>';
 	echo '</div>';
         
         echo '<div id="tablica_wyn_sety">';
