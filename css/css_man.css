@@ -36,7 +36,7 @@ body{
 #box{
 	width:518px;
 	margin: auto;
-        border: 1px solid black;
+        border: 1px solid #2f3640;
         padding: 40px;
         font-family: Trebuchet MS;
         border-radius: 8px;
@@ -313,4 +313,42 @@ body{
 	right: 20px;
 	top: 40px;
 	text-align:center;
+}
+
+/*Komentarze*/
+
+#box_comments{
+	width:518px;
+	margin: auto;
+        border: 1px solid #2f3640;
+        padding: 40px;
+        font-family: Trebuchet MS;
+        border-radius: 8px;
+        background: #ffffff;/*#fafd1a;*//*#2f3640;*/
+        color: #2f3640;/*#a1ed72;*//*#f5f6fa;*/
+        font-size: 12px;
+        line-height: 1.5;
+}
+#button_add_comment{
+        /*background: #e84118;
+        color: #f5f6fa;*/
+        background: #2f3640;
+        color: #f5f6fa;
+        border: 0;
+        padding: 12px 48px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: Trebuchet MS;
+}
+#comments_container{
+        background: #ffffff;
+}
+.form-error-comment{
+        font-weight: bold;
+        font-size: 12px;
+        color: #e84118;
+}
+.input-error {
+        /*box-shadow: 0 0 5px red;*/
 }

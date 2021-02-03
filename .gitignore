@@ -1,4 +1,6 @@
 .htaccess
+config_smtp.php
+config_reCaptcha.php
 
 manager.xml
 manager.clpprj

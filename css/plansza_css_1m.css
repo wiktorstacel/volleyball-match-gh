@@ -637,6 +637,7 @@ background-color: #20b373;
 	/*font-weight: bold;*/
 	text-align:right;
         font-size:14px;
+        font-family: Trebuchet MS;
 	margin:auto;
         padding: 2px 5px 0 0;
 }
@@ -646,6 +647,7 @@ background-color: #20b373;
 	/*background-color: yellow;*/
 	float:right;
         font-size:14px;
+        font-family: Trebuchet MS;
 	/*font-weight: bold;*/
 	margin:auto;
         padding: 2px 0 0 5px;

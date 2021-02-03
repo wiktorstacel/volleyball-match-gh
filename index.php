@@ -102,8 +102,8 @@ class index extends Strona1
     //echo '<br><div id="screen_loader">';
     //echo '<button class="screen_loader_button" value=0 >LOAD FILE</button>';
     
-    echo '</div>'; // end of box
-       echo '<br><br><a href="instruction.php">Instrukcja gry</a>';
+    echo '</div>'; // end of box style="float: left;"
+       echo '<br><br><a href="comments.php">Komentarze&nbsp</a><a href="instruction.php">Instrukcja gry&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>';
     echo '</div>'; //end of TRESC
   }
 }

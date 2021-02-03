@@ -139,7 +139,7 @@ for (i = 0; i < elems.length; i += 1) {
     console.log(jsonObj);
 }*/
 
-//przyładowanie selectów po tym jak w drugim wybraną drużynę
+//przyładowanie selectów na stronie wypo tym jak w drugim wybraną drużynę
 $(document).ready(function(){
     
     $(document).on("change", "#team_choose1", function(){       
@@ -159,5 +159,44 @@ $(document).ready(function(){
             id_druzyna_choose: id_druzyna_choose
         });
     });
+    
+});
+
+//przysłanie danych z komentarza
+$(document).ready(function(){
+    
+    $('#comment_form').on('submit', function(event){
+        event.preventDefault();                                     //wyłącza domyślne action i method  
+        var form_data = $(this).serialize(); //convert to string      
+            $.ajax({
+                url: "comment_addAction.php",
+                method: "POST",
+                data: form_data,
+                //dataType: "JSON",
+                beforeSend:function(){
+                    $('#button_add_comment').attr('disabled','disabled');
+                },
+                success: function(data){
+                    $('#button_add_comment').attr('disabled', false);
+                    if(data != "")
+                    {
+                        //$('#comment_form')[0].reset;
+                        $('#comment_message').html(data);
+                    }
+                }
+            });
+    });
+    
+    load_comment();
+    
+    function load_comment(){
+        $.ajax({
+            url: "comment_fetch.php",
+            method: "POST",
+            success: function(data){
+                $('#comments_container').html(data);
+            }
+        });
+    }
     
 });
