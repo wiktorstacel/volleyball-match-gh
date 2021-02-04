@@ -10,7 +10,7 @@ class comments extends Strona1
         echo "<script type='text/javascript'>
                                     var onloadCallback = function() {
                                     grecaptcha.render('comment_captcha', {
-                                    'sitekey' : '6LfV2UUaKkcskYoAimOqSAJMW0XLM78uu9d',
+                                    'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
                                     'theme' : 'dark'
                                         });
                                     };
@@ -61,3 +61,10 @@ $comments -> description = 'Gra - symulator meczu siatkówki';
 
 $comments -> Wyswietl();
 ?>
+<script>
+    if(localStorage.getItem("comment_user_name"))
+    {
+        var user_name_LS = localStorage.getItem("comment_user_name");
+        $('#comment_user_name').val(user_name_LS);
+    }
+</script>

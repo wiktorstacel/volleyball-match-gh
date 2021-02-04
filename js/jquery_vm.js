@@ -183,12 +183,19 @@ $(document).ready(function(){
                     if(n_data != -1)
                     {
                         load_comment();
+                        var comment_user_name = $('#comment_user_name').val();
+                        localStorage.setItem("comment_user_name", comment_user_name);//zapis do pam przegladarki
                         var parent_id = $('#comment_parent_id').val();
                         if(parent_id > 0)
                         {
-                        var comment_to_reply_id = $('#comment_to_reply').html();//odczyt diva nad texarea jesli to odpowiedz na komentarz
-                        var element = document.getElementById(comment_to_reply_id);
-                        element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                            var comment_to_reply_id = $('#comment_to_reply').html();//odczyt diva nad texarea jesli to odpowiedz na komentarz
+                            var element = document.getElementById(comment_to_reply_id);
+                            element.classList.add("comment_hot");
+                            //element.setAttribute("style", "color:red;");
+                            //element.style.color = "red";
+                            //element.style.cssText = "color:red"; 
+                            //$(comment_to_reply_id).addClass("comment_hot");
+                            element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
                         }
                     }
                 }
@@ -198,9 +205,15 @@ $(document).ready(function(){
     load_comment();
     
     function load_comment(){
+        var user_name_LS = "";
+        if(localStorage.getItem("comment_user_name"))
+        {
+            user_name_LS = localStorage.getItem("comment_user_name");
+        }
         $.ajax({
             url: "comment_fetch.php",
             method: "POST",
+            data: {user_name_LS: user_name_LS},
             success: function(data){
                 $('#comments_container').html(data);
             }
@@ -220,7 +233,16 @@ $(document).ready(function(){
         $('#comment_parent_id').val(comment_id);
         $('#comment_to_reply').html(comment_text);
         $('#comment_content').attr("placeholder", "Tutaj wpisz odpowiedź...").val("").prop( "disabled", false ).focus();//EXAMPLE: $("#serMemtb").attr("placeholder", "Type a Location").val("").focus().blur();
-        $('#comment_user_name').val("").prop( "disabled", false );
+        if(localStorage.getItem("comment_user_name"))
+        {
+            //zaladowanie imienia komentujacego, zostalo wczesniej zapisane
+            var user_name = localStorage.getItem("comment_user_name");
+            $('#comment_user_name').val(user_name).prop( "disabled", false );
+        }
+        else
+        {
+            $('#comment_user_name').val("").prop( "disabled", false );
+        }
         grecaptcha.reset();
         $('#comment_message').html("");
         window.scrollBy(0, 0);
@@ -235,10 +257,37 @@ $(document).ready(function(){
         $('#comment_parent_id').val(comment_id);
         $('#comment_to_reply').html(comment_text);
         $('#comment_content').attr("placeholder", "Tutaj wpisz odpowiedź...").val("@"+comment_user+". ").prop( "disabled", false ).focus();//EXAMPLE: $("#serMemtb").attr("placeholder", "Type a Location").val("").focus().blur();
-        $('#comment_user_name').val("").prop( "disabled", false );
+        if(localStorage.getItem("comment_user_name"))
+        {
+            //zaladowanie imienia komentujacego, zostalo wczesniej zapisane
+            var user_name = localStorage.getItem("comment_user_name");
+            $('#comment_user_name').val(user_name).prop( "disabled", false );
+        }
+        else
+        {
+            $('#comment_user_name').val("").prop( "disabled", false );
+        }
         grecaptcha.reset();
         $('#comment_message').html("");
         window.scrollBy(0, 0);
+    });
+    
+});
+
+//Usuniecie komentarza dla uzytkownika, ktorego nazwa jest zapisana w LS - wstrzymane
+$(document).ready(function(){
+    
+    $(document).on("click", ".button_delete_comment",function(){
+        var comment_id = $(this).val();
+        var comment_deleted_id = $(this).attr("name");
+        $.post("comment_delete.php", {
+            comment_id: comment_id
+        }, function(data){
+            var element = document.getElementById(comment_deleted_id);
+            element.innerText = data;
+            //comment_deleted_id = "#"+comment_deleted_id; 
+            //$(comment_deleted_id).html(data);//poprzez znaki ., w stringu id nie mozna uzyc jQuery
+        });
     });
     
 });
