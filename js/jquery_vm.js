@@ -166,7 +166,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     
     $('#comment_form').on('submit', function(event){
-        event.preventDefault();                                     //wyłącza domyślne action i method  
+        event.preventDefault();                                     //wyłącza domyślne action i method 
         var form_data = $(this).serialize(); //convert to string      
             $.ajax({
                 url: "comment_addAction.php",
@@ -178,10 +178,18 @@ $(document).ready(function(){
                 },
                 success: function(data){
                     $('#button_add_comment').attr('disabled', false);
-                    if(data != "")
+                    $('#comment_message').html(data);
+                    var n_data = data.search("Komentarz dodany.");//szuka ciagu znakow w odpowiedzi z php
+                    if(n_data != -1)
                     {
-                        //$('#comment_form')[0].reset;
-                        $('#comment_message').html(data);
+                        load_comment();
+                        var parent_id = $('#comment_parent_id').val();
+                        if(parent_id > 0)
+                        {
+                        var comment_to_reply_id = $('#comment_to_reply').html();//odczyt diva nad texarea jesli to odpowiedz na komentarz
+                        var element = document.getElementById(comment_to_reply_id);
+                        element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                        }
                     }
                 }
             });
@@ -208,11 +216,13 @@ $(document).ready(function(){
         var comment_id = $(this).val();
         var comment_text = $(this).attr("name");
         //alert(comment_text);
+        $("#button_add_comment").prop( "disabled", false );
         $('#comment_parent_id').val(comment_id);
         $('#comment_to_reply').html(comment_text);
-        $('#comment_content').attr("placeholder", "Tutaj wpisz odpowiedź...").val("").focus();//EXAMPLE: $("#serMemtb").attr("placeholder", "Type a Location").val("").focus().blur();
-        $('#comment_user_name').val("");
+        $('#comment_content').attr("placeholder", "Tutaj wpisz odpowiedź...").val("").prop( "disabled", false ).focus();//EXAMPLE: $("#serMemtb").attr("placeholder", "Type a Location").val("").focus().blur();
+        $('#comment_user_name').val("").prop( "disabled", false );
         grecaptcha.reset();
+        $('#comment_message').html("");
         window.scrollBy(0, 0);
     });
     
@@ -221,11 +231,13 @@ $(document).ready(function(){
         var comment_text = $(this).attr("name");
         var comment_user = $(this).attr("id");
         //alert(comment_text);
+        $("#button_add_comment").prop( "disabled", false );
         $('#comment_parent_id').val(comment_id);
         $('#comment_to_reply').html(comment_text);
-        $('#comment_content').attr("placeholder", "Tutaj wpisz odpowiedź...").val("@"+comment_user+". ").focus();//EXAMPLE: $("#serMemtb").attr("placeholder", "Type a Location").val("").focus().blur();
-        $('#comment_user_name').val("");
+        $('#comment_content').attr("placeholder", "Tutaj wpisz odpowiedź...").val("@"+comment_user+". ").prop( "disabled", false ).focus();//EXAMPLE: $("#serMemtb").attr("placeholder", "Type a Location").val("").focus().blur();
+        $('#comment_user_name').val("").prop( "disabled", false );
         grecaptcha.reset();
+        $('#comment_message').html("");
         window.scrollBy(0, 0);
     });
     

@@ -36,25 +36,30 @@ if(isset($_POST['comment_parent_id']))
         $errorEmpty = true;
         echo '<span class="form-error-comment">Pola "Komentarz" i "Imię" nie mogą być puste.</span>';
     }
-    elseif((strlen($comment) < 20) || (strlen($comment) > 2000))
+    elseif((strlen($comment) < 3) || (strlen($comment) > 2000))
     {
         $errorComment = true;
-        echo '<span class="form-error-comment">Komentarz ma nieprawidłową ilość znaków (min. 20, maks. 2000)</span>';
+        echo '<span class="form-error-comment">Komentarz ma nieprawidłową ilość znaków (min. 3, maks. 2000)</span>';
     }
     elseif(preg_match('/[^?!@%.,;ĄąĆćĘęŁłŃńÓóŚśŻżŹźa-zA-Z\s\d]/', $comment))//sprawdź odpowiednie znaki surname
     {
         $errorComment = true;
         echo '<span class="form-error-comment">Treść komentarza może składać się tylko z liter(w tym polskich) oraz spacji i znaków ,.;?!%@-/</span>';            
     }
+    elseif(!preg_match("#^[ĄąĆćĘęŁłŃńÓóŚśŻżŹźa-zA-Z]+#", $name)) //zaczynać się od litery i musi być cojamniej 1 litera
+    {
+        $errorName = true;
+        echo '<span>Pola "imię" musi zaczynać się od litery.<span><br>';              
+    }
     elseif(strlen($name) < 3 || strlen($name) > 20)//sprawdz długość login
     {
         $errorName = true;
         echo '<span class="form-error-comment">Pole "Imię" powinno mieć długość od 3 do 20 znaków.</span>';
     }
-    elseif(!preg_match("/^(ą|ę| |ź|ć|ń|ó|ś|ż|ł|Ą|Ę|Ź|Ć|Ń|Ó|Ś|Ż|[a-z]|[A-Z]){0,20}$/", $name))//sprawdź odpowiednie znaki surname
+    elseif(!preg_match("/^(ą|ę| |ź|ć|ń|ó|ś|ż|ł|Ą|Ę|Ź|Ć|Ń|Ó|Ś|Ż|[a-z]|[A-Z]|[0-9]){0,20}$/", $name))//sprawdź odpowiednie znaki surname
     {
         $errorName = true;
-        echo '<span class="form-error-comment">Pole "Imię" może składać się tylko z liter(w tym polskich) oraz spacji.</span>';            
+        echo '<span class="form-error-comment">Pole "Imię" może składać się z liter(w tym polskich), cyfr oraz spacji.</span>';            
     }
     /*elseif ((!filter_var($emailB, FILTER_VALIDATE_EMAIL)) || $email != $emailB) //sprawdz poprawnosc email
     {
@@ -212,9 +217,9 @@ else
     }*/
     if(errorEmpty == false && errorComment == false && errorName == false && errorEmail == false && errorTelefon == false && errorRegulamin == false && errorBot == false)
     {
-        //$("#kont_comment, #kont_name, #kont_email, #kont_telefon").val("");
+        //$("#comment_content, #comment_user_name").val("");
         //$("#kont_regulamin").prop('checked', false);
-        //$("#kont_comment, #kont_name, #kont_email, #kont_telefon, #kont_regulamin, #kont_submit").prop( "disabled", true );
+        $("#comment_content, #comment_user_name, #button_add_comment").prop( "disabled", true );
     }
     else
     {

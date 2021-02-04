@@ -16,14 +16,14 @@ $result = mysqli_query($conn, "SELECT * FROM komentarze WHERE rodzic_komentarz_i
 if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
 while($row = mysqli_fetch_assoc($result)) 
 {
-    echo '<br><div style="margin-left: 0px;padding: 0 0 0 6px;border-radius: 4px;"><b>'.$row['komentujacy'].'</b> | '.$row['data_godzina'];
+    echo '<br><div id="<b>'.$row['komentujacy'].'</b> | '.$row['komentarz'].'" style="margin-left: 0px;padding: 0 0 0 6px;border-radius: 4px;"><b>'.$row['komentujacy'].'</b> | '.$row['data_godzina'];
     echo '<br>'.$row['komentarz'];
-    echo '<br><button style="margin-top:4px;" class="button_reply_comment_main" value="'.$row['komentarz_id'].'" name="<b>'.$row['komentujacy'].'</b> | '.$row['komentarz'].'" type="">ODPOWIEDZ</button></div>';
+    echo '<br><button style="margin-top:4px;" class="button_reply_comment_main" value="'.$row['komentarz_id'].'" id="'.$row['komentujacy'].'" name="<b>'.$row['komentujacy'].'</b> | '.$row['komentarz'].'" type="">ODPOWIEDZ</button></div>';
     $result_childs = mysqli_query($conn, "SELECT * FROM komentarze WHERE rodzic_komentarz_id=".$row['komentarz_id']." ORDER BY komentarz_id ASC");
     if($result_childs != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);} 
     while($row_childs = mysqli_fetch_assoc($result_childs)) 
     {
-        echo '<div style="margin: 2px 0 0 68px;padding: 0 0 0 6px; ;border-radius: 4px;"><b>'.$row_childs['komentujacy'].'</b> | '.$row_childs['data_godzina'];
+        echo '<div id="<b>'.$row_childs['komentujacy'].'</b> | '.$row_childs['komentarz'].'" style="margin: 2px 0 0 68px;padding: 0 0 0 6px; ;border-radius: 4px;"><b>'.$row_childs['komentujacy'].'</b> | '.$row_childs['data_godzina'];
         echo '<br>'.$row_childs['komentarz'];//background: #fafd1a; echo'<br><button style="margin-top:4px;" class="button_reply_comment" type="submit">Dodaj</button></div>'; echo'<br><button style="margin-top:4px;" class="button_reply_comment" type="submit">Dodaj</button></div>';
         echo '<br><button style="margin-top:4px;" class="button_reply_comment_reply" value="'.$row['komentarz_id'].'" id="'.$row_childs['komentujacy'].'" name="<b>'.$row_childs['komentujacy'].'</b> | '.$row_childs['komentarz'].'" type="">ODPOWIEDZ</button></div>';       
     }
