@@ -12,6 +12,8 @@ if(isset($_POST['comment_parent_id']))
 {
     $parent_id = htmlentities($_POST['comment_parent_id'], ENT_QUOTES, "UTF-8");
     $comment = htmlentities($_POST['comment_content'], ENT_QUOTES, "UTF-8");
+    $comment = str_replace("&oacute;", "ó", $comment);
+    $comment = str_replace("&Oacute;", "Ó", $comment);
     $name = htmlentities($_POST['comment_user_name'], ENT_QUOTES, "UTF-8");
     //$email = htmlentities($_POST['email'], ENT_QUOTES, "UTF-8");można dorobić nieobowiązkowe pole e-mail z komentarzem
     //'podaj e-mail jeśli chcesz dostawać informacje o aktualizacjach - tylko trzeba też zrobić potem opcję wypisania się z neewslettera
@@ -100,7 +102,7 @@ $errorBot = false;
 
             //sprawdz czy jest w bazie komentarz parent_id
             $result = mysqli_query($conn, 
-            sprintf("SELECT * FROM komentarze WHERE rodzic_komentarz_id='%d'",
+            sprintf("SELECT * FROM komentarze WHERE komentarz_id='%d'",
             mysqli_real_escape_string($conn, $parent_id)
                     ));
             if(!$result) throw new Exception(mysqli_error($conn));

@@ -200,3 +200,33 @@ $(document).ready(function(){
     }
     
 });
+
+//załadowanie danych do formularza komentarzy po naciśnięciu 'odpowiedz'
+$(document).ready(function(){
+    
+    $(document).on('click', '.button_reply_comment_main', function(){                                   //wyłącza domyślne action i method  
+        var comment_id = $(this).val();
+        var comment_text = $(this).attr("name");
+        //alert(comment_text);
+        $('#comment_parent_id').val(comment_id);
+        $('#comment_to_reply').html(comment_text);
+        $('#comment_content').attr("placeholder", "Tutaj wpisz odpowiedź...").val("").focus();//EXAMPLE: $("#serMemtb").attr("placeholder", "Type a Location").val("").focus().blur();
+        $('#comment_user_name').val("");
+        grecaptcha.reset();
+        window.scrollBy(0, 0);
+    });
+    
+        $(document).on('click', '.button_reply_comment_reply', function(){                                   //wyłącza domyślne action i method  
+        var comment_id = $(this).val();
+        var comment_text = $(this).attr("name");
+        var comment_user = $(this).attr("id");
+        //alert(comment_text);
+        $('#comment_parent_id').val(comment_id);
+        $('#comment_to_reply').html(comment_text);
+        $('#comment_content').attr("placeholder", "Tutaj wpisz odpowiedź...").val("@"+comment_user+". ").focus();//EXAMPLE: $("#serMemtb").attr("placeholder", "Type a Location").val("").focus().blur();
+        $('#comment_user_name').val("");
+        grecaptcha.reset();
+        window.scrollBy(0, 0);
+    });
+    
+});

@@ -321,10 +321,10 @@ body{
 	width:518px;
 	margin: auto;
         border: 1px solid #2f3640;
-        padding: 40px;
+        padding: 30px 40px 40px 40px;
         font-family: Trebuchet MS;
         border-radius: 8px;
-        background: #ffffff;/*#fafd1a;*//*#2f3640;*/
+        background: #ffffff;/*#fafd1a;*//*#2f3640;#e84118;/**/
         color: #2f3640;/*#a1ed72;*//*#f5f6fa;*/
         font-size: 12px;
         line-height: 1.5;
@@ -341,8 +341,23 @@ body{
         cursor: pointer;
         font-family: Trebuchet MS;
 }
+.button_reply_comment_main, .button_reply_comment_reply{
+        /*background: #e84118;
+        color: #f5f6fa;*/
+        background: #ffffff;/*#2f3640;*/
+        color: #2f3640;
+        border: 0;
+        padding: 0px 0px;
+        font-size: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: Trebuchet MS;
+        
+        border: none;
+        /*text-decoration: underline;*/
+}
 #comments_container{
-        background: #ffffff;
+        background: #ffffff;/*#e84118;*/
 }
 .form-error-comment{
         font-weight: bold;
