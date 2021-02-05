@@ -255,6 +255,12 @@ $(document).ready(function(){
             $('#comment_user_name').val("").prop( "disabled", false );
         }
         grecaptcha.reset();
+                                    var onloadCallback = function() {
+                                    grecaptcha.render('comment_captcha', {
+                                    'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
+                                    'theme' : 'dark'
+                                        });
+                                    };
         $('#comment_message').html("");
         window.scrollBy(0, 0);
     });
@@ -279,26 +285,43 @@ $(document).ready(function(){
             $('#comment_user_name').val("").prop( "disabled", false );
         }
         grecaptcha.reset();
+                                    var onloadCallback = function() {
+                                    grecaptcha.render('comment_captcha', {
+                                    'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
+                                    'theme' : 'dark'
+                                        });
+                                    };
         $('#comment_message').html("");
         window.scrollBy(0, 0);
     });
     
 });
 
-//Usuniecie komentarza dla uzytkownika, ktorego nazwa jest zapisana w LS - wstrzymane
+//Usuniecie komentarza dla uzytkownika, ktorego nazwa jest zapisana w LS - wstrzymane: tylko wniosek do admina
 $(document).ready(function(){
     
     $(document).on("click", ".button_delete_comment",function(){
         var comment_id = $(this).val();
         var comment_deleted_id = $(this).attr("name");
-        $.post("comment_delete.php", {
+        if(localStorage.getItem(comment_id))
+        {
+            //jeśli raz został wysłany wniosek o usunięcie, to zapisano w LS, więcej mail nie przyjdzie a user dostanie tekst, że jego wniosek jest procedowany
+            var element = document.getElementById(comment_deleted_id);
+            element.innerText = "Wysłano już wniosek o usunięcie, trzeba poczekać na reakcję administratora.";
+        }
+        else
+        {
+            localStorage.setItem(comment_id, "deleted");        
+            $.post("comment_delete.php", {
             comment_id: comment_id
-        }, function(data){
+            }, function(data){
             var element = document.getElementById(comment_deleted_id);
             element.innerText = data;
             //comment_deleted_id = "#"+comment_deleted_id; 
             //$(comment_deleted_id).html(data);//poprzez znaki ., w stringu id nie mozna uzyc jQuery
         });
+        }
+
     });
     
 });

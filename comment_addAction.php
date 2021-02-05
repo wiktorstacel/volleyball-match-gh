@@ -42,7 +42,7 @@ if(isset($_POST['comment_parent_id']))
         $errorComment = true;
         echo '<span class="form-error-comment">Komentarz ma nieprawidłową ilość znaków (min. 3, maks. 2000)</span>';
     }
-    elseif(preg_match('/[^?!@%.,;ĄąĆćĘęŁłŃńÓóŚśŻżŹźa-zA-Z\s\d]/', $comment))//sprawdź odpowiednie znaki surname
+    elseif(preg_match('/[^?!@%.,;-/ĄąĆćĘęŁłŃńÓóŚśŻżŹźa-zA-Z\s\d]/', $comment))//sprawdź odpowiednie znaki surname
     {
         $errorComment = true;
         echo '<span class="form-error-comment">Treść komentarza może składać się tylko z liter(w tym polskich) oraz spacji i znaków ,.;?!%@-/</span>';            
@@ -81,7 +81,7 @@ if(isset($_POST['comment_parent_id']))
     {
         //reCapcha
         $errorBot = true;
-        echo '<span class="form-error-comment">Potwierdź, że nie jesteś robotem!</span>';
+        echo '<span class="form-error-comment">Potwierdź, że nie jesteś robotem.</span>';
     }
     else
     {
@@ -96,7 +96,7 @@ if(isset($_POST['comment_parent_id']))
         }
     }
 //TEMP!!!
-$errorBot = false;
+//$errorBot = false;
     //dane wejsciowe zwalidowane
     if($errorEmpty == false && $errorComment == false && $errorName == false && $errorEmail == false && $errorTelefon == false &&  $errorRegulamin == false && $errorBot == false)
     {       
@@ -158,7 +158,6 @@ $errorBot = false;
                     include_once "PHPMailer/Exception.php";
 
                     require_once 'config_smtp.php';
-                    //Email Settings =>to advisor
                     $mail->isHTML(true);
                     $mail->CharSet = "UTF-8";
                     $mail->setFrom('info@mecz-siatkowki.pl');
@@ -177,7 +176,7 @@ $errorBot = false;
                     else
                     {
                         $errorEmail = true;
-                        echo '<span class="form-error">Błąd serwera - jeśli nie dodano komentarza spróbuj ponownie.</span>';
+                        echo '<span class="form-error-comment">Błąd serwera - jeśli nie dodano komentarza spróbuj ponownie.</span>';
                         throw new Exception($mail->ErrorInfo);
                     }
             }
@@ -189,7 +188,7 @@ $errorBot = false;
         catch (Exception $ex) 
         {
             echo '<span class="form-error-comment">Błąd serwera - prosimy o próbę w innym terminie.</span>';
-            echo '<br>Informacja deweloperska: '.$ex;
+            echo '<br><span class="form-error-comment">Informacja deweloperska: '.$ex.'</span>';
         }
     }
 
@@ -240,6 +239,12 @@ else
     else
     {
         grecaptcha.reset(); //kasowanie reCapcha
+        var onloadCallback = function() {
+        grecaptcha.render('comment_captcha', {
+        'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
+        'theme' : 'dark'
+            });
+        };       
     }
     
 </script>

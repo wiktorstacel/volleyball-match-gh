@@ -324,16 +324,18 @@ body{
         padding: 30px 40px 40px 40px;
         font-family: Trebuchet MS;
         border-radius: 8px;
-        background: #ffffff;/*#fafd1a;*//*#2f3640;#e84118;/**/
+        background: #2f3640;/*#e84118;/*#fafd1a;/*#ffffff;#a1ed72;/**/
         color: #2f3640;/*#a1ed72;*//*#f5f6fa;*/
         font-size: 12px;
         line-height: 1.5;
 }
 #button_add_comment{
         /*background: #e84118;
-        color: #f5f6fa;*/
-        background: #2f3640;
         color: #f5f6fa;
+        background: #2f3640;
+        color: #f5f6fa;*/
+        background: #fafd1a;
+        color: #2f3640;
         border: 0;
         padding: 12px 48px;
         font-size: 16px;
@@ -344,7 +346,7 @@ body{
 .button_reply_comment_main, .button_reply_comment_reply{
         /*background: #e84118;
         color: #f5f6fa;*/
-        background: #ffffff;/*#2f3640;*/
+        background: transparent;/*#ffffff;/*#2f3640;*/
         color: #2f3640;
         border: 0;
         padding: 0px 0px;
@@ -369,7 +371,7 @@ body{
         margin:4px 0 0 4px; 
 }
 #comments_container{
-        background: #ffffff;/*#e84118;*/
+        background: #a1ed72;/*#ffffff;/*#2f3640;/*#e84118;/**/
 }
 .comment_hot{
         color: #e84118;
@@ -382,6 +384,9 @@ body{
 .input-error {
         /*box-shadow: 0 0 5px red;*/
 }
+.form-success{
+        color: #f5f6fa;
+}
 
 /*Cookie message*/
 .cookie_container{
@@ -390,18 +395,18 @@ body{
     left: 0;
     right: 0;
     min-height: 46px;
-    background: #2f3640;
+    background: #e84118;;
     color: #f5f6fa;
     padding: 2px 32px;
     /*box-shadow: 0 -2px 16px rgba(47, 54, 64);*/
-    
+    text-align: center;
     transition: 400ms;
 }
 .cookie_container.active{
     bottom: 0;
 }
 .cookie_button, .cookie_cancel{
-    background: #A8C3CB;
+    background: #2f3640;
     border: 0;
     color: #f5f6fa;
     padding: 12px 48px;

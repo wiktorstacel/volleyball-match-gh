@@ -11,6 +11,35 @@ function Set_play_1mecz(){
     play_1mecz = 1;
     document.getElementById('screen3').style.visibility = "hidden";
     document.getElementById('screen6').style.visibility = "hidden";
+    if(localStorage.getItem("cookieBannerDisplayed") == "true")
+    {
+        var played = 0;
+        if(localStorage.getItem("played"))
+        {
+            played = localStorage.getItem("played");//alert(played);        
+            $.post("info_storage.php", {
+                played: played
+            });            
+        }
+        else
+        {
+            var ask = 1; var new_id;
+            $.post("info_storage.php", {
+                ask: ask}, function(data){
+                new_id = parseInt(data);//alert(new_id);
+                localStorage.setItem("played", new_id);
+                }
+            );            
+            
+        }
+    }
+    else
+    {
+            var anonim = 1;        
+            $.post("info_storage.php", {
+                anonim: anonim
+            });
+    }
 }
 
 function Set_non_hidden1(){

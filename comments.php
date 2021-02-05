@@ -27,13 +27,13 @@ class comments extends Strona1
     echo '<div id="TRESC">';
         echo '<div id="box_comments">';
             
-            echo'<div id="comment_to_reply" style="margin-left: 0px;padding: 0 0 0 6px;border-radius: 4px;"></div>';
+            echo'<div id="comment_to_reply" style="margin-left: 0px;padding: 0 0 0 6px;border-radius: 4px;color: #2f3640;background: #a1ed72;"></div>';
             echo'<form id="comment_form" method="post" action="comment_addAction.php">';
-            echo'<br><textarea id="comment_content" style="border-radius: 8px;width: 506px;" rows="6" type="text" value="" name="comment_content" class="" placeholder="Twój komentarz... ocena gry... pomysł na ulepszenie..."></textarea>';  
+            echo'<br><textarea id="comment_content" style="border-radius: 8px;width: 506px;background: #fafd1a;" rows="6" type="text" value="" name="comment_content" class="" placeholder="Twój komentarz... ocena gry... pomysł na ulepszenie..."></textarea>';  
 
-            echo'<input id="comment_user_name" style="margin:0px 0 4px 0;" type="text" name="comment_user_name" value="" placeholder="Imię..." />';
+            echo'<input id="comment_user_name" style="margin:0px 0 4px 0;background: #fafd1a;" type="text" name="comment_user_name" value="" placeholder="Imię..." />';
             
-            echo'<input id="comment_parent_id" type="hidden" name="comment_parent_id" value="0" />';//background: #fafd1a;
+            echo'<input id="comment_parent_id" type="hidden" name="comment_parent_id" value="0" />';//background: #fafd1a;#f8a521
             
             echo'<br><div id="comment_captcha"></div>';// class="g-recaptcha" data-sitekey="6LfV2UUaKkcskYoAimOqSAJMW0XLM78uu9d"></div>';
             

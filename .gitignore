@@ -11,6 +11,8 @@ PHPMailer/
 config_db.php
 config_smtp.php
 
+info_storage.php
+
 add_done/
 css/images/
 operacje/
