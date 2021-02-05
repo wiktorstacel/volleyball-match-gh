@@ -34,7 +34,7 @@ if(mysqli_num_rows($result) > 0)
         $mail->setFrom('info@mecz-siatkowki.pl');
         $mail->FromName="mecz-siatkowki";
         $mail->addAddress('w-e@wp.pl');
-        $mail->Subject = "Wniosek o usuniecie komentarza - mecz-siatkowki.pl";
+        $mail->Subject = "Wniosek o usunięcie komentarza - mecz-siatkowki.pl";
         $mail->Body = "
             $comment 
             <br><br>$name
@@ -42,7 +42,7 @@ if(mysqli_num_rows($result) > 0)
         ";
         if($mail->send())//jesli wysłano do doradcy, to dopiero wtedy potwierdzenie do klienta
         {
-            echo 'Wniosek o usuniecie komentarza zostal wyslany do administratora.';
+            echo 'Wniosek o usunięcie komentarza został wysłany do administratora.';
         }
         else
         {

@@ -165,9 +165,16 @@ $(document).ready(function(){
 //przysłanie danych z komentarza
 $(document).ready(function(){
     
-    $('#comment_form').on('submit', function(event){
-        event.preventDefault();                                     //wyłącza domyślne action i method 
-        var form_data = $(this).serialize(); //convert to string      
+    $('#comment_form').on('submit', function(event){  
+        //sprawdzenie zgody na cookie i jeśli "imię" niezgodne z LS to mysql nie pozwalam na stare istniejące używkoników
+        var check_name = 1;
+        if(localStorage.getItem("cookieBannerDisplayed") == "true")
+        {
+            var comment_user_name = $('#comment_user_name').val();
+            if(localStorage.getItem("comment_user_name") == comment_user_name)check_name = 0;
+        }
+        event.preventDefault();
+        var form_data = $(this).serialize() + "&check_name="+check_name; //convert to string
             $.ajax({
                 url: "comment_addAction.php",
                 method: "POST",
@@ -181,16 +188,20 @@ $(document).ready(function(){
                     $('#comment_message').html(data);
                     var n_data = data.search("Komentarz dodany.");//szuka ciagu znakow w odpowiedzi z php
                     if(n_data != -1)
-                    {
-                        load_comment();
-                        var comment_user_name = $('#comment_user_name').val();
-                        localStorage.setItem("comment_user_name", comment_user_name);//zapis do pam przegladarki
+                    {                       
+                        //sprawdzenie zgody na cookie i ew. zapisanie imienia komentującego
+                        if(localStorage.getItem("cookieBannerDisplayed") == "true")
+                        {
+                            var comment_user_name = $('#comment_user_name').val();
+                            localStorage.setItem("comment_user_name", comment_user_name);//zapis do pam przegladarki
+                        }
+                        load_comment(); 
                         var parent_id = $('#comment_parent_id').val();
                         if(parent_id > 0)
                         {
                             var comment_to_reply_id = $('#comment_to_reply').html();//odczyt diva nad texarea jesli to odpowiedz na komentarz
                             var element = document.getElementById(comment_to_reply_id);
-                            element.classList.add("comment_hot");
+                            //element.classList.add("comment_hot");
                             //element.setAttribute("style", "color:red;");
                             //element.style.color = "red";
                             //element.style.cssText = "color:red"; 

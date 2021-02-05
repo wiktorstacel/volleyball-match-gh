@@ -15,6 +15,7 @@ if(isset($_POST['comment_parent_id']))
     $comment = str_replace("&oacute;", "ó", $comment);
     $comment = str_replace("&Oacute;", "Ó", $comment);
     $name = htmlentities($_POST['comment_user_name'], ENT_QUOTES, "UTF-8");
+    $check_name = htmlentities($_POST['check_name'], ENT_QUOTES, "UTF-8");
     //$email = htmlentities($_POST['email'], ENT_QUOTES, "UTF-8");można dorobić nieobowiązkowe pole e-mail z komentarzem
     //'podaj e-mail jeśli chcesz dostawać informacje o aktualizacjach - tylko trzeba też zrobić potem opcję wypisania się z neewslettera
 
@@ -49,7 +50,7 @@ if(isset($_POST['comment_parent_id']))
     elseif(!preg_match("#^[ĄąĆćĘęŁłŃńÓóŚśŻżŹźa-zA-Z]+#", $name)) //zaczynać się od litery i musi być cojamniej 1 litera
     {
         $errorName = true;
-        echo '<span>Pola "imię" musi zaczynać się od litery.<span><br>';              
+        echo '<span class="form-error-comment">Pola "imię" musi zaczynać się od litery.<span><br>';              
     }
     elseif(strlen($name) < 3 || strlen($name) > 20)//sprawdz długość login
     {
@@ -104,7 +105,22 @@ $errorBot = false;
         {
             require_once 'config_db.php';
             if(mysqli_connect_errno($conn) != 0) throw new Exception(mysqli_connect_errno());
-
+            //sprawdzenie czy istnieje już taka nazwa komentującego wg polecenia 'name_check', gdzie jquery sprawdziło, że wprowadzone imię nie jest takie jak zapisane w LS
+            if($check_name == 1)
+            {
+                $result = mysqli_query($conn, 
+                sprintf("SELECT * FROM komentarze WHERE komentujacy='%s'",
+                mysqli_real_escape_string($conn, $name)
+                        ));
+                if(!$result) throw new Exception(mysqli_error($conn));
+                $user_number = mysqli_num_rows($result);
+                if($user_number > 0)
+                {
+                    $errorName = true;
+                    echo '<span class="form-error-comment">Istnieje już użytkownik w dyskusji o takim imieniu. Jeśli to Ty, Twoje imię nie jest zapamiętane z powodu braku zgody na cookie lub użycia innego imienia później.<span><br>';
+                }
+            }
+            
             //sprawdz czy jest w bazie komentarz parent_id
             $result = mysqli_query($conn, 
             sprintf("SELECT * FROM komentarze WHERE komentarz_id='%d'",
@@ -134,7 +150,7 @@ $errorBot = false;
 
             if(!$result)throw new Exception(mysqli_error($conn));
 
-            if($errorParent_id == false && $errorEmail == false)
+            if($errorParent_id == false && $errorEmail == false && $errorName==false)
             {
                     //Wysłanie email do klienta i doradcy
                     include_once "PHPMailer/PHPMailer.php";
