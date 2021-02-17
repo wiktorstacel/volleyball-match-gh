@@ -42,7 +42,7 @@ class comments extends Strona1
             echo'<button style="margin-top:4px;" id="button_add_comment" type="submit">Dodaj</button>
                 <br><br><span id="comment_message"></span>';//style="font-size: 11px;"
             echo'</form>';
-            echo'<script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>';//onload=onloadCallback&
+            //echo'<script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>';//onload=onloadCallback&
    
             echo'<br><div id="comments_container"></div>';
     echo '</div>'; // end of box
