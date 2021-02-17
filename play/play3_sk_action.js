@@ -3237,7 +3237,7 @@ function blok2(pra)
 		{
 			scr = document.getElementById("screen2").innerHTML;
 			//document.getElementById("screen2").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w antenke<br/>";
-                        document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - atak w antenke<br/>";
+                        document.getElementById("screen2").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - atak w antenkę<br/>";
  			pkt_blo = 0;
 			return "aut";
 		}
@@ -3402,7 +3402,7 @@ function blok1(pra)
 		{
 			scr = document.getElementById("screen1").innerHTML;
 			//document.getElementById("screen1").innerHTML = scr + " Blok"+Math.round(srb)+"/"+sumb+" : "+" "+Math.round(blok)+"% Atak w antenke<br/>";
- 			document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - atak w antenke<br/>";
+ 			document.getElementById("screen1").innerHTML = scr + " Blok - szanse: "+Math.round(blok)+"% - atak w antenkę<br/>";
                         pkt_blo = 0;
 			return "aut";
 		}

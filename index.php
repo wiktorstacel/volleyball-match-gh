@@ -4,6 +4,7 @@ require ('strona_man.inc');
 
 class index extends Strona1
 {
+
   public function WyswietlTresc()
   {
     echo '<div id="TRESC">';

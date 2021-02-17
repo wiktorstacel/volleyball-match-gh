@@ -540,6 +540,10 @@ class strona_plansza_1mecz extends Strona1
             return 0;
         }    
     }
+    public function WyswietlStopke()
+    {
+        echo "<div id=\"STOPKA\">$this->stopka</div>";
+    }
     
     public function Wyswietl()
     {

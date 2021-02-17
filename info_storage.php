@@ -50,8 +50,9 @@ if(isset($_POST['anonim']))
     $result = mysqli_query($conn, "SELECT licznik FROM `licznik_meczy` WHERE user_id = 1");
     if($result != TRUE){echo 'Bład zapytania MySQL, odpowiedź serwera: '.mysqli_error($conn);}
     $row = mysqli_fetch_assoc($result);
-    $id = $licznik = $row['licznik'];
-    $info_subject = "Mecz anonim coockie - nr: ".$row['licznik'];
+    $id = 1;
+    $licznik = $row['licznik'];
+    $info_subject = "Mecz anonim coockie - nr: ".$licznik;
     //exit();
 }
 //UWAGA: id 2(opera) i 3(chrome) są dla moich przeglądarek - nie wysyła maila

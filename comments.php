@@ -7,14 +7,14 @@ class comments extends Strona1
     public function WyswietlHeadNiestandardowe()
     {
         echo '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
-        echo "<script type='text/javascript'>
+       /* echo "<script type='text/javascript'>
                                     var onloadCallback = function() {
                                     grecaptcha.render('comment_captcha', {
                                     'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
                                     'theme' : 'dark'
                                         });
                                     };
-            </script>";
+            </script>";*/
     }
     
     public function WyswietlNaglowek()
@@ -35,14 +35,14 @@ class comments extends Strona1
             
             echo'<input id="comment_parent_id" type="hidden" name="comment_parent_id" value="0" />';//background: #fafd1a;#f8a521
             
-            echo'<br><div id="comment_captcha"></div>';// class="g-recaptcha" data-sitekey="6LfV2UUaKkcskYoAimOqSAJMW0XLM78uu9d"></div>';
+            echo'<br><div id="comment_captcha" class="g-recaptcha" data-sitekey="6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9" data-theme="dark"></div>';//></div>';//
             
             //echo'<label><input id="comment_regulamin" type="checkbox" name="rej_regulamin" />Akceptuję </label><a href="regulamin.php">regulamin</a>';
             
             echo'<button style="margin-top:4px;" id="button_add_comment" type="submit">Dodaj</button>
                 <br><br><span id="comment_message"></span>';//style="font-size: 11px;"
             echo'</form>';
-            echo'<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>';
+            echo'<script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>';//onload=onloadCallback&
    
             echo'<br><div id="comments_container"></div>';
     echo '</div>'; // end of box

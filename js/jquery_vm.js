@@ -254,13 +254,16 @@ $(document).ready(function(){
         {
             $('#comment_user_name').val("").prop( "disabled", false );
         }
+        //2021-02-17: Gdyby nie działała z 'ODPOWIEDZ' to napisać funkcję np load, wyczyscić diva z capchą
+        //i w funckji call back zrenderować jeszcze raz - poniższy kod, bo może mówić, że już zrenderowano
+        //tak jak insurance
         grecaptcha.reset();
-                                    var onloadCallback = function() {
-                                    grecaptcha.render('comment_captcha', {
-                                    'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
-                                    'theme' : 'dark'
-                                        });
-                                    };
+                                    //var onloadCallback = function() {
+                                    /*grecaptcha.render('comment_captcha', {
+                                        'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
+                                        'theme' : 'dark'
+                                    });*/
+                                    //};
         $('#comment_message').html("");
         window.scrollBy(0, 0);
     });
@@ -285,12 +288,12 @@ $(document).ready(function(){
             $('#comment_user_name').val("").prop( "disabled", false );
         }
         grecaptcha.reset();
-                                    var onloadCallback = function() {
-                                    grecaptcha.render('comment_captcha', {
-                                    'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
-                                    'theme' : 'dark'
-                                        });
-                                    };
+                                    //var onloadCallback = function() {
+                                    /*grecaptcha.render('comment_captcha', {
+                                        'sitekey' : '6LfjUEoaAAAAABm9u1_0GYG21x4dL3fTQSZg3CM9',
+                                        'theme' : 'dark'
+                                    });*/
+                                    //};
         $('#comment_message').html("");
         window.scrollBy(0, 0);
     });
